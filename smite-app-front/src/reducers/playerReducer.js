@@ -11,7 +11,7 @@ export default function playerReducer(
           let player = {
               id: cuid(),
               player_name: action.player_name,
-              portal: action.portal_id
+              portal_id: action.portal_id
           }
         return {
           ...state,
