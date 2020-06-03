@@ -28,6 +28,7 @@ class PlayerInput extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <form onSubmit={event => this.handleOnSubmit(event)} >
