@@ -1,0 +1,4 @@
+class God < ApplicationRecord
+
+
+end
