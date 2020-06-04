@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PlayerInput from '../components/players/PlayerInput'
-import Players from '../components/Players'
+import Players from '../components/players/Players'
 import { connect } from 'react-redux'
 
 class PlayersContainer extends Component {
@@ -17,9 +17,10 @@ class PlayersContainer extends Component {
 }
 
 
-const mapStateToProps = state => ({ players: state.players })
+const mapStateToProps = state => ({ player_id: state.player_id, portal_id: state.portal_id})
 
 const mapDispatchToProps = dispatch => {
+    // const player= (player_name, portal_id)
   return {
     addPlayer: player => dispatch({type: "ADD_PLAYER", player}),
     deletePlayer: id => dispatch({type: "DELETE_PLAYER", id})

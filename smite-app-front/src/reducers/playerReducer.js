@@ -24,6 +24,7 @@ export default function playerReducer(
             //     ...state,
             //     player: state.player
             //   }
+            
       default:
         return state;
     }

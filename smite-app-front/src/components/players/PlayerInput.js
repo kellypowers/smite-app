@@ -4,9 +4,10 @@ class PlayerInput extends Component {
   constructor(props){
     super(props);
     this.state = {
-      player_name: '',
-      portal_id: ''
-
+      //  player: {
+        player_name: '',
+        portal_id: ''
+      // }
   }
   // state = {
   //   text: ''
@@ -14,6 +15,11 @@ class PlayerInput extends Component {
 
   handleOnChange = event => {
     this.setState({
+      // ...this.state.player,
+      // player: {
+      // player_name: event.target.value,
+      // portal_id: event.target.value
+      // }
       [event.target.name]: event.target.value
     })
   }
