@@ -8,14 +8,14 @@ export default function playerReducer(
   ) {
     switch (action.type) {
       case 'ADD_PLAYER':
-          let player = {
-              id: cuid(),
-              player_name: action.player_name,
-              portal_id: action.portal_id
-          }
+        //   let player = {
+        //       id: cuid(),
+        //       player_name: action.player_name,
+        //       portal_id: action.portal_id
+        //   }
         return {
           ...state,
-          players: [...state.players, player]
+          players: [...state.players, action.player]
         }
         case "DELETE_PLAYER":
             return {players: state.players.filter(player => player.id !== action.id)}
@@ -24,7 +24,7 @@ export default function playerReducer(
             //     ...state,
             //     player: state.player
             //   }
-            
+
       default:
         return state;
     }
