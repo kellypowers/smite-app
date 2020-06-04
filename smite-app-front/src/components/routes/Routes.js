@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from "react-router-dom";
 import Player from './components/players/Player';
 // import About from './container/About';
 // import Login from './container/Login';
@@ -12,14 +12,13 @@ class Routes extends Component {
   render() {
     return (
       <div>
-        <Navigation />
-        <Switch>
+        {/* <Navigation /> */}
+        <BrowserRouter>
           <Route exact path="/gods" component={GodsContainer} />
           <Route exact path="/player" component={Player} />
           {/* <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} /> */}
-        </Switch>
-        <Footer />
+        </BrowserRouter>
       </div>
     );
   }

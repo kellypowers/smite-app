@@ -4,9 +4,12 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import App from './App'
-import playerReducer from './reducers/playerReducer';
- 
-const store = createStore(playerReducer, applyMiddleware(thunk));
+import rootReducer from './reducers/index';
+// import { composeWithDevTools } from 'redux-devtools-extension';
+// const  composeEnchancers = composeWithDevTools({});
+
+// export const store = createStore(rootReducer, composeEnchancers(applyMiddleware(thunk)))
+const store = createStore(rootReducer, applyMiddleware(thunk));
  
 ReactDOM.render(
   <Provider store={store} >

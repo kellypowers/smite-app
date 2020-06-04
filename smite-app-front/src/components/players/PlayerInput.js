@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
+import { deletePlayer } from '../actions';
+import { addPlayer } from '../actions/index';
+import { connect } from 'react-redux';
 
 class PlayerInput extends Component {
   constructor(props){
@@ -26,7 +30,8 @@ class PlayerInput extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    this.props.addPlayer(this.state.player_name, this.state.portal_id);
+    const player = {...this.state, id: uuid() };
+    this.props.addPlayer(player);
     this.setState({
       player_name: '',
       portal_id: ''
@@ -42,9 +47,9 @@ class PlayerInput extends Component {
             <input type="text" name="player_name" value={this.state.player_name} onChange={event => {this.handleOnChange(event)}} />
             <label for="portal_id">Select a platform </label>
             <select name="portal_id" >
+                <option value="10">XBox</option>
                 <option value="5">Steam</option>
                 <option value="9">PS4</option>
-                <option value="10">XBox</option>
                 <option value="22">Switch</option>
                 <option value="1">PC</option>
             </select>
@@ -56,4 +61,4 @@ class PlayerInput extends Component {
   }
 };
 
-export default PlayerInput;
+export default connect(null, {addPlayer})(PlayerInput);
