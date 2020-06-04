@@ -12,12 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2020_06_04_202141) do
 
-  create_table "gods_tables", force: :cascade do |t|
+  create_table "gods", force: :cascade do |t|
     t.string "name"
     t.string "pantheon"
     t.string "roles"
     t.string "title"
-    t.string "type"
+    t.string "god_kind"
     t.string "pros"
     t.integer "god_id"
     t.string "god_image"

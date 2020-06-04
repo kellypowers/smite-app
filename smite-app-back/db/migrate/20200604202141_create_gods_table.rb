@@ -1,11 +1,11 @@
 class CreateGodsTable < ActiveRecord::Migration[6.0]
   def change
-    create_table :gods_tables do |t|
+    create_table :gods do |t|
       t.string :name
       t.string :pantheon
       t.string :roles
       t.string :title
-      t.string :type
+      t.string :god_kind
       t.string :pros
       t.integer :god_id
       t.string :god_image

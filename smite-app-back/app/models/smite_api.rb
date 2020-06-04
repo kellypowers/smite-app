@@ -174,9 +174,9 @@ class SmiteApi
                 name: god["Name"],
                 pantheon: god["Pantheon"],
                 roles: god["Roles"],
-                title: god["title"],
-                type: god["type"],
-                pros: god["pros"],
+                title: god["Title"],
+                type: god["Type"],
+                pros: god["Pros"],
                 god_id: god["id"],
                 god_image: god["godCard_URL"],
                 ability1: god["Ability1"],
@@ -206,7 +206,7 @@ class SmiteApi
             }
         array.push(hash)
         end
-        puts array
+        return array
     end
 
 end
