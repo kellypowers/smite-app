@@ -8,6 +8,7 @@ gem 'omniauth-github'
 gem 'pry'
 gem 'dotenv-rails'
 gem 'httparty'
+gem 'rack-cors'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
