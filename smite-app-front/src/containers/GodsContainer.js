@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import PlayerInput from '../components/players/PlayerInput'
-import Players from '../components/players/Players'
+import Gods from '../components/gods/Gods'
 import { connect } from 'react-redux'
 
 class GodsContainer extends Component {
