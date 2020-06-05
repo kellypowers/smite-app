@@ -4,12 +4,12 @@ export const addPlayer = player => {
       player
     };
   };
-  
-  export const removePlayer = id => {
+
+export const deletePlayer = id => {
     return {
-      type: 'REMOVE_PLAYER',
-      id
+        type: 'DELETE_PLAYER',
+        id
     };
-  };
+};
   
 

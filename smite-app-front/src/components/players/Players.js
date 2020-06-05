@@ -11,11 +11,11 @@ class Players extends Component {
     // const playerList = players.map((player, index) => {
     //   return <Player key={index} player={player} deletePlayer={deletePlayer} />
     // })
-    let players = this.props.players.map(player => <Player key={player.id}>{player.player_name} </li>);
+    // let players = this.props.players.map(player =><li> <Player key={player.id} /> {player.player_name} </li>);
     return (
       <ul>
         {/* {playerList} */}
-        {players}
+        {/* {players} */}
       </ul>
     );
   }

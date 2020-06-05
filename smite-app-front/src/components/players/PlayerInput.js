@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
-import { deletePlayer } from '../actions';
-import { addPlayer } from '../actions/index';
+// import { deletePlayer } from '../actions/index';
+import { addPlayer } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js';
 import { connect } from 'react-redux';
 
 class PlayerInput extends Component {

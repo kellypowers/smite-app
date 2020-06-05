@@ -10,7 +10,7 @@ class PlayersContainer extends Component {
     return (
       <div>
         <PlayerInput addPlayer={this.props.addPlayer}/>
-        <Players players={this.props.players} deletePlayer={this.props.deletePlayer}/>
+        {/* <Players players={this.props.players} deletePlayer={this.props.deletePlayer}/> */}
       </div>
     )
   }
