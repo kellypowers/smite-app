@@ -33,6 +33,20 @@ function godsReducer(state = { gods: [], loading: false }, action) {
                 return {gods: [state.gods[idx]]}
             } else {
                 return state }
+
+        case "FIND_GOD_BY_ROLE":
+            console.log(` action is ${JSON.stringify(action.role)}`)
+            console.log(` state.gods in reducer is ${JSON.stringify(state.gods)}`)
+            let godRoles = state.gods.filter(god => (god.roles) === action.role )
+            console.log(`godRoles are ${godRoles}`)
+            return {gods: godRoles};
+            
+                    
+
+        case "FIND_GOD_BY_PANTHEON":
+            console.log(` action is ${JSON.stringify(action)}`)
+            let godsPantheon = state.gods.filter(god => god.pantheon === action.pantheon );
+            return {gods: godsPantheon}
    
       default:
         return state;
