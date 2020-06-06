@@ -12,13 +12,14 @@ class App extends Component {
   
   handleLoading = () => {
     console.log(this.props.loading)
-    if(this.props.loading) {
+    if (this.props.loading) {
       return <div>Loading...</div>
     } else {
-      return <GodsContainer ={this.props.gods} />
+      return <GodsContainer gods = {this.props.gods} />
     }
   }
   render() {
+    console.log(`props in app is ${JSON.stringify(this.props)}`)
     return (
       <div className="App">
         {/* <PlayersContainer /> */}
