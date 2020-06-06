@@ -4,8 +4,8 @@ class God extends Component {
 
   render() {
     // const { god } = this.props
-    // console.log("props in god" + JSON.stringify(this.props.god));
-    console.log("props in god" + this.props.god.name);
+    //  console.log("props in god" + JSON.stringify(this.props.god));
+    // console.log("props in god" + this.props.god.name);
     return (
       <div>
         <ul>

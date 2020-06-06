@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
+// import uuid from 'uuid';
 // import { deletePlayer } from '../actions/index';
-import { addPlayer } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js';
+import { addPlayer } from '../actions/index.js';
 import { connect } from 'react-redux';
 
-class PlayerInput extends Component {
+class PlayerSearch extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ class PlayerInput extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    const player = {...this.state, id: uuid() };
+    const player = {...this.state};
     this.props.addPlayer(player);
     this.setState({
       player_name: '',
@@ -61,4 +61,4 @@ class PlayerInput extends Component {
   }
 };
 
-export default connect(null, {addPlayer})(PlayerInput);
+export default connect(null, {addPlayer})(PlayerSearch);

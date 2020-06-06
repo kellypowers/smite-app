@@ -19,7 +19,7 @@ function godsReducer(state = { gods: [], loading: false }, action) {
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
+                error: action.error,
                 gods: []
             }
    

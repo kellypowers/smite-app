@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PlayerInput from '../components/players/PlayerInput'
+import PlayerSearch from '../components/players/PlayerSearch'
 import Players from '../components/players/Players'
 import { connect } from 'react-redux'
 
@@ -9,7 +9,7 @@ class PlayersContainer extends Component {
       console.log(this.props)
     return (
       <div>
-        <PlayerInput addPlayer={this.props.addPlayer}/>
+        <PlayerSearch addPlayer={this.props.addPlayer}/>
         {/* <Players players={this.props.players} deletePlayer={this.props.deletePlayer}/> */}
       </div>
     )
