@@ -11,8 +11,8 @@ class App extends Component {
   }
   
   handleLoading = () => {
-    console.log(this.props.loading)
-    if (this.props.loading) {
+    console.log(this.props.gods.loading)
+    if (this.props.gods.loading) {
       return <div>Loading...</div>
     } else {
       return <GodsContainer gods = {this.props.gods} />
@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         {/* <PlayersContainer /> */}
-        {/* <GodsContainer gods={this.props.gods}/> */}
+
         {this.handleLoading()}
       </div>
     );
