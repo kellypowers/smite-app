@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class God extends Component {
+const God = props => {
 
-  render() {
-    // const { god } = this.props
-    //  console.log("props in god" + JSON.stringify(this.props.god));
-    // console.log("props in god" + this.props.god.name);
     return (
       <div>
         <ul>
-        <li key={this.props.god.god_id}>
-             <h3>{this.props.god.name}</h3>
-             <img src={this.props.god.god_image}/>
-             {this.props.god.god_kind}
+        <li key={props.god.god_id}>
+             <h3>{props.god.name}</h3><br/>
+             <h4>{props.god.title} {props.god.pantheon}</h4> <br/>
+             <img src={props.god.god_image} alt={props.god.name}/>
              <br/>
-             Abilities: 
+             Type: {props.god.god_kind} Pros: {props.god.pros}
+             <br/>
+             Abilities: <br/>
              <ul>
-                 <li>{this.props.god.ability1} <img src={this.props.god.ability1_image} /> - {this.props.god.ability1_description}</li>
-                 <li>{this.props.god.ability2} <img src={this.props.god.ability2_image} />- {this.props.god.ability2_description}</li>
-                 <li>{this.props.god.ability3} <img src={this.props.god.ability3_image} />- {this.props.god.ability3_description}</li>
-                 <li>{this.props.god.ability4}<img src={this.props.god.ability4_image} /> - {this.props.god.ability4_description}</li>
+                 <li>{props.god.ability1} <img src={props.god.ability1_image} alt={props.god.ability1}/> - <br/> {props.god.ability1_description}</li>
+                 <li>{props.god.ability2} <img src={props.god.ability2_image} alt={props.god.ability2}/>- <br/>{props.god.ability2_description}</li>
+                 <li>{props.god.ability3} <img src={props.god.ability3_image} alt={props.god.ability3}/>- <br/>{props.god.ability3_description}</li>
+                 <li>{props.god.ability4}<img src={props.god.ability4_image} alt={props.god.ability4}/> - <br/>{props.god.ability4_description}</li>
              </ul>
              </li>
         </ul>
       </div>
     );
   }
-
-};
 
 export default God;

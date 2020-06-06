@@ -9,7 +9,6 @@ class Gods extends Component {
         console.log(`this.props.god in gods is ${JSON.stringify(this.props.gods)}`)
         if (this.props.gods.gods.length == 109) {
         return this.props.gods.gods.map(god => 
-        //  (<God god={god} key={god.god_id} />))
         <li onClick={event => this.handleClick(event)} key={god.god_id}>{god.name}</li> )
         } else {
             return this.props.gods.gods.map(god => 
@@ -19,12 +18,10 @@ class Gods extends Component {
 
     handleClick = (event) => {
         this.props.findGod(event.target.innerText);
-        return this.props.gods.gods.map(god => 
-                 (<God god={god} key={god.god_id} />))
         
     }
   render() {
-    // console.log(`this.props.god in gods is ${JSON.stringify(this.props.gods)}`)
+
 
     return (
       <ul>

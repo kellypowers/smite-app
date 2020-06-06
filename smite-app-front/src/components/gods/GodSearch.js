@@ -11,15 +11,15 @@ class GodSearch extends Component {
 
     handleOnSubmit = event => {
         event.preventDefault();
-        const god = {...this.state};
+        const god = this.state.name;
         this.props.findGod(god);
         this.setState({
-          query: '',
+          name: '',
         })
       }
     handleOnChange = event => {
         this.setState({
-          [event.target.name]: event.target.value
+          name: event.target.value
         })
       }
    
@@ -29,7 +29,7 @@ class GodSearch extends Component {
         <div>
         <form onSubmit={event => this.handleOnSubmit(event)} >
             <label for="god_name">Search by God Name:</label>
-            <input type="text" name="name" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
+            <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
           <input type="submit" />
         </form>
         
