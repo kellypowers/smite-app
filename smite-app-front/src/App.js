@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PlayersContainer from './containers/PlayersContainer';
+import { connect } from 'react-redux';
+import { fetchGods } from './actions/fetchGods'
 import GodsContainer from './containers/GodsContainer';
 
 class App extends Component {
@@ -26,5 +28,12 @@ class App extends Component {
     );
   }
 };
+const mapDispatchToProps = state => {
+  return {
+    gods: state.gods,
+    loading: state.loading
+  }
+}
 
-export default App
+
+export default connect(mapDispatchToProps, {fetchGods})(App)
