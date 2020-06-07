@@ -1,9 +1,9 @@
-const initialState = {
-    gods: [],
-    loading: false
-}
+// const initialState = {
+//     gods: [],
+//     loading: false
+// }
 
-function godsReducer(state = initialState, action) {
+function godsReducer(state ={gods: [], loading: false}, action) {
     let idx;
     switch (action.type) {
    
@@ -34,8 +34,8 @@ function godsReducer(state = initialState, action) {
             let idx = state.gods.findIndex(god => god.name.toLowerCase() === action.name.toLowerCase() );
             console.log(idx)
             if (idx || idx==0) {
-                console.log("state gods in reducer " + JSON.stringify(state.gods[idx]))
-                return {gods: [state.gods[idx]]}
+                console.log("state gods in reducer " + JSON.stringify(state))
+                return {...state, gods: [state.gods[idx]]}
             } else {
                 return state }
 
@@ -45,7 +45,7 @@ function godsReducer(state = initialState, action) {
             let godRoles = state.gods.filter(god => (god.roles) === action.role )
             console.log(`godRoles are ${godRoles}`)
             if (godRoles.length > 0) {
-                return {...state, gods: godRoles};
+                return {...state,  gods: godRoles};
             } else {return state}
             
                     

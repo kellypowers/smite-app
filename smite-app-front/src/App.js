@@ -9,7 +9,7 @@ import God from './components/gods/God';
 import ItemsContainer from './containers/ItemsContainer';
 import Items from './components/items/Items';
 import Item from './components/items/Item';
-import Navbar from './components/navigation/NavBar';
+// import Navbar from './components/navigation/NavBar';
 class App extends Component {
 
   
@@ -18,12 +18,16 @@ class App extends Component {
     console.log(`stategods in app is ${JSON.stringify(this.state)}`);
     return (
       <BrowserRouter>
+      
         <div>
-        <Navbar />
+        <Switch>
+        {/* <Navbar /> */}
           {/* <Route exact path="/" component={Home} /> */}
           <Route exact path="/gods" component={GodsContainer} />
+          <Route path="/gods/:god_id" component={God}/>
           {/* <Route path='/gods' render={routerProps => <Gods {...routerProps} gods={this.props.gods}/>} /> */}
           <Route exact path="/items" component={ItemsContainer} />
+          </Switch>
         </div>
     </BrowserRouter>
     
@@ -33,20 +37,20 @@ class App extends Component {
 
 
 
-const mapStateToProps = state => {
-  console.log(state)
-  return {
-    gods: state.gods,
-    items: state.items,
-    // this will be selector.gods
-    loading: state.loading
-  }
-}
+// const mapStateToProps = state => {
+//   console.log(state)
+//   return {
+//     gods: state.gods,
+//     items: state.items,
+//     // this will be selector.gods
+//     loading: state.loading
+//   }
+// }
 
 
 
 // export default GodsContainer;
-export default connect(mapStateToProps)(App)
+// export default connect(mapStateToProps)(App)
 
 // export default connect(mapDispatchToProps, {fetchGods})(App)
-// export default App;
+export default App;

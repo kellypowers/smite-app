@@ -24,6 +24,7 @@ class GodPantheonDropdown extends Component{
         return (
             <form id="pantheon" onSubmit={event => this.handleOnSubmit(event)} >
             <select onChange={event => this.handleOnSelect(event)} name="pantheon" >
+                <option value=" "> </option>
                 <option value="Greek">Greek</option>
                 <option value="Hindu">Hindu</option>
                 <option value="Mayan">Mayan</option>

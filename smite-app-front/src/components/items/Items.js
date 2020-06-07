@@ -12,7 +12,7 @@ class Items extends Component {
         // renders all 109 Items unless there are filters applied, then renders the info for each.. might do if props.Items.length > 1, then can just list the Items if search for all mages, etc
         if (this.props.items.items.length > 1) {
         return this.props.items.items.map(item => 
-        <li onClick={event => this.handleClick(event)} key={item.item_id}><img src={item.item_image} alt={item.name}/>{item.name}</li> )
+        <li  key={item.item_id}><img onClick={event => this.handleClick(event)} src={item.item_image} alt={item.name}/>{item.name}</li> )
         } else {
             return this.props.items.items.map(item => 
                 (<Item item={item} key={item.item_id} />))
@@ -20,7 +20,8 @@ class Items extends Component {
     }
 
     handleClick = (event) => {
-        this.props.findItem(event.target.innerText);
+        console.log(event.target.alt);
+        this.props.findItem(event.target.alt);
     }
   render() {
 

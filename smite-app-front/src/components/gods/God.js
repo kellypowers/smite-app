@@ -6,7 +6,7 @@ const God = props => {
       // console.log(`god comp ${JSON.stringify(props.god)}`);
       <div key={props.god.god_id} >
         <ul>
-          <div class="god_intro">
+          <div id="god_intro">
              <h3>{props.god.name}</h3>
             <p>{props.god.god_kind}</p>
              <br/>

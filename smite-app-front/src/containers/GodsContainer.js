@@ -4,8 +4,8 @@ import { fetchGods } from '/Users/kellypowers/coding/react/smite-app/smite-app-f
 import Gods from '../components/gods/Gods'
 // import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import GodSearch from '../components/gods/GodSearch'
-import GodSearchRadio from '../components/gods/GodSearchRadio'
+// import GodSearch from '../components/gods/GodSearch'
+// import GodSearchRadio from '../components/gods/GodSearchRadio'
 
 
 class GodsContainer extends Component {
@@ -22,6 +22,7 @@ class GodsContainer extends Component {
   }
 
   render() {
+    // console.log(`stategods in gods is ${JSON.stringify(state)}`);
       console.log("props in Gods is " + JSON.stringify(this.props))
     return (
       <div>
@@ -40,7 +41,7 @@ class GodsContainer extends Component {
 const mapDispatchToProps = state => {
   return {
     gods: state.gods,
-    // items: state.items,
+    items: state.items,
     // this will be selector.gods
     loading: state.loading
   }
