@@ -16,14 +16,17 @@ class GodRolesDropdown extends Component{
     }
 
     handleOnSelect = event => {
+        console.log(event.target.value);
         this.setState({
           role: event.target.value
         })
       }
     render(){
+        console.log(`role dropdown state ${JSON.stringify(this.state)}`)
         return (
             <form id="role" onSubmit={event => this.handleOnSubmit(event)} >
             <select onChange={event => this.handleOnSelect(event)} name="role" >
+                <option value=""> </option>
                 <option value=" Warrior">Warrior</option>
                 <option value=" Guardian">Guardian</option>
                 <option value=" Mage">Mage</option>

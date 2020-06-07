@@ -4,8 +4,8 @@ import NavLinks from './NavLinks'
 class NavBar extends Component {
  
     state = {
-      query: "",
-      username: ""
+      // query: "",
+      // username: ""
     }
    
     render() {
@@ -13,8 +13,8 @@ class NavBar extends Component {
       return (
         <>
           <NavLinks />
-          <DropMenu username={ this.state.username }/>
-          <Search query= {this.state.query } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit }/>
+          {/* <DropMenu username={ this.state.username }/> */}
+          {/* <Search query= {this.state.query } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit }/> */}
         </>
       )
     }

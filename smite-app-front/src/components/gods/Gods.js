@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {findGod} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js';
 import God from './God'
 import { connect } from 'react-redux';
+import GodSearch from './GodSearch'
+import GodSearchRadio from './GodSearchRadio'
 
 class Gods extends Component {
     //action creater function to pass each god to the God component
@@ -25,6 +27,8 @@ class Gods extends Component {
 
     return (
       <ul>
+          <GodSearch  />
+          <GodSearchRadio  />
         {this.renderGodList()}
       </ul>
     );

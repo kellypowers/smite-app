@@ -15,7 +15,7 @@ class GodSearchRadio extends Component {
    
 
     renderSearchFilter = () => {
-
+        console.log(`radio state ${JSON.stringify(this.state)}`);
         if (this.state.selectedOption === "roles") {
             return <GodRolesDropdown/>
         } else if (this.state.selectedOption=== "pantheon") {
