@@ -8,18 +8,7 @@ import ItemsContainer from './containers/ItemsContainer';
 
 class App extends Component {
 
-  // componentDidMount() {
-  //   this.props.fetchGods()
-  // }
   
-  // handleLoading = () => {
-  //   console.log(this.props.gods.loading)
-  //   if (this.props.gods.loading) {
-  //     return <div>Loading...</div>
-  //   } else {
-  //     return <GodsContainer gods = {this.props.gods} />
-  //   }
-  // }
   render() {
     console.log(`props in app is ${JSON.stringify(this.props)}`)
 
@@ -30,22 +19,9 @@ class App extends Component {
         </BrowserRouter>
       </div>
     );
-    // return (
-    //   <div className="App">
-    //     {/* <PlayersContainer /> */}
-
-    //     {this.handleLoading()}
-    //   </div>
-    // );
   }
 };
-// const mapDispatchToProps = state => {
-//   return {
-//     gods: state.gods,
-//     items: state.items,
-//     loading: state.loading
-//   }
-// }
+
 
 
 const Main = () =>

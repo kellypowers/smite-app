@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Items from '../components/items/Items'
+import { fetchItems } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/fetchItems';
 // import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
@@ -29,8 +30,16 @@ class ItemsContainer extends Component {
 }
 
 
+const mapDispatchToProps = state => {
+  return {
+    // gods: state.gods,
+    items: state.items,
+    // this will be selector.gods
+    loading: state.loading
+  }
+}
 
 
 
-
-export default ItemsContainer;
+// export default ItemsContainer;
+export default connect(mapDispatchToProps, {fetchItems})(ItemsContainer)
