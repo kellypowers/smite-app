@@ -1,24 +1,32 @@
-import React, { Component } from 'react'
-import NavLinks from './NavLinks'
+import React from 'react'
+// import NavLinks from './NavLinks'
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 
-class NavBar extends Component {
+
  
-    state = {
-      // query: "",
-      // username: ""
-    }
-   
-    render() {
-      // <>...</> is a a React fragment - it does not render anything to the DOM, but can wrap multiple JSX elements
-      return (
-        <>
-          <NavLinks />
-          {/* <DropMenu username={ this.state.username }/> */}
-          {/* <Search query= {this.state.query } handleChange={ this.handleChange } handleSubmit={ this.handleSubmit }/> */}
-        </>
-      )
-    }
-   
-    handleSubmit = event => { ... }
-    handleChange = event => { ... }
-  }
+const Navbar = () =>
+  <div>
+    <NavLink
+      to="/"
+      /* set exact so it knows to only set activeStyle when route is deeply equal to link */
+      exact
+    >Home</NavLink>
+    <NavLink
+      to="/gods"
+      exact
+      // style={link}
+      // activeStyle={{
+      //   background: 'darkblue'
+     Gods // }}
+    >Gods</NavLink>
+    <NavLink
+      to="/items"
+      exact
+      // style={link}
+      // activeStyle={{
+      //   background: 'darkblue'
+      // }}
+    >Items</NavLink>
+  </div>;
+
+export default Navbar;

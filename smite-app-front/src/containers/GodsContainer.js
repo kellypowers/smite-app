@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { fetchGods } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/fetchGods';
 import Gods from '../components/gods/Gods'
 // import { Link } from 'react-router-dom';
@@ -28,6 +29,8 @@ class GodsContainer extends Component {
      
 
         <Gods gods={this.props.gods} /> 
+
+        {/* <Route path='/gods' render={routerProps => <Gods {...routerProps} gods={this.props.gods}/>} /> */}
       </div>
     )
   }
@@ -37,7 +40,7 @@ class GodsContainer extends Component {
 const mapDispatchToProps = state => {
   return {
     gods: state.gods,
-    items: state.items,
+    // items: state.items,
     // this will be selector.gods
     loading: state.loading
   }

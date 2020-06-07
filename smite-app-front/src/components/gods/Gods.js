@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {findGod} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js';
 import God from './God'
 import { connect } from 'react-redux';
@@ -12,10 +14,13 @@ class Gods extends Component {
         // renders all 109 gods unless there are filters applied, then renders the info for each.. might do if props.gods.length > 1, then can just list the gods if search for all mages, etc
         if (this.props.gods.gods.length > 1) {
         return this.props.gods.gods.map(god => 
-        <li onClick={event => this.handleClick(event)} key={god.god_id}>{god.name}</li> )
+        <li onClick={event => this.handleClick(event)}><Link key={god.god_id} to={`/gods/${god.god_id}`}>{god.name}</Link></li>)
         } else {
             return this.props.gods.gods.map(god => 
-                (<God god={god} key={god.god_id} />))
+              // console.log(god);
+            <Route path={`gods/${god.god_id}`} component={<God god={god} key={god.god_id} />}/>)
+              // <Route path='/gods' render={routerProps => <God key={god.god_id} {...routerProps} god={god}/>} />)
+                // (<God god={god} key={god.god_id} />))
         }
     }
 
