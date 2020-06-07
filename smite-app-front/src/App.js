@@ -24,9 +24,11 @@ class App extends Component {
     console.log(`props in app is ${JSON.stringify(this.props)}`)
 
     return (
-      <BrowserRouter>
-          <Main />
-      </BrowserRouter>
+      <div className="App">
+        <BrowserRouter>
+            <Main />
+        </BrowserRouter>
+      </div>
     );
     // return (
     //   <div className="App">

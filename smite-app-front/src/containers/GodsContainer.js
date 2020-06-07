@@ -38,6 +38,7 @@ const mapDispatchToProps = state => {
   return {
     gods: state.gods,
     items: state.items,
+    // this will be selector.gods
     loading: state.loading
   }
 }

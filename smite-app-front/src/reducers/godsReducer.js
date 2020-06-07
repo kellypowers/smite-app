@@ -1,4 +1,9 @@
-function godsReducer(state = { gods: [], loading: false }, action) {
+const initialState = {
+    gods: [],
+    loading: false
+}
+
+function godsReducer(state = initialState, action) {
     let idx;
     switch (action.type) {
    
@@ -39,14 +44,18 @@ function godsReducer(state = { gods: [], loading: false }, action) {
             console.log(` state.gods in reducer is ${JSON.stringify(state.gods)}`)
             let godRoles = state.gods.filter(god => (god.roles) === action.role )
             console.log(`godRoles are ${godRoles}`)
-            return {gods: godRoles};
+            if (godRoles.length > 0) {
+                return {...state, gods: godRoles};
+            } else {return state}
             
                     
 
         case "FIND_GOD_BY_PANTHEON":
             console.log(` action is ${JSON.stringify(action)}`)
             let godsPantheon = state.gods.filter(god => god.pantheon === action.pantheon );
-            return {gods: godsPantheon}
+            if (godsPantheon.length > 0) {
+                return {...state, gods: godsPantheon}
+            } else {return state}
    
       default:
         return state;

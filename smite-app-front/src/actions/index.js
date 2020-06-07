@@ -1,7 +1,8 @@
-export function addPlayer(player) {
+export function addPlayer(playerId, portalId) {
     return {
       type: 'ADD_PLAYER',
-      player
+      playerId,
+      portalId
     };
   };
 
