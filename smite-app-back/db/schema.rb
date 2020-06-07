@@ -51,11 +51,13 @@ ActiveRecord::Schema.define(version: 2020_06_07_002113) do
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.integer "item_id"
+    t.string "item_stat"
     t.integer "item_tier"
     t.integer "price"
     t.string "short_description"
     t.string "item_image"
     t.string "item_secondary_description"
+    t.string "active_flag"
   end
 
 end
