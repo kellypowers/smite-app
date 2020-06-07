@@ -34,3 +34,9 @@ export const findGodByRole = (role) => {
 }
 };
   
+export const findItem = (name) => {
+  return {
+    type: "FIND_ITEM",
+    name
+}
+};

@@ -13,9 +13,7 @@ class ItemsContainer extends Component {
         console.log(this.props.items.loading)
         if (this.props.items.loading) {
           return <div>Loading...</div>
-        } else {
-          return <ItemsContainer items = {this.props.items} />
-        }
+        } 
       }
 
 
