@@ -162,9 +162,99 @@ class SmiteApi
         return self.make_request('getgods', '1')
     end
 
+    def get_items()
+        return self.make_request('getitems', '1')
+    end
+
     def get_match_details(match_ids)
         return self.make_request('getmatchdetailsbatch', match_ids)
     end
+
+    def get_item_info()
+        array = []
+        item_info = self.make_request('getitems', '1')
+        item_info.each do |god| 
+            hash = {
+                name: god["DeviceName"],
+                item_id: god["ItemId"],
+                item_tier: god["ItemTier"],
+                price: god["Price"],
+                short_description: god["ShortDesc"],
+                item_image: god["itemIcon_URL"],
+                item_secondary_description: god["ItemDescription"]["SecondaryDescription"],
+            }
+        array.push(hash)
+        end
+        # return array.find_all{|i| i['item_tier'] == 3}
+        return array
+
+    end
+
+    def get_item_info2()
+        array = []
+        item_info = self.make_request('getitems', '1')
+        item_info.each do |item| 
+        if item["ItemDescription"]["Description"]["Menuitems"].length == 0 
+            hash ={
+                name: item["DeviceName"],
+                item_id: item["ItemId"],
+                item_tier: item["ItemTier"],
+                price: item["Price"],
+                short_description: item["ShortDesc"],
+                item_image: item["itemIcon_URL"],
+                item_secondary_description: item["ItemDescription"]["SecondaryDescription"],
+                item_stat: "",
+                active_flag: item["ActiveFlag"]
+            }
+            array.push(hash)
+        elsif item["ItemDescription"]["Description"]["Menuitems"].length == 1 
+            hash = {
+                name: item["DeviceName"],
+                item_id: item["ItemId"],
+                item_tier: item["ItemTier"],
+                price: item["Price"],
+                short_description: item["ShortDesc"],
+                item_image: item["itemIcon_URL"],
+                item_secondary_description: item["ItemDescription"]["SecondaryDescription"],
+                item_stat: "#{item["ItemDescription"]["Description"]["Menuitems"][0]['Description']} - #{item["ItemDescription"]["Description"]["Menuitems"][0]['Value']}",
+                active_flag: item["ActiveFlag"]
+            } 
+            array.push(hash)
+        elsif item["ItemDescription"]["Description"]["Menuitems"].length == 2 
+            hash = {
+                name: item["DeviceName"],
+                item_id: item["ItemId"],
+                item_tier: item["ItemTier"],
+                price: item["Price"],
+                short_description: item["ShortDesc"],
+                item_image: item["itemIcon_URL"],
+                item_secondary_description: item["ItemDescription"]["SecondaryDescription"],
+                item_stat: "#{item["ItemDescription"]["Description"]["Menuitems"][0]['Description']} - #{item["ItemDescription"]["Description"]["Menuitems"][0]['Value']}, #{item["ItemDescription"]["Description"]["Menuitems"][1]['Description']} - #{item["ItemDescription"]["Description"]["Menuitems"][1]['Value']}",
+                active_flag: item["ActiveFlag"]
+            }
+            array.push(hash)
+
+        elsif item["ItemDescription"]["Description"]["Menuitems"].length == 3 
+                    hash = {
+                        name: item["DeviceName"],
+                        item_id: item["ItemId"],
+                        item_tier: item["ItemTier"],
+                        price: item["Price"],
+                        short_description: item["ShortDesc"],
+                        item_image: item["itemIcon_URL"],
+                        item_secondary_description: item["ItemDescription"]["SecondaryDescription"],
+                        item_stat: "#{item["ItemDescription"]["Description"]["Menuitems"][0]['Description']} - #{item["ItemDescription"]["Description"]["Menuitems"][0]['Value']}, #{item["ItemDescription"]["Description"]["Menuitems"][1]['Description']} - #{item["ItemDescription"]["Description"]["Menuitems"][1]['Value']}, #{item["ItemDescription"]["Description"]["Menuitems"][2]['Description']} - #{item["ItemDescription"]["Description"]["Menuitems"][2]['Value']}",
+                    }
+                    array.push(hash)
+
+
+                end
+        end
+        array2 = array.find_all{|i| i.active_flag =="y"}
+        array3 = array2.find_all{|i| i.item_tier == 3}
+        return array3
+    end
+
 
     def get_gods_info()
         array = []
@@ -173,6 +263,7 @@ class SmiteApi
             hash = {
                 name: god["Name"],
                 pantheon: god["Pantheon"],
+                lore: god["Lore"],
                 roles: god["Roles"],
                 title: god["Title"],
                 type: god["Type"],
@@ -202,11 +293,11 @@ class SmiteApi
                 ability4_cooldown: god["Ability_4"]["Description"]["itemDescription"]["cooldown"],
                 ability4_id: god["AbilityId4"],
                 ability4_type: god["Ability_4"]["Description"]["itemDescription"]["menuitems"][0]["value"],
-                ability4_image: god["godAbility4_URL"],
+                ability4_image: god["godAbility4_URL"]
             }
         array.push(hash)
         end
-        return array
+        return array[61..90]
     end
 
 end

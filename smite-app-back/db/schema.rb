@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_202141) do
+ActiveRecord::Schema.define(version: 2020_06_07_002113) do
 
   create_table "gods", force: :cascade do |t|
     t.string "name"
     t.string "pantheon"
+    t.string "lore"
     t.string "roles"
     t.string "title"
     t.string "god_kind"
@@ -45,6 +46,16 @@ ActiveRecord::Schema.define(version: 2020_06_04_202141) do
     t.integer "ability4_id"
     t.string "ability4_type"
     t.string "ability4_image"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.integer "item_id"
+    t.integer "item_tier"
+    t.integer "price"
+    t.string "short_description"
+    t.string "item_image"
+    t.string "item_secondary_description"
   end
 
 end

@@ -3,6 +3,7 @@ class CreateGodsTable < ActiveRecord::Migration[6.0]
     create_table :gods do |t|
       t.string :name
       t.string :pantheon
+      t.string :lore
       t.string :roles
       t.string :title
       t.string :god_kind
