@@ -8,9 +8,13 @@ import GodSearch from './GodSearch'
 import GodSearchRadio from './GodSearchRadio'
 
 class Gods extends Component {
+  constructor(props) {
+    super(props)
+  }
+
     //action creater function to pass each god to the God component
     renderGodList = () => {
-        console.log(`this.props.god in gods is ${JSON.stringify(this.props.gods)}`)
+        console.log(`this.props.god in gods is ${JSON.stringify(this.props)}`)
         // renders all 109 gods unless there are filters applied, then renders the info for each.. might do if props.gods.length > 1, then can just list the gods if search for all mages, etc
         if (this.props.gods.gods.length > 1) {
         return this.props.gods.gods.map(god => 

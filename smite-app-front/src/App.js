@@ -9,25 +9,22 @@ import God from './components/gods/God';
 import ItemsContainer from './containers/ItemsContainer';
 import Items from './components/items/Items';
 import Item from './components/items/Item';
-// import Navbar from './components/navigation/NavBar';
+import Navbar from './components/navigation/NavBar';
 class App extends Component {
 
   
   render() {
-    console.log(`props in app is ${JSON.stringify(this.props)}`)
-    console.log(`stategods in app is ${JSON.stringify(this.state)}`);
+    // console.log(`props in app is ${JSON.stringify(this.props)}`)
+    // console.log(`stategods in app is ${JSON.stringify(this.state)}`);
     return (
       <BrowserRouter>
-      
-        <div>
-        <Switch>
-        {/* <Navbar /> */}
-          {/* <Route exact path="/" component={Home} /> */}
+        <div className="App">
+          <Navbar />
+            {/* <Route exact path="/" component={Home} /> */}
           <Route exact path="/gods" component={GodsContainer} />
-          <Route path="/gods/:god_id" component={God}/>
-          {/* <Route path='/gods' render={routerProps => <Gods {...routerProps} gods={this.props.gods}/>} /> */}
+          <Route path="/gods/:god_id" component={God}/> 
           <Route exact path="/items" component={ItemsContainer} />
-          </Switch>
+          <Route path="/items/:item_id" component={Item}/>
         </div>
     </BrowserRouter>
     
