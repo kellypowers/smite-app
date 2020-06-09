@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_07_002113) do
+ActiveRecord::Schema.define(version: 2020_06_09_164910) do
+
+  create_table "god_builds", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "god_id"
+    t.string "item1"
+    t.string "item2"
+    t.string "item3"
+    t.string "item4"
+    t.string "item5"
+    t.string "item6"
+  end
 
   create_table "gods", force: :cascade do |t|
     t.string "name"
