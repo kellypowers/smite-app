@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js'
+import BuildItems from './BuildItems'
+// import {} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js'
 import { connect } from 'react-redux';
 
 class BuildNew extends Component {
@@ -37,9 +38,16 @@ class BuildNew extends Component {
           [event.target.name]: event.target.value
         })
       }
+
+      renderItems = () => {
+        return  this.props.items.items.map(item => {
+            // console.log(item);
+         return (<div><img src={item.item_image} alt={item.name}/> {item.name}{item.item_stat} </div>)
+        })}
+    
     //   Maybe show all items, click item and will fill out the next available slot and disappear from items below.. how do i do this
       render() {
-
+        console.log("buildnew " + JSON.stringify(this.props))
         return (
           <div>
           <form onSubmit={event => this.handleOnSubmit(event)} >
@@ -51,22 +59,22 @@ class BuildNew extends Component {
               {/* this will be some selector for a god, idk yet */}
               <input type="text" name="god" placeholder="" value={this.state.god} onChange={event => {this.handleOnChange(event)}} />
               <label for="item1">First Item:</label>
-              <input type="text" name="item1" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
+              <input type="text" name="item1" placeholder="" value={this.state.item1} onChange={event => {this.handleOnChange(event)}} />
               <label for="item2">Second Item:</label>
-              <input type="text" name="item2" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
+              <input type="text" name="item2" placeholder="" value={this.state.item2} onChange={event => {this.handleOnChange(event)}} />
               <label for="item3">Third Item:</label>
-              <input type="text" name="item3" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
+              <input type="text" name="item3" placeholder="" value={this.state.item3} onChange={event => {this.handleOnChange(event)}} />
               <label for="item4">Fourth Item:</label>
-              <input type="text" name="item4" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
+              <input type="text" name="item4" placeholder="" value={this.state.item4} onChange={event => {this.handleOnChange(event)}} />
               <label for="item5">Fifth Item:</label>
-              <input type="text" name="item5" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
+              <input type="text" name="item5" placeholder="" value={this.state.item4} onChange={event => {this.handleOnChange(event)}} />
               <label for="item6">Sixth Item:</label>
-              <input type="text" name="item6" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
+              <input type="text" name="item6" placeholder="" value={this.state.item6} onChange={event => {this.handleOnChange(event)}} />
             <input type="submit" />
           </form>
 
-
-          
+            {this.renderItems()}
+          <BuildItems items={this.props.items} />
         </div>
   
         )

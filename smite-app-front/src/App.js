@@ -8,6 +8,7 @@ import GodsContainer from './containers/GodsContainer';
 import God from './components/gods/God';
 import ItemsContainer from './containers/ItemsContainer';
 import BuildsContainer from './containers/BuildsContainer';
+import BuildNew from './components/builds/BuildNew';
 import Item from './components/items/Item';
 import Navbar from './components/navigation/NavBar';
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
             {/* <Route exact path="/" component={Home} /> */}
           <Route exact path="/gods" component={GodsContainer} />
           <Route exact path="/builds" component={BuildsContainer} />
+          <Route exact path="/builds/new" render={(props) => <BuildNew items={this.props.items} gods={this.props.gods}/> } />
           <Route path="/gods/:god_id" render={(routerProps) => {
             return this.props.gods.loading === 'success' ? <God god={this.props.gods.gods.find(g => {
               return g.god_id == routerProps.match.params.god_id
