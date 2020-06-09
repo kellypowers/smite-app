@@ -12,14 +12,13 @@ class Gods extends Component {
     super(props)
   }
 
-    //action creater function to pass each god to the God component
     renderGodList = () => {
-        console.log(`this.props.god in gods is ${JSON.stringify(this.props)}`)
-        // renders all 109 gods unless there are filters applied, then renders the info for each.. might do if props.gods.length > 1, then can just list the gods if search for all mages, etc
+      console.log(this.props.match)
+        // console.log(`this.props.god in gods is ${JSON.stringify(this.props)}`)
         if (this.props.gods.gods.length > 1) {
-        return this.props.gods.gods.map(god => 
-        // <Link key={god.god_id} to={`/gods/${god.god_id}`}><li onClick={event => this.handleClick(event)}>{god.name}</li></Link>)
-        <li key={god.god_id} onClick={event => this.handleClick(event)}>{god.name}</li>)
+          return this.props.gods.gods.map(god => 
+        <li><Link to={`gods/${god.god_id}`}>{god.name}</Link></li>)
+        // <li key={god.god_id} onClick={event => this.handleClick(event)}>{god.name}</li>)
         } else {
             return this.props.gods.gods.map(god => 
               // console.log(god);
@@ -28,9 +27,16 @@ class Gods extends Component {
                 (<God god={god} key={god.god_id} />))
         }
     }
+    // <Link to={`${this.props.match.url}/${god.god_id}`}>{god.name}</Link>
+    // <Switch>
+    //   <Route path={`${match.path}/:id`} component={God}/>
+    // </Switch>
 
     handleClick = (event) => {
-        this.props.findGod(event.target.innerText);
+      
+        let idx = this.props.gods.gods.findIndex(god => god.name.toLowerCase() === event.target.innerText.toLowerCase() );
+        return this.props.gods.gods[idx]
+      
     }
   render() {
 

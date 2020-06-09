@@ -6,16 +6,16 @@ import { connect } from 'react-redux'
 
 
 class ItemsContainer extends Component {
-    componentDidMount() {
-        this.props.fetchItems()
-      }
+    // componentDidMount() {
+    //     this.props.fetchItems()
+    //   }
       
-      handleLoading = () => {
-        console.log(this.props.items.loading)
-        if (this.props.items.loading) {
-          return <div>Loading...</div>
-        } 
-      }
+    //   handleLoading = () => {
+    //     console.log(this.props.items.loading)
+    //     if (this.props.items.loading) {
+    //       return <div>Loading...</div>
+    //     } 
+    //   }
 
 
   render() {
@@ -30,16 +30,17 @@ class ItemsContainer extends Component {
 }
 
 
-const mapDispatchToProps = state => {
-  return {
-    // gods: state.gods,
-    items: state.items,
-    // this will be selector.gods
-    loading: state.loading
-  }
-}
+// const mapDispatchToProps = state => {
+//   return {
+//     // gods: state.gods,
+//     items: state.items,
+//     // this will be selector.gods
+//     loading: state.loading
+//   }
+// }
 
 
 
-// export default ItemsContainer;
-export default connect(mapDispatchToProps, {fetchItems})(ItemsContainer)
+export default ItemsContainer;
+// export default connect(mapDispatchToProps, {fetchItems})(ItemsContainer)
+

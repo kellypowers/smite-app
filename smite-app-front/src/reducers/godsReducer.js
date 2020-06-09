@@ -18,7 +18,7 @@ function godsReducer(state ={gods: [], loading: false}, action) {
             return {
                 ...state,
                 gods: action.gods,
-                loading: false
+                loading: 'success'
             }
 
         case 'ADD_GODS_FAILURE':

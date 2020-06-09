@@ -18,7 +18,7 @@ function itemsReducer(state = initialState, action) {
             return {
                 ...state,
                 items: action.items,
-                loading: false
+                loading: 'success'
             }
 
         case 'ADD_ITEMS_FAILURE':

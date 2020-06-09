@@ -1,6 +1,6 @@
 import React from 'react'
 // import NavLinks from './NavLinks'
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { Link, BrowserRouter, Route, NavLink } from 'react-router-dom';
 
 
  
@@ -35,9 +35,9 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
         <div className="container"> 
           <a className="">Smite App!</a>
           <ul className=""> 
-            <li><a href = "/"> Home </a> </li>
-            <li><a href = "/gods"> Gods </a> </li>
-            <li><a href = "/items"> Items </a> </li>
+            <li><Link to= "/"> Home </Link> </li>
+            <li><NavLink to= "/gods"> Gods </NavLink> </li>
+            <li><NavLink to= "/items"> Items </NavLink> </li>
           </ul>
         </div>
       </nav>

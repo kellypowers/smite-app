@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { fetchGods } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/fetchGods';
 import Gods from '../components/gods/Gods'
-// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-// import GodSearch from '../components/gods/GodSearch'
-// import GodSearchRadio from '../components/gods/GodSearchRadio'
 
+// move gods over to this
 
 class GodsContainer extends Component {
 
-  componentDidMount() {
-    this.props.fetchGods()
-  }
+  // componentDidMount() {
+  //   this.props.fetchGods()
+  // }
   
   handleLoading = () => {
     console.log(this.props.gods.loading)
@@ -22,23 +19,18 @@ class GodsContainer extends Component {
   }
 
   render() {
-    // console.log(`stategods in gods is ${JSON.stringify(state)}`);
       console.log("props in Gods is " + JSON.stringify(this.props))
     return (
       <div>
         {/* {this.handleLoading} */}
-     
-
         <Gods gods={this.props.gods} /> 
-
-        {/* <Route path='/gods' render={routerProps => <Gods {...routerProps} gods={this.props.gods}/>} /> */}
       </div>
     )
   }
 }
 
 
-const mapDispatchToProps = state => {
+const mapStateToProps = state => {
   return {
     gods: state.gods,
     items: state.items,
@@ -50,4 +42,4 @@ const mapDispatchToProps = state => {
 
 
 // export default GodsContainer;
-export default connect(mapDispatchToProps, {fetchGods})(GodsContainer)
+export default connect(mapStateToProps)(GodsContainer)
