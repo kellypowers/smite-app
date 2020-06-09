@@ -30,17 +30,17 @@ class ItemsContainer extends Component {
 }
 
 
-// const mapDispatchToProps = state => {
-//   return {
-//     // gods: state.gods,
-//     items: state.items,
-//     // this will be selector.gods
-//     loading: state.loading
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    // gods: state.gods,
+    items: state.items,
+    // this will be selector.gods
+    loading: state.loading
+  }
+}
 
 
 
-export default ItemsContainer;
-// export default connect(mapDispatchToProps, {fetchItems})(ItemsContainer)
+// export default ItemsContainer;
+export default connect(mapStateToProps)(ItemsContainer)
 

@@ -40,3 +40,10 @@ export const findItem = (name) => {
     name
 }
 };
+
+export const postBuild = (build) => {
+  return {
+    type: "POST_BUILD",
+    build
+}
+};

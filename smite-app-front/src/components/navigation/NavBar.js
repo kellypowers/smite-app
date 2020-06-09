@@ -38,6 +38,7 @@ import { Link, BrowserRouter, Route, NavLink } from 'react-router-dom';
             <li><Link to= "/"> Home </Link> </li>
             <li><NavLink to= "/gods"> Gods </NavLink> </li>
             <li><NavLink to= "/items"> Items </NavLink> </li>
+            <li><NavLink to= "/builds"> Builds </NavLink> </li>
           </ul>
         </div>
       </nav>

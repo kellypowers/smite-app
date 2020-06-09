@@ -5,16 +5,15 @@ import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 import { fetchGods } from './actions/fetchGods'
 import { fetchItems } from './actions/fetchItems'
 import GodsContainer from './containers/GodsContainer';
-import Gods from './components/gods/Gods';
 import God from './components/gods/God';
 import ItemsContainer from './containers/ItemsContainer';
-import Items from './components/items/Items';
+import BuildsContainer from './containers/BuildsContainer';
 import Item from './components/items/Item';
 import Navbar from './components/navigation/NavBar';
 class App extends Component {
 
   componentDidMount() {
-    this.props.fetchGods(),
+    this.props.fetchGods();
     this.props.fetchItems()
   }
 
@@ -27,7 +26,7 @@ class App extends Component {
   //   }
   // }
   render() {
-    // console.log(`props in app is ${JSON.stringify(this.props)}`)
+    console.log(`props in app is ${JSON.stringify(this.props)}`)
     // console.log(`stategods in app is ${JSON.stringify(this.state)}`);
     // Do i need a switch?
     return (
@@ -36,6 +35,7 @@ class App extends Component {
           <Navbar />
             {/* <Route exact path="/" component={Home} /> */}
           <Route exact path="/gods" component={GodsContainer} />
+          <Route exact path="/builds" component={BuildsContainer} />
           <Route path="/gods/:god_id" render={(routerProps) => {
             return this.props.gods.loading === 'success' ? <God god={this.props.gods.gods.find(g => {
               return g.god_id == routerProps.match.params.god_id
@@ -45,7 +45,7 @@ class App extends Component {
           <Route exact path="/items" component={ItemsContainer} />
           <Route path="/items/:item_id" render={(routerProps) => {
             return this.props.items.loading ==='success' ? <Item item={this.props.items.items.find(i => {
-              return i.item_id == routerProps.match.params.god_id}) }/> : <div> Loading... </div>
+              return i.item_id == routerProps.match.params.item_id}) }/> : <div> Loading... </div>
           }}/>
         </div>
     </BrowserRouter>
@@ -66,17 +66,17 @@ const mapStateToProps = state => {
   }
 }
 
-mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    fetchGods: gods => dispatch({type: 'START_ADDING_GODS_REQUEST', gods}),
-    fetchItems: items => dispatch({type: "START_ADDING_ITEMS_REQUEST", items})
+    fetchGods: gods => dispatch(fetchGods()),
+    fetchItems: items => dispatch(fetchItems())
   }
 }
 
 
 
 // export default GodsContainer;
-export default connect(mapStateToProps)(mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 // export default connect(mapStateToProps, {fetchGods})(App)
 // export default App;
