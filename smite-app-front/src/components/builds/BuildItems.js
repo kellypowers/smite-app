@@ -4,12 +4,27 @@ import { connect } from 'react-redux'
 class BuildsItems extends Component {
 
     state = {
-        item1: "",
-        item2: "", 
-        item3: "",
-        item4: "",
-        item5: "",
-        item6: ""
+       items: []
+    }
+
+    handleOnChange = event => {
+        console.log(`items${[parseInt(event.target.name)]}`);
+        const statename = "items["+parseInt(event.target.name) +"]";
+        console.log(statename);
+        this.setState({
+            // ...this.state.items,
+          [statename]: event.target.value
+        })
+      }
+      renderItemSelect = () => {
+        for (let i=0; i<6; i++) {
+        // return <select name={"items"} onChange={e => this.handleOnChange(e)} > 
+        return  this.props.items.items.map(item => {
+            if (this.state.items.find(j => j.name)) {return ""} else {
+        return <option value={item.name}>{item.name}</option>}
+        })
+        // </select>
+    }
     }
 
     renderItems = () => {
@@ -19,9 +34,29 @@ class BuildsItems extends Component {
     }
     
     render() {
+        console.log(this.state);
         return (
             <div>
-                {this.renderItems()}
+                <label for="item1">First Item:</label>
+                <select name="0" onChange={e => this.handleOnChange(e)} >
+                    <option value=""> </option>
+                    {this.renderItemSelect()}
+                </select>
+              <label for="item2">Second Item:</label>
+              <select name="1" onChange={e => this.handleOnChange(e)} >
+                    <option value=""> </option>
+                  {this.renderItemSelect()}
+                </select>
+                <label for="item3">First Item:</label>
+                <select name="2" onChange={e => this.handleOnChange(e)} >
+                    <option value=""> </option>
+                    {this.renderItemSelect()}
+                </select>
+              <label for="item4">Second Item:</label>
+              <select name="4" onChange={e => this.handleOnChange(e)} >
+                    <option value=""> </option>
+                    {this.renderItemSelect()}
+                </select>
             </div>
         )
     }

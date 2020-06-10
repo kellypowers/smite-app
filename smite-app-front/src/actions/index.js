@@ -41,9 +41,16 @@ export const findItem = (name) => {
 }
 };
 
-export const postBuild = (build) => {
+// export const postBuild = (build) => {
+//   return {
+//     type: "POST_BUILD",
+//     build
+// }
+// };
+
+export const addBuild = (build) => {
   return {
-    type: "POST_BUILD",
+    type: "ADD_BUILD",
     build
 }
 };

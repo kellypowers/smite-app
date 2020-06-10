@@ -29,8 +29,12 @@ function buildsReducer(state = initialState, action) {
                 builds: []
             }
 
-        case "POST_BUILD":
-            return [...state.builds, action.build];
+        case "ADD_BUILD":
+            console.log("state is " + JSON.stringify(state))
+            return {
+                ...state, 
+                builds: [...state.builds, action.build]
+            };
         case "REMOVE_BUILD": 
             idx = state.builds.findIndex(build => build.id === action.id);
             return [...state.builds.slice(0, idx), ...state.builds.slice(idx+1)];
