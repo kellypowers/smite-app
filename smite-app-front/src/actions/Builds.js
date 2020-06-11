@@ -7,7 +7,7 @@ export const POST_BUILD = 'POST_BUILD';
 export function fetchBuilds() {
     return (dispatch) => {
       dispatch({ type: 'START_ADDING_BUILDS_REQUEST' });
-      fetch('http://localhost:3000/builds')
+      fetch('http://localhost:3000/god_builds')
         .then(response => response.json())
         .then(builds => dispatch({ type: 'ADD_BUILDS', builds }));
     };

@@ -39,6 +39,7 @@ import { Link, BrowserRouter, Route, NavLink } from 'react-router-dom';
             <li><NavLink to= "/gods"> Gods </NavLink> </li>
             <li><NavLink to= "/items"> Items </NavLink> </li>
             <li><NavLink to= "/builds"> Builds </NavLink> </li>
+            <li><NavLink to="/players/find">Find A Player</NavLink></li>
           </ul>
         </div>
       </nav>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import uuid from 'uuid';
 // import { deletePlayer } from '../actions/index';
-import { addPlayer } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js'
+import { fetchPlayer } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/Player'
 import { connect } from 'react-redux';
 
 class PlayerSearch extends Component {
@@ -24,14 +24,20 @@ class PlayerSearch extends Component {
       // player_name: event.target.value,
       // portal_id: event.target.value
       // }
-      [event.target.name]: event.target.value
+      player_name: event.target.value
+    })
+  }
+  handleOnSelect = event => {
+    // console.log(event.target.value);
+    this.setState({
+      portal_id: event.target.value
     })
   }
 
   handleOnSubmit = event => {
     event.preventDefault();
     const player = {...this.state};
-    this.props.addPlayer(player);
+    this.props.fetchPlayer(player);
     this.setState({
       player_name: '',
       portal_id: ''
@@ -39,14 +45,15 @@ class PlayerSearch extends Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.state)
     return (
       <div>
         <form onSubmit={event => this.handleOnSubmit(event)} >
             <label for="player_name">Player Name:</label>
             <input type="text" name="player_name" value={this.state.player_name} onChange={event => {this.handleOnChange(event)}} />
             <label for="portal_id">Select a platform </label>
-            <select name="portal_id" >
+            <select name="portal_id" onChange={event => this.handleOnSelect(event)}>
+               <option value=""> </option>
                 <option value="10">XBox</option>
                 <option value="5">Steam</option>
                 <option value="9">PS4</option>
@@ -61,4 +68,4 @@ class PlayerSearch extends Component {
   }
 };
 
-export default connect(null, {addPlayer})(PlayerSearch);
+export default connect(null, {fetchPlayer})(PlayerSearch);

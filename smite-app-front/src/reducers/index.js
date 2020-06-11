@@ -5,10 +5,10 @@ import godsReducer from './godsReducer';
 import buildsReducer from "./buildsReducer";
  
 const rootReducer = combineReducers({
-  builds: buildsReducer,
   gods: godsReducer,
   player: playerReducer,
-  items: itemsReducer
+  items: itemsReducer,
+  builds: buildsReducer
 });
  
 export default rootReducer

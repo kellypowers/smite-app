@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import BuildItems from './BuildItems'
+// import BuildItems from './BuildItems'
+// want to mimplement build items when i can click the icon to add to the build 
 import {addBuild} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js'
 import {postBuild} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/Builds'
 import { connect } from 'react-redux';
@@ -8,8 +9,7 @@ class BuildNew extends Component {
     state = {
         name: "",
         description: "",
-        god_id: 0,
-        // items: ["", "", "", "", "", ""]
+        god_id_smite: 0,
         item1: "",
         item2: "", 
         item3: "",
@@ -49,7 +49,7 @@ class BuildNew extends Component {
         this.setState({
             name: "",
             description: "",
-            god_id: "",
+            god_id: 0,
             // items: ["", "", "", "", "", ""]
             item1: "",
             item2: "", 
@@ -85,7 +85,7 @@ class BuildNew extends Component {
         })}
 
         renderGodSelect = () => {
-            return <select name="god_id" onChange={e => this.handleOnChange(e)} > <option value=""> </option> {this.props.gods.gods.map(god => {
+            return <select name="god_id_smite" onChange={e => this.handleOnChange(e)} > <option value=""> </option> {this.props.gods.gods.map(god => {
             return <option value={god.god_id}>{god.name}</option>
             })}</select>
         }
@@ -171,24 +171,6 @@ class BuildNew extends Component {
         )
       }
 
-
-    // postBuild() {
-    //     return (dispatch) => {
-    //         dispatch({ type: 'POST_BUILD' });
-    //         fetch('http://localhost:3000/builds', {
-    //             headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json"
-    //         },
-    //         method: "POST",
-    //         body: JSON.stringify({
-    //             build: this.state
-    //         })
-    //     })
-    //         .then(response => response.json())
-    //         .then(builds => dispatch({ type: 'ADD_BUILDS', builds }));
-    //     };
-    //     }
   
   }
 

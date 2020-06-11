@@ -1,21 +1,18 @@
-import cuid from 'cuid';
-export const cuidFn = cuid;
-export default function playerReducer(
-    state = {
-      players: [],
-    },
-    action
-  ) {
+const initialState = {
+    players: [],
+    loading: false
+}
+
+function playerReducer(state = initialState, action) {
     switch (action.type) {
-      case 'ADD_PLAYER':
-        //   let player = {
-        //       id: cuid(),
-        //       player_name: action.player_name,
-        //       portal_id: action.portal_id
-        //   }
+      case 'FIND_PLAYER':
+        const player= {
+          player_name: action.player_name,
+          portal_id: action.portal_id
+        }
         return {
           ...state,
-          players: [...state.players, action.player]
+          players: [...state.players, player]
         }
         case "DELETE_PLAYER":
             return {players: state.players.filter(player => player.id !== action.id)}
@@ -29,3 +26,4 @@ export default function playerReducer(
         return state;
     }
   }
+  export default playerReducer;

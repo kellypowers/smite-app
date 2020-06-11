@@ -9,7 +9,7 @@ class BuildsContainer extends Component {
         console.log("props in buildcont is " + JSON.stringify(this.props))
     return (
         <div>
-            <button><Link to={`builds/new`}>Create New Build</Link></button>
+            <button><Link to={`build/new`}>Create New Build</Link></button>
             {/* <BuildNew items={this.props.items} gods={this.props.gods} builds={this.props.builds}/> */}
             <Builds items={this.props.items} gods={this.props.gods} builds={this.props.builds} removeBuild={this.props.removeBuild}/> 
         
