@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import PlayersContainer from './containers/PlayersContainer';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
@@ -13,6 +14,7 @@ import BuildNew from './components/builds/BuildNew';
 import Build from './components/builds/Build';
 import Item from './components/items/Item';
 import Navbar from './components/navigation/NavBar';
+
 class App extends Component {
 
   componentDidMount() {
