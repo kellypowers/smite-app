@@ -40,14 +40,14 @@ export function fetchPlayerMatches(playerid) {
       },
       method: "POST",
       body: JSON.stringify({
-          player
+          playerid
       })
     })
         .then(response => response.json())
-        .then(player => {
+        .then(matches => {
           // let player1 = player[0];
-          console.log("player is " + JSON.stringify(playerid))
-          dispatch({ type: 'ADD_PLAYER_MATCHES', player });
+          console.log("matches is " + JSON.stringify(matches))
+          dispatch({ type: 'ADD_PLAYER_MATCHES', matches });
           // return player
         })
         .catch(error => console.log(error.message))
@@ -68,11 +68,9 @@ export function fetchPlayerGodRanks(playerid) {
       })
     })
         .then(response => response.json())
-        .then(player => {
-          // let player1 = player[0];
-          console.log("player is " + JSON.stringify(player))
-          dispatch({ type: 'ADD_PLAYER_GOD_RANKS', player });
-          // return player
+        .then(god_ranks => {
+          console.log("god_ranks is " + JSON.stringify(god_ranks))
+          dispatch({ type: 'ADD_PLAYER_GOD_RANKS', god_ranks });
         })
         .catch(error => console.log(error.message))
     };
@@ -92,36 +90,11 @@ export function fetchPlayerAchievements(playerid) {
       })
     })
         .then(response => response.json())
-        .then(player => {
-          // let player1 = player[0];
-          console.log("player is " + JSON.stringify(player))
-          dispatch({ type: 'ADD_PLAYER_ACHIEVEMENTS', player });
-          // return player
+        .then(achievements => {
+          console.log("achievements is " + JSON.stringify(achievements))
+          dispatch({ type: 'ADD_PLAYER_ACHIEVEMENTS', achievements });
         })
         .catch(error => console.log(error.message))
     };
   }
 
-  export function fetchMatchDetails(matchid) {
-    return (dispatch) => {
-        dispatch({ type: 'FIND_MATCH_DETAILS' });
-        fetch('http://localhost:3000/get_match_details', {
-            headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        method: "POST",
-        body: JSON.stringify({
-            match
-        })
-      })
-          .then(response => response.json())
-          .then(match => {
-            // let player1 = player[0];
-            console.log("match is " + JSON.stringify(match))
-            dispatch({ type: 'ADD_MATCH_DETAILS', match });
-            // return player
-          })
-          .catch(error => console.log(error.message))
-      };
-    }

@@ -6,13 +6,18 @@ import { connect } from 'react-redux'
 // move gods over to this
 
 class GodsContainer extends Component {
-
+  // state: {
+  //   name: ''
+  // }
 
   render() {
       console.log("props in Gods is " + JSON.stringify(this.props))
     return (
       <div>
         <br/>
+        {/* <label for="god_name">Search by God Name:</label>
+        <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
+           */}
         <Gods  /> 
       </div>
     )

@@ -11,7 +11,7 @@ export function fetchMatchDetails(matchid) {
         },
             method: "POST",
             body: JSON.stringify({
-                match
+                matchid
             })
         })
         .then(response => response.json())

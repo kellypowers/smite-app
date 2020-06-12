@@ -1,27 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchPlayerMatches } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/Player'
+import PlayerMatches from './PlayerMatches';
 
 class Player extends Component {
-  // componentDidMount() {
-  //   console.log("props in player is " + JSON.stringify(this.props.player.player));
-  // }
-  // handleOnClick = () => {this.props.deletePlayer(this.props.player.id)}
-  // console.log(this.props);
-
-    // componentDidUpdate = () => {
-    //   if (this.props.player.player.player != undefined) {
-    //     console.log("props in player is " + JSON.stringify(this.props));
-    //     return (
-    //       <div>
-    //         {/* Name: */}
-    //         Name: {this.props.player.player.player.Name}
-    //       </div>)
-    //   }else {
-    //     return "Enter Player Info to see Player"
-    //   } 
-
-    // }
-    
     
     renderPlayer = () => {
       if (this.props.player.loading == 'success') {
@@ -37,22 +19,18 @@ class Player extends Component {
 
     }
         
-    // renderPlayer = () => {
-    //   if (this.props.player != undefined) {
-    //     console.log("props in player is " + JSON.stringify(this.props));
-    //     return (
-    //       <div>
-    //         {/* Name: */}
-    //         Name: {this.props.player.Name}
-    //       </div>)
-    //   }
-    //   // else {
-    //   //   this.renderPlayer()
-    //   // } 
+    handleMatchHistory = event => {
+      console.log("active id? " + this.props.player.ActivePlayerId);
+      this.props.fetchPlayerMatches(this.props.player.ActivePlayerId)
+
+    } 
 
 
   render() {
-    console.log("in plaer " + JSON.stringify(this.props))
+    console.log("in plaer " + JSON.stringify(this.props));
+    if (this.props.player.loading === 'success') {
+      return <PlayerMatches />
+    } else {
     return (
       <div>
           <br />
@@ -70,7 +48,7 @@ class Player extends Component {
           <label>Total Achievements: </label> <p>{this.props.player.Total_Achievements}</p>
           <label>Clan: </label> <p>{this.props.player.Team_Name}</p>
           <ul><label>Ranked Joust Controller for season: </label> <p>{this.props.player.RankedJoustController.Season}</p>
-            <li><label>Wins: </label> <p>{this.props.player.RankedJoustController.Wins}</p></li>
+            <li><label>Wins: </label> <p>{this.props.player.RankedJoustController['Wins']}</p></li>
             <li><label>Losses: </label> <p>{this.props.player.RankedJoustController.Losses}</p></li>
             <li><label>Rank: </label> <p>{this.props.player.RankedJoustController.Rank}</p></li>
             <li><label>Points: </label> <p>{this.props.player.RankedJoustController.Points}</p></li>
@@ -81,7 +59,7 @@ class Player extends Component {
       </div>
     );
   }
-
+  }
 };
 const mapStateToProps = state => {
   console.log(state)
@@ -94,4 +72,4 @@ const mapStateToProps = state => {
     // loading: state.loading
   }
 }
-export default connect(mapStateToProps)(Player);
+export default connect(mapStateToProps, {fetchPlayerMatches})(Player);

@@ -9,7 +9,8 @@ class GodPantheonDropdown extends Component{
     handleOnSubmit = (event) => {
         event.preventDefault();
         const pantheon = this.state.pantheon;
-        this.props.findGodByPantheon(pantheon)
+        // this.props.findGodByPantheon(pantheon)
+        this.props.gods.filter(god => god.pantheon === this.state.pantheon )
         this.setState({
             pantheon: ""
         })
@@ -19,6 +20,7 @@ class GodPantheonDropdown extends Component{
         this.setState({
           pantheon: event.target.value
         })
+
       }
     render(){
         return (
@@ -43,6 +45,17 @@ class GodPantheonDropdown extends Component{
             </form>
         )
     }
+}
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    gods: state.gods,
+    // items: state.items,
+    // builds: state.builds,
+    // player: state.player,
+    // this will be selector.gods
+    // loading: state.loading
+  }
 }
 
 export default connect(null, {findGodByPantheon})(GodPantheonDropdown);
