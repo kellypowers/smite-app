@@ -1,6 +1,6 @@
 const initialState = {
     loading: false,
-    matches: [],
+    // matches: [],
     achievements: [],
     god_ranks: []
 
@@ -27,28 +27,28 @@ function playerReducer(state = initialState, action) {
             error: action.error
         }
 
-      case 'FIND_PLAYER_MATCHES':
-        return {
-          ...state,
-          // matches: [],
-          loading: true
-        }
+      // case 'FIND_PLAYER_MATCHES':
+      //   return {
+      //     ...state,
+      //     // matches: [],
+      //     loading: true
+      //   }
   
-      case  "ADD_PLAYER_MATCHES": 
-        console.log("action player " + JSON.stringify(action.player));
-        return {
-          ...state,
-          matches: action.matches,
-          loading: 'success'
-        }
+      // case  "ADD_PLAYER_MATCHES": 
+      //   console.log("action player " + JSON.stringify(action.player));
+      //   return {
+      //     ...state,
+      //     matches: action.matches,
+      //     loading: 'success'
+      //   }
 
-      case 'ADD_PLAYER_MATCHES_FAILURE':
-        return {
-            ...state,
-            // matches: [],
-            loading: false,
-            error: action.error
-        }
+      // case 'ADD_PLAYER_MATCHES_FAILURE':
+      //   return {
+      //       ...state,
+      //       // matches: [],
+      //       loading: false,
+      //       error: action.error
+      //   }
 
       case 'FIND_PLAYER_GOD_RANKS':
         return {

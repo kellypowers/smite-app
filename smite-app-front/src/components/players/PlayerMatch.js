@@ -20,7 +20,7 @@ class PlayerMatch extends Component {
     // }
         
     handleMatchDetails = event => {
-      console.log("match  id?? " + this.props.match.Match);
+      console.log("match  id?? " + JSON.stringify(this.props.match.Match));
       this.props.fetchMatchDetails(this.props.match.Match)
 
     } 

@@ -98,6 +98,7 @@ const mapStateToProps = state => {
     items: state.items,
     builds: state.builds,
     player: state.player,
+    playerMatches: state.playerMatches,
     // this will be selector.gods
     loading: state.loading
   }

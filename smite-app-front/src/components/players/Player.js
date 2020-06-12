@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPlayerMatches } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/Player'
+import { fetchPlayerMatches } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/PlayerMatches'
 import PlayerMatches from './PlayerMatches';
 
 class Player extends Component {
@@ -28,7 +28,7 @@ class Player extends Component {
 
   render() {
     console.log("in plaer " + JSON.stringify(this.props));
-    if (this.props.player.loading === 'success') {
+    if (this.props.playerMatches.loading === 'success') {
       return <PlayerMatches />
     } else {
     return (
@@ -68,6 +68,7 @@ const mapStateToProps = state => {
     // items: state.items,
     // builds: state.builds,
     player: state.player,
+    playerMatches: state.playerMatches
     // this will be selector.gods
     // loading: state.loading
   }
