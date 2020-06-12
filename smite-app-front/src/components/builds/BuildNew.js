@@ -10,12 +10,13 @@ class BuildNew extends Component {
         name: "",
         description: "",
         god_id_smite: 0,
-        item1: "",
-        item2: "", 
-        item3: "",
-        item4: "",
-        item5: "",
-        item6: ""
+        items: []
+        // item1: "",
+        // item2: "", 
+        // item3: "",
+        // item4: "",
+        // item5: "",
+        // item6: ""
     }
 
     postBuild(build = this.state) {
@@ -50,13 +51,13 @@ class BuildNew extends Component {
             name: "",
             description: "",
             god_id: 0,
-            // items: ["", "", "", "", "", ""]
-            item1: "",
-            item2: "", 
-            item3: "",
-            item4: "",
-            item5: "",
-            item6: ""
+            items: this.state.items
+            // item1: "",
+            // item2: "", 
+            // item3: "",
+            // item4: "",
+            // item5: "",
+            // item6: ""
         })
       }
     handleOnChange = event => {
@@ -72,16 +73,19 @@ class BuildNew extends Component {
     //       })
     //   }
 
-// want to be able to click the list of items to fill in the state items array
-    handleOnClick = event => {
-
-
+// want to be able to click the list of items to fill in the state items array, click the box and remove the item from the box/state
+    handleOnClick = (event, item) => {
+      if (this.state.items.length < 6 && !this.state.items.find(f => f === item)) {
+        this.setState({
+          items: [...this.state.items,  item]
+        })
+      }
     }
 
       renderItems = () => {
         return  this.props.items.items.map(item => {
-            // console.log(item);
-         return (<div><img src={item.item_image} alt={item.name}/> {item.name}{item.item_stat} </div>)
+            
+         return (<div onClick={event => this.handleOnClick(event, item)}><img src={item.item_image} alt={item.name}/> {item.name}{item.item_stat} </div>)
         })}
 
         renderGodSelect = () => {

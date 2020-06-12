@@ -1,27 +1,34 @@
+require 'pry'
 class GodBuildsController < ApplicationController 
 # build is a reserved keyword, maybe ill use god_builds? not sure
     def index 
-        @god_builds = @god.god_builds
+        @god_builds = GodBuild.all
         puts "params are #{params}, builds are #{@god_builds}"
         render json: @god_builds, status: 200
     end
 
     def show
         puts "params are #{params}"
-        @god = God.find(params[:god_id])
+        @god = God.find_by(god_id: params[:god_id])
         @god_build = GodBuild.find_by(id: params[:id])
-
+        render json: @god_build 
         # render json: @build.to_json(:include => {:god => {:only => [:god_id, :god_name]} })
 
     end
 
     def create
-
-        god = God.find_by(id: params[:god_id])
+        # binding.pry
+        puts "params are #{god_build_params}"
+        god = God.find_by(god_id: (params["build"]["god_id_smite"]).to_i)
+        puts "god id to i is #{params["god_id"].to_i}"
+        puts "params are #{params}"
+        puts "params name is #{params["name"]}"
         puts "god is #{god}"
         @god_build = god.god_builds.build(god_build_params)
-        if @build.save 
-            puts "build is #{@build}"
+        puts "god build is #{@god_build}"
+        # binding.pry
+        if @god_build.save 
+            puts "build is #{@god_build}"
             render json: @god_build, status: 200
         else
             puts "unsuccessful"
@@ -54,7 +61,7 @@ class GodBuildsController < ApplicationController
 
     private
     def god_build_params 
-        params.require(:god_build).permit(:name, :item1, :item2, :item3, :item4, :item5, :item6, :description)
+        params.require(:build).permit(:name, :god_id_smite, :item1, :item2, :item3, :item4, :item5, :item6, :description)
     end
 
     def set_god!

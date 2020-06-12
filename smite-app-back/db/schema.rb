@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_164910) do
     t.string "name"
     t.string "description"
     t.integer "god_id"
+    t.integer "god_id_smite"
     t.string "item1"
     t.string "item2"
     t.string "item3"

@@ -22,6 +22,7 @@ class GodsContainer extends Component {
       console.log("props in Gods is " + JSON.stringify(this.props))
     return (
       <div>
+        <br/>
         {/* {this.handleLoading} */}
         <Gods gods={this.props.gods} /> 
       </div>

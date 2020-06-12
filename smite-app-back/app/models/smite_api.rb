@@ -123,6 +123,7 @@ class SmiteApi
 
     def get_player(player_name)
         request = self.make_request_async('getplayer', player_name)
+        puts "request is #{request}"
         player_id = request[0]['ActivePlayerId']
         puts "player id is #{player_id}"
         # binding.pry

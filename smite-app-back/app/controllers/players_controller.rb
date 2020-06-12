@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-     before_action :set_smitepai! 
+     before_action :set_smiteapi! 
 
     def index 
         @player = @smite_api.get_player([params.player_name, params.portalID.to_i])
@@ -17,35 +17,37 @@ class PlayersController < ApplicationController
     end
 
     def create
-        @player = @smite_api.get_player([params.player_name, params.portalID.to_i])
+        # elastic search?? 
+        puts "params are #{params}"
+        @player = @smite_api.get_player([params["player"]["player_name"], params["player"]["portal_id"].to_i])
         # player = Player.find_or_create_by(player_id: params[:player_id])
         puts "player is #{@player}"
-        
-        if @player.save 
-            render json: @player, status: 200
-        else
-            puts "unsuccessful"
-            render plain: "unsuccessful"
-        end
+        render plain: @player    
+        # if @player.save 
+        #     render json: @player, status: 200
+        # else
+        #     puts "unsuccessful"
+        #     render plain: "unsuccessful"
+        # end
     end
     
     def update 
-
-
+        @matches_player = @smite_api.get_match_history([params["player"]["player_name"], params["player"]["portal_id"].to_i])
+        render json: @player
     end
 
-    def destroy
-        puts "params are #{params}"
-        player = Player.find(params[:id])
-        player.delete
+    # def destroy
+    #     puts "params are #{params}"
+    #     player = Player.find(params[:id])
+    #     player.delete
 
-        render json: {player_id: player.id}
-    end
+    #     render json: {player_id: player.id}
+    # end
 
     private
-    def player_params 
-        params.require(:player).permit()
-    end
+    # def player_params 
+    #     params.require(:player).permit()
+    # end
 
     def set_smiteapi!
         @smite_api = SmiteApi.new

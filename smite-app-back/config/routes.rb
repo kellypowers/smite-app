@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :gods, only: [:index, :show]
   resources :items, only: [:index, :show]
   resources :items
+  resources :god_builds
+  resources :players
 end

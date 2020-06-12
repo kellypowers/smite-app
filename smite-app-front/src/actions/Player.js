@@ -2,14 +2,6 @@ export const START_ADDING_PLAYER_REQUEST = 'START_ADDING_PLAYER_REQUEST';
 export const ADD_PLAYER = 'ADD_PLAYER';
 export const ADD_PLAYER_FAILURE = 'ADD_PLAYER_FAILURE';
    
-// export function fetchPlayer() {
-//     return (dispatch) => {
-//       dispatch({ type: 'START_ADDING_PLAYER_REQUEST' });
-//       fetch('http://localhost:3000/player')
-//         .then(response => response.json())
-//         .then(PLAYER => dispatch({ type: 'ADD_PLAYER', player }));
-//     };
-//   }
 
 
   export function fetchPlayer(player) {
@@ -27,8 +19,10 @@ export const ADD_PLAYER_FAILURE = 'ADD_PLAYER_FAILURE';
      })
           .then(response => response.json())
           .then(player => {
+            // let player1 = player[0];
             console.log("player is " + JSON.stringify(player))
-            dispatch({ type: 'ADD_PLAYER', player })
+            dispatch({ type: 'ADD_PLAYER', player });
+            // return player
           });
       };
     }

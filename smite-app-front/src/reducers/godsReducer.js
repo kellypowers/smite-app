@@ -10,7 +10,7 @@ function godsReducer(state ={gods: [], loading: false}, action) {
         case 'START_ADDING_GODS_REQUEST':
             return {
                 ...state,
-                gods: [...state.gods],
+                // gods: [...state.gods],
                 loading: true
             }
    
@@ -26,7 +26,7 @@ function godsReducer(state ={gods: [], loading: false}, action) {
                 ...state,
                 loading: false,
                 error: action.error,
-                gods: []
+                // gods: []
             }
 
         case "FIND_GOD":

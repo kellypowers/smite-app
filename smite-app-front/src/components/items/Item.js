@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Media} from 'react-bootstrap'
 const Item = props => {
 
     return (
@@ -9,7 +9,7 @@ const Item = props => {
           <div class="item_intro">
              <h3>{props.item.name}</h3>
              <br/>
-             <img src={props.item.item_image} alt={props.item.name}/>
+             <Media> <img height={200} width={200} src={props.item.item_image} alt={props.item.name}/></Media>
              <br />
             </div>
 
