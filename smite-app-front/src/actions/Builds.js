@@ -30,7 +30,8 @@ export function fetchBuilds() {
           .then(build => {
             console.log("build is " + build)
             dispatch({ type: 'ADD_BUILD', build })
-          });
+          })
+          .catch(error => console.log(error.message))
       };
     }
   

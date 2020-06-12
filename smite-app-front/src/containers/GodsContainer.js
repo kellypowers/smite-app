@@ -7,24 +7,13 @@ import { connect } from 'react-redux'
 
 class GodsContainer extends Component {
 
-  // componentDidMount() {
-  //   this.props.fetchGods()
-  // }
-  
-  handleLoading = () => {
-    console.log(this.props.gods.loading)
-    if (this.props.gods.loading) {
-      return <div>Loading...</div>
-    }
-  }
 
   render() {
       console.log("props in Gods is " + JSON.stringify(this.props))
     return (
       <div>
         <br/>
-        {/* {this.handleLoading} */}
-        <Gods gods={this.props.gods} /> 
+        <Gods  /> 
       </div>
     )
   }

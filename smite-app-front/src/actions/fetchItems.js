@@ -7,6 +7,7 @@ export function fetchItems() {
       dispatch({ type: 'START_ADDING_ITEMS_REQUEST' });
       fetch('http://localhost:3000/items')
         .then(response => response.json())
-        .then(items => dispatch({ type: 'ADD_ITEMS', items }));
+        .then(items => dispatch({ type: 'ADD_ITEMS', items }))
+        .catch(error => console.log(error.message))
     };
   }

@@ -21,6 +21,7 @@ class GodSearch extends Component {
         this.setState({
           name: event.target.value
         })
+        // this.props.gods.gods.map( g=> g.name ==this.state.name)
       }
    
     render() {

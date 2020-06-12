@@ -1,5 +1,4 @@
 const initialState = {
-    items: [],
     loading: false
 }
 
@@ -10,14 +9,12 @@ function itemsReducer(state = initialState, action) {
         case 'START_ADDING_ITEMS_REQUEST':
             return {
                 ...state,
-                items: [...state.items],
                 loading: true
             }
    
         case 'ADD_ITEMS':
             return {
-                ...state,
-                items: action.items,
+                ...action.items,
                 loading: 'success'
             }
 
@@ -26,7 +23,6 @@ function itemsReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 error: action.error,
-                items: []
             }
 
         case "FIND_ITEM":

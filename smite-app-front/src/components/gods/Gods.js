@@ -9,8 +9,7 @@ import GodSearchRadio from './GodSearchRadio'
 class Gods extends Component {
 
     renderGodList = () => {
-      console.log(this.props.match)
-        // console.log(`this.props.god in gods is ${JSON.stringify(this.props)}`)
+        console.log(`this.props.god in gods is ${JSON.stringify(this.props)}`);
         if (this.props.gods.gods.length > 1) {
           return this.props.gods.gods.map(god => 
         <li><Link to={`gods/${god.god_id}`}>{god.name}</Link></li>)
@@ -19,10 +18,7 @@ class Gods extends Component {
                 (<God god={god} key={god.god_id} />))
         }
     }
-    // <Link to={`${this.props.match.url}/${god.god_id}`}>{god.name}</Link>
-    // <Switch>
-    //   <Route path={`${match.path}/:id`} component={God}/>
-    // </Switch>
+
 
     handleClick = (event) => {
       
@@ -43,4 +39,17 @@ class Gods extends Component {
   }
 };
 
-export default connect(null, {findGod})(Gods);
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    gods: state.gods,
+    // items: state.items,
+    // builds: state.builds,
+    // player: state.player,
+    // this will be selector.gods
+    // loading: state.loading
+  }
+}
+
+
+export default connect(mapStateToProps, {findGod})(Gods);

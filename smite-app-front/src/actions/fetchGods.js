@@ -7,6 +7,7 @@ export function fetchGods() {
       dispatch({ type: 'START_ADDING_GODS_REQUEST' });
       fetch('http://localhost:3000/gods')
         .then(response => response.json())
-        .then(gods => dispatch({ type: 'ADD_GODS', gods }));
+        .then(gods => dispatch({ type: 'ADD_GODS', gods }))
+        .catch(error => console.log(error.message))
     };
   }
