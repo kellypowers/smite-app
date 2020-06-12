@@ -6,9 +6,9 @@ export function addPlayer(playerId, portalId) {
     };
   };
 
-export const deletePlayer = (id) => {
+export const findMatches = (id) => {
     return {
-        type: 'DELETE_PLAYER',
+        type: 'ADD_MATCH_DETAILS',
         id
     };
 };
