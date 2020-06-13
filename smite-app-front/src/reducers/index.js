@@ -5,6 +5,7 @@ import godsReducer from './godsReducer';
 import buildsReducer from "./buildsReducer";
 import matchReducer from "./matchReducer";
 import playerMatchesReducer from "./playerMatchesReducer";
+import playerGodRanksReducer from "./playerGodRanksReducer";
  
 const rootReducer = combineReducers({
   gods: godsReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   items: itemsReducer,
   builds: buildsReducer,
   match: matchReducer,
-  playerMatches: playerMatchesReducer
+  playerMatches: playerMatchesReducer,
+  god_ranks: playerGodRanksReducer
 });
  
 export default rootReducer

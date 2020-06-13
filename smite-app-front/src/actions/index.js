@@ -61,3 +61,10 @@ export const addBuild = (build) => {
     build
 }
 };
+
+export const addMatchDeets = (match) => {
+  return {
+    type: "ADD_MATCH_DETAILS",
+    match
+}
+};

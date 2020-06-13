@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlayerMatches } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/PlayerMatches'
+import { fetchPlayerGodRanks } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/Player'
 import PlayerMatches from './PlayerMatches';
 
 class Player extends Component {
@@ -8,6 +9,10 @@ class Player extends Component {
     handleMatchHistory = event => {
       console.log("active id? " + this.props.player.ActivePlayerId);
       this.props.fetchPlayerMatches({player_id: this.props.player.ActivePlayerId})
+    } 
+    handleGodInfo = event => {
+      console.log("active id? " + this.props.player.ActivePlayerId);
+      this.props.fetchPlayerGodRanks({player_id: this.props.player.ActivePlayerId})
     } 
 
   render() {
@@ -19,27 +24,28 @@ class Player extends Component {
       <div>
           <br />
           <h3>Account Info:</h3>
-          <label>Name: </label> <p>{this.props.player.Name}</p>
-          <label>Platform: </label> <p>{this.props.player.Platform}</p>
-          <label>Account Creation: </label> <p>{this.props.player.Created_Datetime}</p>
-          <label>Last Login: </label> <p>{this.props.player.Last_Login_Datetime}</p>
-          <label>Level: </label> <p>{this.props.player.Level}</p>
-          <label>Wins: </label> <p>{this.props.player.Wins}</p>
-          <label>Losses: </label> <p>{this.props.player.Losses}</p>
-          <label>Mastery Level: </label> <p>{this.props.player.MasteryLevel}</p>
-          <label>Total Worshippers: </label> <p>{this.props.player.Total_Worshippers}</p>
-          <label>Minuted Played: </label> <p>{this.props.player.MinutesPlayed}</p>
-          <label>Total Achievements: </label> <p>{this.props.player.Total_Achievements}</p>
-          <label>Clan: </label> <p>{this.props.player.Team_Name}</p>
-          <ul><label>Ranked Joust Controller for season: </label> <p>{this.props.player.RankedJoustController['Season']}</p>
-            <li><label>Wins: </label> <p>{this.props.player.RankedJoustController['Wins']}</p></li>
-            <li><label>Losses: </label> <p>{this.props.player.RankedJoustController.Losses}</p></li>
-            <li><label>Rank: </label> <p>{this.props.player.RankedJoustController.Rank}</p></li>
-            <li><label>Points: </label> <p>{this.props.player.RankedJoustController.Points}</p></li>
-            <li><label>Rank Stat: </label> <p>{this.props.player.RankedJoustController.Rank_Stat}</p></li>
-            <li><label>Variance: </label> <p>{this.props.player.RankedJoustController.Rank_Variance}</p></li>
+          <p><label>Name: </label> {this.props.player.Name}</p>
+          <p><label>Platform: </label> {this.props.player.Platform}</p>
+          <p><label>Account Creation: </label> {this.props.player.Created_Datetime}</p>
+          <p><label>Last Login: </label> {this.props.player.Last_Login_Datetime}</p>
+          <p><label>Level: </label> {this.props.player.Level}</p>
+          <p><label>Wins: </label> {this.props.player.Wins}</p>
+          <p><label>Losses: </label> {this.props.player.Losses}</p>
+          <p><label>Mastery Level: </label> {this.props.player.MasteryLevel}</p>
+          <p><label>Total Worshippers: </label> {this.props.player.Total_Worshippers}</p>
+          <p><label>Minuted Played: </label> {this.props.player.MinutesPlayed}</p>
+          <p><label>Total Achievements: </label> {this.props.player.Total_Achievements}</p>
+          <p><label>Clan: </label> {this.props.player.Team_Name}</p>
+          <ul><p><label>Ranked Joust Controller for season: </label> {this.props.player.RankedJoustController['Season']}</p>
+            <li><p><label>Wins: </label> {this.props.player.RankedJoustController['Wins']}</p></li>
+            <li><p><label>Losses: </label> {this.props.player.RankedJoustController.Losses}</p></li>
+            <li><p><label>Rank: </label> {this.props.player.RankedJoustController.Rank}</p></li>
+            <li><p><label>Points: </label> {this.props.player.RankedJoustController.Points}</p></li>
+            <li><p><label>Rank Stat: </label> {this.props.player.RankedJoustController.Rank_Stat}</p></li>
+            <li><p><label>Variance: </label> {this.props.player.RankedJoustController.Rank_Variance}</p></li>
           </ul>
           <button onClick={event => this.handleMatchHistory(event)}>Get Match History For {this.props.player.Name} </button>
+          <button onClick={event => this.handleGodInfo(event)}>Get God Info {this.props.player.Name} </button>
       </div>
     )};
   };
@@ -72,4 +78,4 @@ const mapStateToProps = state => {
 //   }
 // }
 
-export default connect(mapStateToProps, {fetchPlayerMatches})(Player);
+export default connect(mapStateToProps, {fetchPlayerMatches, fetchPlayerGodRanks})(Player);

@@ -52,6 +52,8 @@ class App extends Component {
                 <Route path="/builds/:build_id" render={(routerProps) => {
                   return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={this.props.builds.find(b => {
                     // b.god_id_smite =  this.props.gods.gods.find(g => g.god_id == b.god_id_smite);
+
+                    // make these liiks to the actual item ogject IN TJE COMPONENT
                     b.item1= this.props.items.find(i => i.name == b.item1);
                     b.item2 = this.props.items.find(i => i.name == b.item2);
                     b.item3 = this.props.items.find(i => i.name == b.item3);
@@ -99,6 +101,7 @@ const mapStateToProps = state => {
     builds: state.builds,
     player: state.player,
     playerMatches: state.playerMatches,
+    match: state.match,
     // this will be selector.gods
     loading: state.loading
   }

@@ -10,14 +10,19 @@ import {Media} from 'react-bootstrap'
 class Items extends Component {
     //action creater function to pass each Item to the Item component
     renderItemList = () => {
+      if (this.props.items.loading === 'success') {
+        // Object.entries(this.props.items).map(i => <Item item={i[1]} key={i[1].item_id} />));}};
       console.log("items " + JSON.stringify(this.props.items))
-        if (this.props.items.items.length > 1) {
-        return this.props.items.items.map(item => 
-          <li><Link to={`items/${item.item_id}`}><Media><img width={50} height={50} className="mr-3" src={item.item_image} alt={item.name}/></Media>{item.name}</Link></li>)
+        if (this.props.items.length > 1) {
+        // return this.props.items.items.map(item => 
+         return Object.entries(this.props.items).map(item =>
+          <li><Link to={`items/${item[1].item_id}`}><Media><img width={50} height={50} className="mr-3" src={item[1].item_image} alt={item[1].name}/></Media>{item[1].name}</Link></li>)
         } else {
-            return this.props.items.items.map(item => 
-                (<Item item={item} key={item.item_id} />))
-        }
+            // return this.props.items.map(item => 
+            return Object.entries(this.props.items).map(item =>
+                (<Item item={item[1]} key={item[1].item_id} />))
+        }}
+        
     }
 
   render() {
@@ -32,4 +37,19 @@ class Items extends Component {
   }
 };
 
-export default connect(null, {findItem})(Items);
+
+
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    gods: state.gods,
+    items: state.items,
+    // builds: state.builds,
+    // player: state.player,
+    // playerMatches: state.playerMatches,
+    // match: state.match,
+    // this will be selector.gods
+    loading: state.loading
+  }
+}
+export default connect(mapStateToProps, {findItem})(Items);
