@@ -143,6 +143,10 @@ class SmiteApi
         # player_id = self.get_player_id(player_name)
         return self.make_request_async('getplayerachievements', player_id)
     end
+    def get_god_ranks(player_id)
+        # player_id = self.get_player_id(player_name)
+        return self.make_request_async('getgodranks', player_id)
+    end
 
     def get_team_players(clan)
         return self.make_request('getteamplayers', clan)

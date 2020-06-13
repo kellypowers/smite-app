@@ -34,7 +34,7 @@ class PlayersController < ApplicationController
     def get_god_ranks
         # elastic search?? _
         puts "params are #{params}"
-        player_god_ranks = @smite_api.get_god_ranks(params["player"]["player_id"].to_i)
+        player_god_ranks = @smite_api.get_god_ranks(params["playerid"]["player_id"].to_i)
         puts "player god ranks is #{player_god_ranks}"
         render json: player_god_ranks   
     end
@@ -49,9 +49,9 @@ class PlayersController < ApplicationController
     def get_match_details
         # elastic search?? 
         puts "params are #{params}"
-        match_details = @smite_api.get_match_details(params['player']['matchid'].to_i)
+        match_details = @smite_api.get_match_details(params['matchid'].to_i)
         puts "match dets is #{match_details}"
-        render json: match_details   
+        render plain: match_details   
     end
     
     def update 
