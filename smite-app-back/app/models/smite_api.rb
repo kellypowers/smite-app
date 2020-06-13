@@ -123,9 +123,9 @@ class SmiteApi
 
     def get_player(player_name)
         request = self.make_request_async('getplayer', player_name)
-        puts "request is #{request}"
+        # puts "request is #{request}"
         player_id = request[0]['ActivePlayerId']
-        puts "player id is #{player_id}"
+        # puts "player id is #{player_id}"
         # binding.pry
         return self.make_request_async('getplayer', player_id)
     end
@@ -134,9 +134,14 @@ class SmiteApi
         return self.make_request_async('getplayer', player_name)
     end
 
-    def get_match_history(player_name)
-        player_id = self.get_player_id(player_name)
+    def get_match_history(player_id)
+        # player_id = self.get_player_id(player_name)
         return self.make_request_async('getmatchhistory', player_id)
+    end
+
+    def get_player_achievements(player_id)
+        # player_id = self.get_player_id(player_name)
+        return self.make_request_async('getplayerachievements', player_id)
     end
 
     def get_team_players(clan)
