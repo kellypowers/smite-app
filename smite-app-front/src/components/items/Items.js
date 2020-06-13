@@ -7,6 +7,8 @@ import {Media} from 'react-bootstrap'
 // import ItemSearch from './ItemSearch'
 
 
+// do i want to srt?  magic power, physical power, mag def, phys def, lifesteal, protections, attach speed, attach power,cooldown, crit, CC, 
+
 class Items extends Component {
     //action creater function to pass each Item to the Item component
     renderItemList = () => {

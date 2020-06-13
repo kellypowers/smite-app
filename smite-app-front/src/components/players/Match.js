@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Team from './Team'
 
 export default class Match extends Component {
+    renderMatchInfo= () => {
+        if (this.props.match.loading == 'success') {
+          return (
+            Object.entries(this.props.match).map(t => <Team team={t[1]} key={t[1].ActivePlayerId} />));}};
     render() {
         return (
             <div>
