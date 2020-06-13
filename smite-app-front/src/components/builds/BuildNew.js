@@ -19,27 +19,27 @@ class BuildNew extends Component {
         // item6: ""
     }
 
-    postBuild(build = this.state) {
-        return (dispatch) => {
-            dispatch({ type: 'POST_BUILD' });
-            fetch('http://localhost:3000/god_builds', {
-                headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            method: "POST",
-            body: JSON.stringify({
-                build
-            })
-         })
-              .then(response => response.json())
-              .then(build => {
-                  console.log(build);
-                  dispatch(this.props.addBuild(build))
-              })
-              .catch(error => console.log(error));
-          };
-        }
+    // postBuild(build = this.state) {
+    //     return (dispatch) => {
+    //         dispatch({ type: 'POST_BUILD' });
+    //         fetch('http://localhost:3000/god_builds', {
+    //             headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         },
+    //         method: "POST",
+    //         body: JSON.stringify({
+    //             build
+    //         })
+    //      })
+    //           .then(response => response.json())
+    //           .then(build => {
+    //               console.log(build);
+    //               dispatch(this.props.addBuild(build))
+    //           })
+    //           .catch(error => console.log(error));
+    //       };
+    //     }
 
 
     handleOnSubmit = event => {
@@ -59,6 +59,7 @@ class BuildNew extends Component {
             // item5: "",
             // item6: ""
         })
+        // return 
       }
     handleOnChange = event => {
         this.setState({
@@ -83,7 +84,7 @@ class BuildNew extends Component {
     }
 
       renderItems = () => {
-        return  this.props.items.items.map(item => {
+        return  this.props.items.map(item => {
             
          return (<div onClick={event => this.handleOnClick(event, item)}><img src={item.item_image} alt={item.name}/> {item.name}{item.item_stat} </div>)
         })}
@@ -97,8 +98,8 @@ class BuildNew extends Component {
         renderItemSelect = () => {
             
             // return <select name={"items"} onChange={e => this.handleOnChange(e)} > 
-            return  this.props.items.items.map(item => {
-                for (var key in this.state) if (this.state[key] == item.name) {return ""} else {
+            return  this.props.items.map(item => {
+                for (var key in this.state) if (this.state[key] === item.name) {return ""} else {
             return <option value={item.name}>{item.name}</option>}
             })
             // </select>

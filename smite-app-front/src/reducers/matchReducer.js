@@ -1,5 +1,5 @@
 const initialState = {
-    loading: false,
+    loading: false
 
 }
 

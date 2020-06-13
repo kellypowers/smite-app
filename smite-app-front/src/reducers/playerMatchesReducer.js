@@ -1,5 +1,5 @@
 const initialState = {
-    loading: false,
+    loading: false
 }
 
 
@@ -27,6 +27,6 @@ function playerMatchesReducer(state = initialState, action) {
         }
         default:
             return state;
-        }
-      }
-      export default playerMatchesReducer;
+    }
+}
+export default playerMatchesReducer;

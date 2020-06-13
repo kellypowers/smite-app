@@ -6,9 +6,9 @@ export function addPlayer(playerId, portalId) {
     };
   };
 
-export const findMatches = (id) => {
+export const addPlayerMatches = (id) => {
     return {
-        type: 'ADD_MATCH_DETAILS',
+        type: 'ADD_PLAYER_MATCH',
         id
     };
 };

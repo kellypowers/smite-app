@@ -6,10 +6,16 @@ import PlayerMatch from './PlayerMatch';
 class PlayerMatches extends Component {
     
     renderPlayerMatches = () => {
-      if (this.props.player.loading == 'success') {
-        console.log("props in playermatches is " + JSON.stringify(this.props));
+
+      if (this.props.playerMatches.loading == 'success') {
+        console.log("props in playermatches is " + JSON.stringify(this.props.playerMatches));
+        console.log(`matches is  ${JSON.stringify(Object.entries(this.props.playerMatches))}`);
         return (
-          this.props.player.matches.map(m => <PlayerMatch match={m} key={m.Match} />))
+          
+          // console.log(`matches is  ${JSON.stringify(Object.entries(this.props.playerMatches))}`);
+           Object.entries(this.props.playerMatches).map(m => <PlayerMatch match={m[1]} key={m[1].Match} />));
+          
+          // matches.map(m => <PlayerMatch match={i.Match} key={m} />))
       }else {
         return "Try Again"
       } 
@@ -37,6 +43,7 @@ const mapStateToProps = state => {
     // items: state.items,
     // builds: state.builds,
     player: state.player,
+    playerMatches: state.playerMatches,
     // this will be selector.gods
     loading: state.loading
   }

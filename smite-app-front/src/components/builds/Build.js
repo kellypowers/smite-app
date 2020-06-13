@@ -9,7 +9,7 @@ const Build = props => {
         // props.build.item4 = props.items.items.find(i => i.name == props.build.item4);
         // props.build.item5 = props.items.items.find(i => i.name == props.build.item5);
         // props.build.item6 = props.items.items.find(i => i.name == props.build.item6);
-        debugger
+        // debugger
     return (
         <div>
             {/* <ul> */}
