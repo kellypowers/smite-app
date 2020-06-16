@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
-import Gods from '../components/gods/Gods'
 import God from '../components/gods/God'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-// move gods over to this
 
 class GodsContainer extends Component {
   state = {
-      // gods: this.props.gods.gods,
       selectedOption: "roles",
       name: "",
       role: "",
@@ -92,13 +89,6 @@ class GodsContainer extends Component {
   }; 
 
   render() {
-      // if (this.state.role !== "") {
-      //   let godRoles = this.props.gods.gods.filter(god => (god.roles) === this.state.role );
-      //   return godRoles.map(god => <li> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
-      // } else if (this.state.pantheon !== "") {
-      //   let godsPantheon = this.props.gods.gods.filter(god => god.pantheon === this.state.pantheon );
-      //   return godsPantheon.map(god => <li> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
-      // }
     return (
       <div>
         <br/>
