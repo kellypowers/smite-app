@@ -1,15 +1,18 @@
 import React from 'react';
 
 const Build = props => {
-    // console.log("props is " + JSON.stringify(props.build));
+    console.log("props is " + JSON.stringify(props.items));
 
-        // props.build.item1 = props.items.items.find(i => i.name == props.build.item1);
-        // props.build.item2 = props.items.items.find(i => i.name == props.build.item2);
-        // props.build.item3 = props.items.items.find(i => i.name == props.build.item3);
-        // props.build.item4 = props.items.items.find(i => i.name == props.build.item4);
-        // props.build.item5 = props.items.items.find(i => i.name == props.build.item5);
-        // props.build.item6 = props.items.items.find(i => i.name == props.build.item6);
+    // for (i=0; i<props.build.items.length; i++) {props.build.items[i] = Object.values(props.items).find(i=> i.nae === props.build.item[i])}
+        // props.build.item1 = Object.values(props.items).find(i => i.name == props.build.item1);
+        // props.build.item2 = props.items.find(i => i.name == props.build.item2);
+        // props.build.item3 = props.items.find(i => i.name == props.build.item3);
+        // props.build.item4 = props.items.find(i => i.name == props.build.item4);
+        // props.build.item5 = props.items.find(i => i.name == props.build.item5);
+        // props.build.item6 = props.items.find(i => i.name == props.build.item6);
         // debugger
+
+        
     return (
         <div>
             {/* <ul> */}

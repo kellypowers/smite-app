@@ -19,7 +19,7 @@ class BuildsItems extends Component {
       renderItemSelect = () => {
         for (let i=0; i<6; i++) {
         // return <select name={"items"} onChange={e => this.handleOnChange(e)} > 
-        return  this.props.items.items.map(item => {
+        return  this.props.items.map(item => {
             if (this.state.items.find(j => j.name)) {return ""} else {
         return <option value={item.name}>{item.name}</option>}
         })
@@ -28,7 +28,7 @@ class BuildsItems extends Component {
     }
 
     renderItems = () => {
-        this.props.items.items.map(item => {
+        this.props.items.map(item => {
         return <div>{item.item_image}{item.name}{item.stat}</div>
         })
     }

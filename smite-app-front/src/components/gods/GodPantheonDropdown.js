@@ -8,7 +8,7 @@ class GodPantheonDropdown extends Component{
     }
     handleOnSubmit = (event) => {
         event.preventDefault();
-        const pantheon = this.state.pantheon;
+        // const pantheon = this.state.pantheon;
         // this.props.findGodByPantheon(pantheon)
         this.props.gods.filter(god => god.pantheon === this.state.pantheon )
         this.setState({

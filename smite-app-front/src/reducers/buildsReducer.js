@@ -1,5 +1,5 @@
 const initialState = {
-    builds: [],
+    // builds: [],
     loading: false
 }
 
@@ -10,7 +10,7 @@ function buildsReducer(state = initialState, action) {
         case 'START_ADDING_BUILDS_REQUEST':
             return {
                 ...state,
-                builds: [...state.builds],
+                // builds: [...state.builds],
                 loading: true
             }
    
@@ -25,8 +25,8 @@ function buildsReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                error: action.error,
-                builds: []
+                error: action.error
+                // builds: []
             }
 
         case "ADD_BUILD":

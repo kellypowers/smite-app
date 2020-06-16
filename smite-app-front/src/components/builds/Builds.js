@@ -6,11 +6,12 @@ import { connect } from 'react-redux'
 class Builds extends Component {
 
     renderBuildsList = () => {
-        return this.props.builds.builds.map(build => {
+        return Object.values(this.props.builds).map(build => {
+            // return Object.entries(this.props.builds).map(build => {
             //  let god = this.props.gods.gods.find(g => g.god_id == build.god_id_smite);
             console.log("builds gods is " + build.god_id_smite);
             // debugger
-            return <li><Link to={`builds/${build.id}`}>{build.name} -  </Link></li>
+            return <li><Link to={`builds/${build.id}`}>{build.name} -  </Link></li> 
         })
     }
     render() {

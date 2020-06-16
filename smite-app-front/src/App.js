@@ -40,27 +40,30 @@ class App extends Component {
         {/* <div className="app" style={sectionStyle}> */}
         <Layout >
           <BrowserRouter>
-            <Switch>
+            {/* <Switch> */}
               {/* <div className="App"> */}
                 <Route exact path="/" component={Home} />
                 <Route exact path="/gods" component={GodsContainer} />
-                <Route exact path="/builds" component={BuildsContainer} />
+                <Route exact path="/builds" render={(props) => {
+                  if (this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success')
+                  return <BuildsContainer />
+                }}  />
                 {/* builds to render gods bbefore load */}
                 <Route exact path="/build/new" render={(props) =>{
                   if (this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success')
                   return <BuildNew items={this.props.items} gods={this.props.gods}/> }} />
                 <Route path="/builds/:build_id" render={(routerProps) => {
-                  return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={this.props.builds.find(b => {
+                  return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={Object.values(this.props.builds).find(b => {
                     // b.god_id_smite =  this.props.gods.gods.find(g => g.god_id == b.god_id_smite);
-
+                    // for (let i=0; i<b.items.length; i++) {return b.item[i] = this.props.items.find(i=> i.name === b.item[i])}
                     // make these liiks to the actual item ogject IN TJE COMPONENT
-                    b.item1= this.props.items.find(i => i.name == b.item1);
-                    b.item2 = this.props.items.find(i => i.name == b.item2);
-                    b.item3 = this.props.items.find(i => i.name == b.item3);
-                    b.item4 = this.props.items.find(i => i.name == b.item4);
-                    b.item5 = this.props.items.find(i => i.name == b.item5);
-                    b.item6 = this.props.items.find(i => i.name == b.item6);
-                    return b.id == routerProps.match.params.build_id
+                    // b.item1= this.props.items.find(i => i.name == b.item1);
+                    // b.item2 = this.props.items.find(i => i.name == b.item2);
+                    // b.item3 = this.props.items.find(i => i.name == b.item3);
+                    // b.item4 = this.props.items.find(i => i.name == b.item4);
+                    // b.item5 = this.props.items.find(i => i.name == b.item5);
+                    // b.item6 = this.props.items.find(i => i.name == b.item6);
+                    return b.id === routerProps.match.params.build_id
                     })
                   }/> :  <div>Loading...</div> 
                 }}/> 
@@ -83,7 +86,7 @@ class App extends Component {
                 
                 {/* <Route component={NoMatch}/> */}
               {/* </div> */}
-            </Switch>
+            {/* </Switch> */}
           </BrowserRouter>
         </Layout>
         {/* </div> */}

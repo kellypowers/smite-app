@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
 // import BuildItems from './BuildItems'
 // want to mimplement build items when i can click the icon to add to the build 
 import {addBuild} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js'
@@ -19,47 +20,25 @@ class BuildNew extends Component {
         // item6: ""
     }
 
-    // postBuild(build = this.state) {
-    //     return (dispatch) => {
-    //         dispatch({ type: 'POST_BUILD' });
-    //         fetch('http://localhost:3000/god_builds', {
-    //             headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json"
-    //         },
-    //         method: "POST",
-    //         body: JSON.stringify({
-    //             build
-    //         })
-    //      })
-    //           .then(response => response.json())
-    //           .then(build => {
-    //               console.log(build);
-    //               dispatch(this.props.addBuild(build))
-    //           })
-    //           .catch(error => console.log(error));
-    //       };
-    //     }
-
-
     handleOnSubmit = event => {
         event.preventDefault();
         const build = this.state;
         // this.props.postBuild(build);
         this.props.postBuild(build);
-        this.setState({
-            name: "",
-            description: "",
-            god_id: 0,
-            items: this.state.items
+        // this.setState({
+        //     name: "",
+        //     description: "",
+        //     god_id: 0,
+        //     items: this.state.items
             // item1: "",
             // item2: "", 
             // item3: "",
             // item4: "",
             // item5: "",
             // item6: ""
-        })
-        // return 
+        // })
+        // let buildfind = Object.values(this.props.builds).find(b => b.name === this.state.name )
+        // <Redirect to="/builds"/>
       }
     handleOnChange = event => {
         this.setState({
@@ -83,27 +62,28 @@ class BuildNew extends Component {
       }
     }
 
-      renderItems = () => {
-        return  this.props.items.map(item => {
-            
-         return (<div onClick={event => this.handleOnClick(event, item)}><img src={item.item_image} alt={item.name}/> {item.name}{item.item_stat} </div>)
-        })}
+    renderItems = () => {
+      console.log(this.props.items);
+      return Object.entries(this.props.items).map( item=> {
+        return (<div onClick={event => this.handleOnClick(event, item[1])}><img src={item[1].item_image} alt={item[1].name}/> {item[1].name}{item[1].item_stat} </div>)
+      })}
 
-        renderGodSelect = () => {
-            return <select name="god_id_smite" onChange={e => this.handleOnChange(e)} > <option value=""> </option> {this.props.gods.gods.map(god => {
-            return <option value={god.god_id}>{god.name}</option>
-            })}</select>
-        }
+    renderGodSelect = () => {
+        return <select name="god_id_smite" onChange={e => this.handleOnChange(e)} > <option value=""> </option> {this.props.gods.gods.map(god => {
+        return <option value={god.god_id}>{god.name}</option>
+        })}</select>
+    }
 
-        renderItemSelect = () => {
-            
-            // return <select name={"items"} onChange={e => this.handleOnChange(e)} > 
-            return  this.props.items.map(item => {
-                for (var key in this.state) if (this.state[key] === item.name) {return ""} else {
-            return <option value={item.name}>{item.name}</option>}
-            })
-            // </select>
-        }
+    renderItemSelect = () => {
+        
+        // return <select name={"items"} onChange={e => this.handleOnChange(e)} > 
+        return  Object.entries(this.props.items).map(item => {
+          
+            for (let key in this.state) if (this.state[key] === item.name) {return ""} else {
+        return <option value={item[1].name}>{item[1].name}</option>}
+        })
+        // </select>
+    }
         
     
     //   Maybe show all items, click item and will fill out the next available slot and disappear from items below.. how do i do this
@@ -154,18 +134,6 @@ class BuildNew extends Component {
                     {this.renderItemSelect()}
                 </select>
                 
-                {/* {this.renderItemSelect()} */}
-              {/* <label for="items[1]">Second Item:</label> */}
-              {/* <input type="text" name="items[1]" placeholder="" value={this.state.items[1]} onChange={event => {this.handleOnChange(event)}} /> */}
-              {/* {this.renderItemSelect()}
-              <label for="item3">Third Item:</label>
-              <input type="text" name="items[2]" placeholder="" value={this.state.items[2]} onChange={event => {this.handleOnChange(event)}} />
-              <label for="item4">Fourth Item:</label>
-              <input type="text" name="items[3]" placeholder="" value={this.state.items[3]} onChange={event => {this.handleOnChange(event)}} />
-              <label for="item5">Fifth Item:</label>
-              <input type="text" name="items[4]" placeholder="" value={this.state.items[4]} onChange={event => {this.handleOnChange(event)}} />
-              <label for="item6">Sixth Item:</label>
-              <input type="text" name="items[5]" placeholder="" value={this.state.items[5]} onChange={event => {this.handleOnChange(event)}} /> */}
             <input type="submit" />
           </form>
 
@@ -178,7 +146,19 @@ class BuildNew extends Component {
 
   
   }
-
+  const mapStateToProps = state => {
+    console.log(state);
+    return {
+      gods: state.gods,
+      items: state.items,
+      builds: state.builds,
+      player: state.player,
+      playerMatches: state.playerMatches,
+      god_ranks: state.god_ranks,
+      // this will be selector.gods
+      loading: state.loading
+    }
+  };
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -187,5 +167,5 @@ const mapDispatchToProps = dispatch => {
     }
   }
 //   export default BuildNew;
-export default connect(null, mapDispatchToProps)(BuildNew);
+export default connect(mapStateToProps, mapDispatchToProps)(BuildNew);
   
