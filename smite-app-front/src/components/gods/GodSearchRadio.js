@@ -33,11 +33,9 @@ class GodSearchRadio extends Component {
     render() { 
       return (
         <div>
-
             Sort By: 
             Role <input type="radio" value="roles" name="filter" checked={this.state.selectedOption === "roles"} onChange={event => this.handleOnChange(event)}/>
             Pantheon <input type="radio" value="pantheon" name="filter" checked={this.state.selectedOption === "pantheon"} onChange={event => this.handleOnChange(event)}/>
-
             {this.renderSearchFilter()}
         </div>
 

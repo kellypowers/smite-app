@@ -13,7 +13,7 @@ import ItemsContainer from './containers/ItemsContainer';
 import BuildsContainer from './containers/BuildsContainer';
 import BuildNew from './components/builds/BuildNew';
 import Home from './components/home/Home';
-import Player from './components/players/Player';
+import GodRanks from './components/players/GodRanks';
 import Build from './components/builds/Build';
 import Item from './components/items/Item';
 import Navigationbar from './components/navigation/NavBar';
@@ -53,17 +53,18 @@ class App extends Component {
                   if (this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success')
                   return <BuildNew items={this.props.items} gods={this.props.gods}/> }} />
                 <Route path="/builds/:build_id" render={(routerProps) => {
-                  return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={Object.values(this.props.builds).find(b => {
-                    // b.god_id_smite =  this.props.gods.gods.find(g => g.god_id == b.god_id_smite);
+                  return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={Object.values(this.props.builds.builds).find(b => {
+                    b.god_id_smite =  Object.values(this.props.gods.gods).find(g => g.god_id == b.god_id_smite);
                     // for (let i=0; i<b.items.length; i++) {return b.item[i] = this.props.items.find(i=> i.name === b.item[i])}
                     // make these liiks to the actual item ogject IN TJE COMPONENT
-                    // b.item1= this.props.items.find(i => i.name == b.item1);
-                    // b.item2 = this.props.items.find(i => i.name == b.item2);
-                    // b.item3 = this.props.items.find(i => i.name == b.item3);
-                    // b.item4 = this.props.items.find(i => i.name == b.item4);
-                    // b.item5 = this.props.items.find(i => i.name == b.item5);
-                    // b.item6 = this.props.items.find(i => i.name == b.item6);
-                    return b.id === routerProps.match.params.build_id
+                    console.log("items is " + JSON.stringify(this.props.items));
+                    b.item1= Object.values(this.props.items).find(i => i.name == b.item1);
+                    b.item2 = Object.values(this.props.items).find(i => i.name == b.item2);
+                    b.item3 = Object.values(this.props.items).find(i => i.name == b.item3);
+                    b.item4 = Object.values(this.props.items).find(i => i.name == b.item4);
+                    b.item5 = Object.values(this.props.items).find(i => i.name == b.item5);
+                    b.item6 = Object.values(this.props.items).find(i => i.name == b.item6);
+                    return b.id == routerProps.match.params.build_id
                     })
                   }/> :  <div>Loading...</div> 
                 }}/> 
@@ -79,6 +80,9 @@ class App extends Component {
                     return i.item_id == routerProps.match.params.item_id}) }/> : <div> Loading... </div>
                 }}/>
                 <Route exact path="/players/find" component={PlayersContainer}/>
+                <Route exact path="/godranks" render={(props) =>{
+                  if (this.props.god_ranks.loading === 'success' && this.props.gods.loading === 'success' ==='success')
+                  return <GodRanks god_ranks={this.props.god_ranks} gods={this.props.gods}/> }} />
                 {/* <Route exact path="/player" render= {() => {
                     if (this.props.player.loading === 'success') {
                       return <Player player={this.props.player} />}
@@ -97,7 +101,7 @@ class App extends Component {
 
 
 const mapStateToProps = state => {
-  console.log(state)
+  // console.log(state)
   return {
     gods: state.gods,
     items: state.items,

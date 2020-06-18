@@ -12,14 +12,14 @@ export function fetchMatchDetails(matchid) {
         },
             method: "POST",
             body: JSON.stringify({
-                matchid
+                 matchid
             })
         })
         .then(response => response.json())
         .then(match => {
         // let player1 = player[0];
         console.log("match is " + JSON.stringify(match))
-        dispatch({ type: 'ADD_MATCH_DETAILS', match });
+        dispatch({ type: 'ADD_MATCH_DETAILS', match});
         // return player
         })
         .catch(error => console.log(error.message))

@@ -3,23 +3,39 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Team from './Team'
 
-export default class Match extends Component {
+ class Match extends Component {
     renderMatchInfo= () => {
-        if (this.props.match.loading == 'success') {
-          return (
-            Object.entries(this.props.match).map(t => <Team team={t[1]} key={t[1].ActivePlayerId} />));}};
+      let win_array = [];
+      let lose_array = [];
+      Object.values(this.props.match).map(t => {
+        if (t.Win_Status === "Winner"){ 
+        win_array.push(t)} else{ lose_array.push(t)}
+      }) 
+      return console.log("lose array is " + JSON.stringify(lose_array) + "win array is " + JSON.stringify(win_array))
+    }
+        // if (this.props.match.loading == 'success') {
+          // return (
+            // Object.values(this.props.match).map(t => {
+              // t.Win_status == "Winner" <Winner team={t} key={t.ActivePlayerId} />));}};
     render() {
+      // console.log("atch in match is " + JSON.stringify(Object.values(this.props.match)))
+      // win_array = [];
+      // lose_array = [];
+      // if (Object.values(this.props.match).map(t => {
+      //   if (t.Win_Status === "Winner"){ 
+      //   win_array.push(t)} else{ lose_array.push(t)}
+      // }) 
         return (
             <div>
                 Match Details
-                {this.props.match[0].GodId}
+                {this.renderMatchInfo()}
             </div>
         )
     }
 }
 
 const mapStateToProps = state => {
-    console.log(state)
+    // console.log(state)
     return {
       gods: state.gods,
       items: state.items,
@@ -31,6 +47,8 @@ const mapStateToProps = state => {
       loading: state.loading
     }
   }
+
+  export default connect(mapStateToProps)(Match)
 
 
 //x amount of players ....  each one has all this, separate by win/lose, link the player maybe? link the god, link each item.  

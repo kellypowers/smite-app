@@ -1,4 +1,4 @@
-export const START_ADDING_PLAYER__GOD_RANKS = 'START_ADDING_PLAYER__GOD_RANKS';
+export const START_ADDING_PLAYER__GOD_RANKS = 'START_ADDING_PLAYER_GOD_RANKS';
 export const ADD_PLAYER_GOD_RANKS = 'ADD_PLAYER_GOD_RANKS';
 export const ADD_PLAYER_GOD_RANK_FAILURE = 'ADD_PLAYER_GOD_RANK_FAILURE';
 
@@ -12,7 +12,7 @@ export function fetchPlayerGodRanks(playerid) {
         },
         method: "POST",
         body: JSON.stringify({
-            playerid
+            player: playerid
         })
       })
           .then(response => response.json())

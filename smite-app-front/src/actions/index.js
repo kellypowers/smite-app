@@ -68,3 +68,10 @@ export const addMatchDeets = (match) => {
     match
 }
 };
+
+export const addGodRanks = (god_ranks) => {
+  return {
+    type: "ADD_PLAYER_GOD_RANKS",
+    god_ranks
+}
+};

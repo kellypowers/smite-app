@@ -7,18 +7,18 @@ class PlayerMatches extends Component {
     
     renderPlayerMatches = () => {
 
-      if (this.props.playerMatches.loading == 'success') {
+      if (this.props.playerMatches.loading === 'success') {
         console.log("props in playermatches is " + JSON.stringify(this.props.playerMatches));
         console.log(`matches is  ${JSON.stringify(Object.entries(this.props.playerMatches))}`);
         return (
           
           // console.log(`matches is  ${JSON.stringify(Object.entries(this.props.playerMatches))}`);
-           Object.entries(this.props.playerMatches).map(m => <PlayerMatch match={m[1]} key={m[1].Match} />));
+           Object.values(this.props.playerMatches).map(m => <PlayerMatch matches={m} key={m.Match} />));
           
           // matches.map(m => <PlayerMatch match={i.Match} key={m} />))
-      }else {
-        return "Try Again"
-      } 
+      } else {
+        return "try Again"
+      }
 
     }
         
@@ -30,14 +30,14 @@ class PlayerMatches extends Component {
 
 
   render() {
-    console.log("in plaermatches " + JSON.stringify(this.props));
+    // console.log("in plaermatches " + JSON.stringify(this.props));
     if (this.props.player.loading === 'success') {
       return this.renderPlayerMatches()
     }
     }
 };
 const mapStateToProps = state => {
-  console.log(state)
+  // console.log(state)
   return {
     // gods: state.gods,
     // items: state.items,
