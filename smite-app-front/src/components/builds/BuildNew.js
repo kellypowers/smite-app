@@ -27,10 +27,14 @@ class BuildNew extends Component {
         event.preventDefault();
         const build = this.state;
         this.props.postBuild(build);
-        this.setState({
-            redirect: "/builds",
-            
-        })
+        // if (this.props.builds.loading==="success") {
+          // let build_id = Object.values(this.props.builds).find(b => b.name === this.state.name).id;
+          // return (
+          this.setState({
+            redirect: `/builds`, 
+          })
+          // )
+      // }
         // let buildfind = Object.values(this.props.builds).find(b => b.name === this.state.name );
         // console.log(JSON.stringify(buildfind));
         // return <Redirect to="/builds"/>
@@ -102,6 +106,7 @@ class BuildNew extends Component {
       render() {
         // console.log("buildnew " + JSON.stringify(this.state))
         if (this.props.builds.loading==="success" && this.state.redirect) {
+          // let build_id = Object.values(this.props.builds).find(f => f.name == this.state.name);
           return <Redirect to={this.state.redirect}/>
         } else {
         return (
@@ -111,9 +116,9 @@ class BuildNew extends Component {
                 <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
                 <label for="build_description">Build Description:</label>
                 <input type="text" name="description" placeholder="" value={this.state.description} onChange={event => {this.handleOnChange(event)}} />
-                <label for="god_name">Search by God Name:</label>
+                <label for="god_name">Select God Name:</label>
                 {this.renderGodSelect()}
-
+            
                 {/* this will be some selector for a god, idk yet */}
                 {/* <input type="text" name="god" placeholder="" value={this.state.god} onChange={event => {this.handleOnChange(event)}} /> */}
                 {/* <select name="god" onChange={e => this.handleOnChange(e)} > */}
@@ -136,40 +141,48 @@ class BuildNew extends Component {
                  <br/> */}
                  {/* {this.renderBuildImages()} */}
                  <br/>
+                 <label>Build your six items by item name</label> <br/>
                  <label for="item1">First Item:</label>
-                 <select name="item1" onChange={e => this.handleOnChange(e)} >
-                    <option value=""> </option>
+                 <input list="item1" name="item1" onChange={e => this.handleOnChange(e)}/>
+                 <datalist name="item1" id="item1"  >
+                    {/* <option value=""> </option> */}
                     {this.renderItemSelect()}
-                </select>
+                </datalist>
                 <label for="item2">Second Item:</label>
-                <select name="item2" onChange={e => this.handleOnChange(e)} >
-                    <option value=""> </option>
+                <input list="item2" name="item2" onChange={e => this.handleOnChange(e)}/>
+                <datalist id="item2" name="item2"  >
+                    {/* <option value=""> </option> */}
                     {this.renderItemSelect()}
-                </select>
+                </datalist>
                 <label for="item3">Third Item:</label>
-                <select name="item3" onChange={e => this.handleOnChange(e)} >
-                    <option value=""> </option>
+                <input list="item3" name="item3" onChange={e => this.handleOnChange(e)}/>
+                <datalist name="item3" id="item3" >
+                    {/* <option value=""> </option> */}
                     {this.renderItemSelect()}
-                </select>
+                </datalist>
                 <label for="item4">Fourth Item:</label>
-                <select name="item4" onChange={e => this.handleOnChange(e)} >
-                    <option value=""> </option>
+                <input list="item4" name="item4" onChange={e => this.handleOnChange(e)}/>
+                <datalist id="item4" >
+                    {/* <option value=""> </option> */}
                     {this.renderItemSelect()}
-                </select>
+                </datalist>
                 <label for="item5">Fifth Item:</label>
-                <select name="item5" onChange={e => this.handleOnChange(e)} >
-                    <option value=""> </option>
+                <input list="item5" name="item5" onChange={e => this.handleOnChange(e)}/>
+                <datalist id="item5"  >
+                    {/* <option value=""> </option> */}
                     {this.renderItemSelect()}
-                </select>
+                </datalist>
                 <label for="item6">Sixth Item:</label>
-                <select name="item6" onChange={e => this.handleOnChange(e)} >
-                    <option value=""> </option>
+                <input list="item6" name="item6" onChange={e => this.handleOnChange(e)}/>
+                <datalist id="item6"  >
+                    {/* <option value=""> </option> */}
                     {this.renderItemSelect()}
-                </select> 
+                </datalist> 
                 
             <input type="submit" />
           </form>
-          <label>Search for item type</label>
+          <br/>
+          <label>Look up item by typing in stat you are looking for </label>
           <input type="text" name="selector"onChange={e => this.handleOnChange(e)}></input>
             {this.renderItems()}
           {/* <BuildItems items={this.props.items} /> */}

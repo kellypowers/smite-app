@@ -44,7 +44,7 @@ class App extends Component {
               {/* <div className="App"> */}
                 <Route exact path="/" component={Home} />
                 <Route exact path="/gods" component={GodsContainer} />
-                <Route exact path="/builds" render={(props) => {
+                <Route exact path="/builds" render={() => {
                   if (this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success')
                   return <BuildsContainer />
                 }}  />
@@ -53,7 +53,7 @@ class App extends Component {
                   if (this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success')
                   return <BuildNew items={this.props.items} gods={this.props.gods}/> }} />
                 <Route path="/builds/:build_id" render={(routerProps) => {
-                  return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={Object.values(this.props.builds.builds).find(b => {
+                  return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={Object.values(this.props.builds).find(b => {
                     b.god_id_smite =  Object.values(this.props.gods.gods).find(g => g.god_id == b.god_id_smite);
                     // for (let i=0; i<b.items.length; i++) {return b.item[i] = this.props.items.find(i=> i.name === b.item[i])}
                     // make these liiks to the actual item ogject IN TJE COMPONENT
@@ -76,7 +76,7 @@ class App extends Component {
                 }}/> 
                 <Route exact path="/items" component={ItemsContainer} />
                 <Route path="/items/:item_id" render={(routerProps) => {
-                  return this.props.items.loading ==='success' ? <Item item={this.props.items.find(i => {
+                  return this.props.items.loading ==='success' ? <Item item={Object.values(this.props.items).find(i => {
                     return i.item_id == routerProps.match.params.item_id}) }/> : <div> Loading... </div>
                 }}/>
                 <Route exact path="/players/find" component={PlayersContainer}/>

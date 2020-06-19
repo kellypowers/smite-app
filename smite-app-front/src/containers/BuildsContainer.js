@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 
 class BuildsContainer extends Component {
     render() {
-        console.log("props in buildcont is " + JSON.stringify(this.props))
+        // console.log("props in buildcont is " + JSON.stringify(this.props))
+        if (this.props.builds.loading==='success' || this.props.builds.loading==='posted')
     return (
         <div>
             <button><Link to={`build/new`}>Create New Build</Link></button>

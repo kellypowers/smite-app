@@ -4,14 +4,51 @@ import { Link } from 'react-router-dom';
 import Team from './Team'
 
  class Match extends Component {
+  
+    renderTeamInfo = (array) => {
+      return array.map(i=> {
+        return (
+        <div className="team">
+        <p>Player: {i.playerName}</p>
+        <p>Account Level: {i.Account_Level}</p>
+        <p>Mastery Level: {i.Mastery_Level}</p>
+        <p>Player Damage: {i.Damage_Player}</p>
+        <p>Bot Damage: {i.Damage_Bot}</p>
+        <p>Basic Attack Damage: {i.Damage_Done_In_Hand}</p>
+        <p>Physical Damage: {i.Damage_Done_Physical}</p>
+        <p>Magical Damage: {i.Damage_Done_Magical}</p>
+        <p>Damage Mitigated: {i.Damage_Mitigated}</p>
+        <p>Final Level: {i.Final_Match_Level}</p>
+        <p>God Played: <Link to={`/gods/${i.GodId}`}>{i.Reference_Name}</Link></p>
+        <p>Gold Earned: {i.Gold_Earned}</p>
+        <p>Player Healing: {i.Healing}</p>
+        <p>Item 1: <Link to={`/items/${i.ItemId1}`}>{i.Item_Purch_1}</Link></p>
+        <p>Deaths: {i.Deaths}</p>
+        <p>Kills: {i.Kills_Player}</p>
+        </div>
+        )
+      })
+    }
+
     renderMatchInfo= () => {
       let win_array = [];
       let lose_array = [];
       Object.values(this.props.match).map(t => {
         if (t.Win_Status === "Winner"){ 
         win_array.push(t)} else{ lose_array.push(t)}
-      }) 
-      return console.log("lose array is " + JSON.stringify(lose_array) + "win array is " + JSON.stringify(win_array))
+      }) ;
+      // return console.log("lose array is " + JSON.stringify(lose_array) + "win array is " + JSON.stringify(win_array))
+      return (
+        <div>
+      <p>Match Game: {win_array[0].Map_Game}</p>
+      <p>Minutes: {win_array[0].Minutes}</p>
+      <h3>Losing Team:</h3>
+      {this.renderTeamInfo(lose_array)}
+      <h3>Winning Team:</h3>
+      {this.renderTeamInfo(win_array)}
+        </div>
+        
+      )
     }
         // if (this.props.match.loading == 'success') {
           // return (
