@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Team extends Component {
+export default class Clan extends Component {
     render() {
         return (
             <div>

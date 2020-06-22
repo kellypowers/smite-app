@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchPlayerMatches } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/PlayerMatches'
-import { fetchPlayerGodRanks } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/PlayerGodRank'
+import { fetchPlayerMatches } from '../../actions/fetchPlayerMatches'
+import { fetchPlayerGodRanks } from '../../actions/fetchPlayerGodRank'
 import PlayerMatches from './PlayerMatches';
 import GodRanks from './GodRanks';
+import history from 'history/browser';
 
 class Player extends Component {
 
@@ -13,16 +14,20 @@ class Player extends Component {
   }
         
     renderAccountInfo = () => {
-      if (this.props.playerMatches.loading === 'success') {
+      if (this.props.player_matches.loading === 'success') {
         // this.state.component = <PlayerMatches/>
         // this.setState({
         //   component: null
         // })
+        // history.push('/account_info');
+        return <Redirect to="/player_matches"/>
        
       }else if (this.props.god_ranks.loading === 'success') {
         // this.setState({
         //   component: null
         // })
+        // history.push('/account_info');
+        return <Redirect to="/godranks"/>
       }
       return (
         <div>
@@ -51,16 +56,18 @@ class Player extends Component {
           <button onClick={event => this.handleMatchHistory(event)}>Get Match History For {this.props.player.Name} </button>
           {/* <button onClick={event => this.handleGodInfo(event)}><Link to="/god_ranks">Get God Info for {this.props.player.Name}</Link> </button> */}
           <button onClick={event => this.handleGodInfo(event)}>Get God Info for {this.props.player.Name} </button>
-          {this.state.component}
+          {/* {this.state.component} */}
+          <button><Link to="/players/find">BACK</Link></button>
       </div>
       )
     }
 
+  
     handleMatchHistory = event => {
       console.log("active id? " + this.props.player.ActivePlayerId);
-      this.setState({
-        component: <PlayerMatches/>
-      })
+      // this.setState({
+      //   component: <PlayerMatches/>
+      // })
       this.props.fetchPlayerMatches({player_id: this.props.player.ActivePlayerId})
     } 
     handleGodInfo = event => {
@@ -120,7 +127,7 @@ const mapStateToProps = state => {
     items: state.items,
     // builds: state.builds,
     player: state.player,
-    playerMatches: state.playerMatches,
+    player_matches: state.player_matches,
     god_ranks: state.god_ranks,
     // this will be selector.gods
     loading: state.loading

@@ -25,15 +25,6 @@ function itemsReducer(state = initialState, action) {
                 error: action.error,
             }
 
-        case "FIND_ITEM":
-            console.log(` action is ${JSON.stringify(action)}`)
-            let idx = state.items.findIndex(item => item.name.toLowerCase() === action.name.toLowerCase() );
-            console.log(idx)
-            if (idx || idx==0) {
-                console.log("state items in reducer " + JSON.stringify(state.items[idx]))
-                return {items: [state.items[idx]]}
-            } else {
-                return state }
 
    
       default:

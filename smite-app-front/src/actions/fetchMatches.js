@@ -1,6 +1,6 @@
 export const FIND_MATCH_DETAILS = 'FIND_MATCH_DETAILS';
 export const ADD_MATCH_DETAILS = 'ADD_MATCH_DETAILS_FAILURE';
-export const ADD_MATCH_DETAILS_FAILURE = 'ADD_MATCH_DETEAILS_FAILURE';
+export const ADD_MATCH_DETAILS_FAILURE = 'ADD_MATCH_DETAILS_FAILURE';
 
 export function fetchMatchDetails(matchid) {
     return (dispatch) => {

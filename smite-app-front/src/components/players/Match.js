@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Team from './Team'
+import Clan from './Clan'
+// import Team from './Team'
 
  class Match extends Component {
   
     renderTeamInfo = (array) => {
+      console.log("array is " + JSON.stringify(array));
       return array.map(i=> {
         return (
         <div className="team">
@@ -55,18 +57,23 @@ import Team from './Team'
             // Object.values(this.props.match).map(t => {
               // t.Win_status == "Winner" <Winner team={t} key={t.ActivePlayerId} />));}};
     render() {
-      // console.log("atch in match is " + JSON.stringify(Object.values(this.props.match)))
-      // win_array = [];
-      // lose_array = [];
-      // if (Object.values(this.props.match).map(t => {
-      //   if (t.Win_Status === "Winner"){ 
-      //   win_array.push(t)} else{ lose_array.push(t)}
-      // }) 
+      let win_array = [];
+      let lose_array = [];
+      Object.values(this.props.match).map(t => {
+        if (t.Win_Status === "Winner"){ 
+        win_array.push(t)} else{ lose_array.push(t)}
+      }) ;
         return (
             <div>
-                Match Details
-                {this.renderMatchInfo()}
-            </div>
+            <p>Match Game: {win_array[0].Map_Game}</p>
+            <p>Minutes: {win_array[0].Minutes}</p>
+            <h3>Losing Team:</h3>
+            {this.renderTeamInfo(lose_array)}
+            <h3>Winning Team:</h3>
+            {this.renderTeamInfo(win_array)}
+
+            {/* <button onClick={this.props.history.push("/player_matches")}>Back</button> */}
+              </div>
         )
     }
 }

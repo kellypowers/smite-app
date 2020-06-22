@@ -6,7 +6,7 @@ export const ADD_PLAYER_FAILURE = 'ADD_PLAYER_FAILURE';
 
   export function fetchPlayer(player) {
     return (dispatch) => {
-        dispatch({ type: 'FIND_PLAYER' });
+        dispatch({ type: 'START_ADDING_PLAYER_REQUEST' });
         fetch('http://localhost:3000/players', {
             headers: {
             "Content-Type": "application/json",

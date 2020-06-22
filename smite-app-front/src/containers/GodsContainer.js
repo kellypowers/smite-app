@@ -18,6 +18,8 @@ class GodsContainer extends Component {
     })
   }
 
+
+  
   renderSearchFilter = () => {
     console.log(`radio state ${JSON.stringify(this.state)}`);
     if (this.state.selectedOption === "roles") {
@@ -35,6 +37,7 @@ class GodsContainer extends Component {
         return (
         <select onChange={event => this.handleOnChange(event)} name="pantheon" >
         <option value=" "> </option>
+        <option value="Great Old Ones">Great Old Ones</option>
         <option value="Greek">Greek</option>
         <option value="Hindu">Hindu</option>
         <option value="Mayan">Mayan</option>
@@ -61,11 +64,11 @@ class GodsContainer extends Component {
     })
   }
 
-  handleClick = (event) => {
-    let idx = this.props.gods.gods.findIndex(god => god.name.toLowerCase() === event.target.innerText.toLowerCase() );
-    return this.props.gods.gods[idx]
-  }
-
+  // handleClick = (event) => {
+  //   let idx = this.props.gods.gods.findIndex(god => god.name.toLowerCase() === event.target.innerText.toLowerCase() );
+  //   return this.props.gods.gods[idx]
+  // }
+//UPDATE LIST WITH USER INPUT - SEARCH BAR OR BY DROPDOWN 
   renderGodList = () => {
      console.log(`this.state.god cosntinaer in gods is ${JSON.stringify(this.props.gods.gods)}`);
     if (this.state.name !== "") {

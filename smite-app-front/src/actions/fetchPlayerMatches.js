@@ -1,10 +1,10 @@
-export const FIND_PLAYER_MATCHES = 'FIND_PLAYER_MATCHES';
+export const START_ADDING_PLAYER_MATCHES = 'START_ADDING_PLAYER_MATCHES';
 export const ADD_PLAYER_MATCHES = 'ADD_PLAYER_MATCHES';
 export const ADD_PLAYER_MATCHES_FAILURE = 'ADD_PLAYER_MATCHES_FAILURE';
 
 export function fetchPlayerMatches(playerid) {
     return (dispatch) => {
-        dispatch({ type: 'FIND_PLAYER_MATCHES' });
+        dispatch({ type: 'START_ADDING_PLAYER_MATCHES' });
         fetch('http://localhost:3000/find_player_matches', {
             headers: {
             "Content-Type": "application/json",

@@ -1,14 +1,14 @@
 const initialState = {
     loading: false,
     // matches: [],
-    achievements: [],
-    god_ranks: []
+    // achievements: [],
+    // god_ranks: []
 
 }
 
 function playerReducer(state = initialState, action) {
     switch (action.type) {
-      case 'FIND_PLAYER':
+      case 'START_ADDING_PLAYER_REQUEST':
         return {
           loading: true
         }
@@ -16,7 +16,7 @@ function playerReducer(state = initialState, action) {
       case  "ADD_PLAYER": 
         console.log("action player " + JSON.stringify(action.player));
         return {
-          ...action.player,
+          ...state, ...action.player,
           loading: 'success'
         }
 

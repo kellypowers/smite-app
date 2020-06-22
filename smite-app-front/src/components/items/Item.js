@@ -40,9 +40,14 @@ render (){
           <div onClick={event => this.showItemDetails(event)} class="item_intro">
              <h3>{this.props.item.name}</h3>
              <br/>
-             <Media> <img height={200} width={200} src={this.props.item.item_image} alt={this.props.item.name}/></Media>
+             <Media> <img height={100} width={100} src={this.props.item.item_image} alt={this.props.item.name}/></Media>
              <br />
             </div>
+            <div  id="item_play">
+        <br/>
+        <p>Price:{this.props.item.price}</p> <br/>
+        <p>{this.props.item.item_stat} </p>
+      </div>
         </ul>
       </div>
     );

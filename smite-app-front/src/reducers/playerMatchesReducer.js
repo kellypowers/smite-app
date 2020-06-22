@@ -6,7 +6,7 @@ const initialState = {
 function playerMatchesReducer(state = initialState, action) {
     switch (action.type) {
 
-      case 'FIND_PLAYER_MATCHES':
+      case 'START_ADDING_PLAYER_MATCHES':
         return {
           ...state,
           loading: true
@@ -15,7 +15,7 @@ function playerMatchesReducer(state = initialState, action) {
       case  "ADD_PLAYER_MATCHES": 
         console.log("action player " + JSON.stringify(action.player));
         return {
-           ...action.matches,
+           ...state, ...action.matches,
           loading: 'success'
         }
 

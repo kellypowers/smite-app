@@ -1,6 +1,7 @@
 const initialState = {
-    // builds: [],
-    loading: false
+    builds: [],
+    loading: false,
+    // redirect: null
 }
 
 function buildsReducer(state = initialState, action) {
@@ -16,7 +17,7 @@ function buildsReducer(state = initialState, action) {
    
         case 'ADD_BUILDS':
             return {
-                ...action.builds,
+                builds: [...action.builds],
                 loading: 'success'
             }
 
@@ -28,19 +29,48 @@ function buildsReducer(state = initialState, action) {
                 // builds: []
             }
 
-        case "ADD_BUILD":
+        case 'START_POST_BUILD_REQUEST':
+            return {
+                ...state,
+                builds: [...state.builds],
+                loading: true
+        }
+        case "POST_BUILD":
+            console.log( "action.build is " + JSON.stringify(action.build))
+            return {
+                ...state, 
+                builds: [...state.builds, action.build],
+                loading: 'success',
+                // redirect: '/builds'
+            };
+        case 'POST_BUILD_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+        };
+        // case "REMOVE_BUILD": 
+        //     console.log("in reducer, actions is " + JSON.stringify(action) + "state is " + JSON.stringify(state))
+        //     return {...state, builds: state.builds.filter(build => build.id !== action.id)}
+        case 'START_DELETING_BUILD_REQUEST':
+            return {
+                ...state,
+                 builds: [...state.builds],
+                loading: true
+        }
+        case "DELETE_BUILD":
             console.log("state is " + JSON.stringify(state))
             return {
-                
                 ...state, 
-                ...action.build,
+                builds: [...action.build],
                 loading: 'success'
             };
-        case "REMOVE_BUILD": 
-            idx = state.builds.findIndex(build => build.id === action.id);
-            return [...state.builds.slice(0, idx), ...state.builds.slice(idx+1)];
-
-   
+        case 'DELETE_BUILD_FAILURE':
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+        }
       default:
         return state;
     }

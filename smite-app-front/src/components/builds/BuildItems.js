@@ -27,6 +27,7 @@ class BuildsItems extends Component {
     }
     render(){
         return (
+            <div>
             <div >{this.imageTag(this.state.items[0])}</div>
             <div>{this.imageTag(this.state.items[1])}</div>
             <div>{this.imageTag(this.state.items[2])}</div>
@@ -34,6 +35,7 @@ class BuildsItems extends Component {
             <div>{this.imageTag(this.state.items[4])}</div>
             <div>{this.imageTag(this.state.items[5])}</div>
             <div>{this.imageTag(this.state.items[6])}</div>
+            </div>
         )
     }
 

@@ -19,20 +19,14 @@ export const findGod = (name) => {
     name
 }
 };
-  
-export const findGodByPantheon = (pantheon) => {
-  return {
-    type: "FIND_GOD_BY_PANTHEON",
-    pantheon
-}
+export const REDIRECT = "REDIRECT";
+
+
+export const redirect = link => {
+  console.log("=== REDIRECT ACTION DISPATCHED ===");
+  return { type: 'REDIRECT', payload: link };
 };
 
-export const findGodByRole = (role) => {
-  return {
-    type: "FIND_GOD_BY_ROLE",
-    role
-}
-};
   
 export const findItem = (name) => {
   return {

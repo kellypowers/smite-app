@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchMatchDetails } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/Matches'
+import { Link, Redirect } from 'react-router-dom';
+import { fetchMatchDetails } from '../../actions/fetchMatches'
 import Match from './Match'
 // import Match from './PlayerMatches';
 
@@ -10,13 +10,15 @@ class PlayerMatch extends Component {
     handleMatchHistory = event => {
       console.log("match  id?? " + JSON.stringify(this.props.matches.Match));
       this.props.fetchMatchDetails(this.props.matches.Match)
-      return <Match match={this.props.match}/>
+      // return <Match match={this.props.match}/>
+      return <Redirect to="/match"/>
     } 
 
   render() {
     console.log("in plaerm " + JSON.stringify(this.props.match));
     if (this.props.match.loading === 'success') {
-      return <Match match={this.props.match}/>
+      // return <Match match={this.props.match}/>
+      return <Redirect to="/match"/>
     } else {
     return (
       <div>
