@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import Clan from './Clan'
 import Player from './Player'
+import { fetchPlayer } from '../../actions/fetchPlayer'
 // import Team from './Team'
 
  class Match extends Component {
@@ -14,56 +15,92 @@ import Player from './Player'
     return <Player player={this.props.player} />
   }
 
-  getTeam = () => {
-    
+  getTeam = (clanId) => {
+    this.props.fetchClan(clanId);
   }
 
-    renderTeamInfo = (array) => {
-      console.log("array is " + JSON.stringify(array));
+  getPlayerInfo = (playerId, portalId) => {
+    this.props.fetchPlayer([playerId, portalId]);
+    return <Redirect to="/player"/>
+  }
+
+  renderFetchedInfo = () => {
+    if (this.props.clan.loading === 'success') {
+      return <Redirect to="/clan"/>
+    }else if (this.props.player.loading === 'success') {
+      return <Redirect to="/player"/>
+    } else {
+      return this.renderMatchInfo()
+    }
+  }
+
+  renderMatchInfo = () => {
+    let win_array = [];
+    let lose_array = [];
+    Object.values(this.props.match).map(t => {
+      if (t.Win_Status === "Winner"){ 
+        win_array.push(t)} else{ lose_array.push(t)}
+      }) ;
       return (
-        <table className="player">
-          <tr>
-    <th>Player</th>
-    <th>Account Level:</th>
-    <th>Mastery Level:</th>
-    <th>Player Damage:</th>
-    <th>Bot Damage:</th>
-    <th>Basic Attack Damage:</th>
-    <th>Physical Damage:</th>
-    <th>Magical Damage:</th>
-    <th>Damage Mitigated:</th>
-    <th>Final Level:</th>
-    <th>God Played:</th>
-    <th>Gold Earned</th>
-    <th>Player Healing:</th>
-    <th>Item 1:</th>
-    <th>Deaths:</th>
-    <th>Kills:</th>
-    <th>Assists</th>
-    <th>Team Name:</th>
-  </tr>
+      <div className="match-container">
+        <button onClick={()=> this.goBack()}> go back to account</button>
+        <p>Match Game: {win_array[0].Map_Game}</p>
+        <p>Minutes: {win_array[0].Minutes}</p>
+        <div className="match-teams-container">
+          <h3>Losing Team:</h3>
+          {this.renderTeamInfo(lose_array)}
+          <h3>Winning Team:</h3>
+          {this.renderTeamInfo(win_array)}
+        </div>
+      </div>
+      )
+  }
+
+  renderPlayerInfo = (array) => {
+    console.log("array is " + JSON.stringify(array));
+    return (
+      <table className="player">
+        <tr>
+        <th>Player</th>
+        <th>Account Level:</th>
+        <th>Mastery Level:</th>
+        <th>Player Damage:</th>
+        <th>Bot Damage:</th>
+        <th>Basic Attack Damage:</th>
+        <th>Physical Damage:</th>
+        <th>Magical Damage:</th>
+        <th>Damage Mitigated:</th>
+        <th>Final Level:</th>
+        <th>God Played:</th>
+        <th>Gold Earned</th>
+        <th>Player Healing:</th>
+        <th>Item 1:</th>
+        <th>Deaths:</th>
+        <th>Kills:</th>
+        <th>Assists</th>
+        <th>Team Name:</th>
+      </tr>
       {array.map(i=> {
         return (
-        // <div className="team">
-          <tr className="player">
-        <td> {i.playerName ? i.playerName : "hidden"}</td>
-        <td> {i.Account_Level}</td>
-        <td> {i.Mastery_Level}</td>
-        <td> {i.Damage_Player}</td>
-        <td> {i.Damage_Bot}</td>
-        <td> {i.Damage_Done_In_Hand}</td>
-        <td> {i.Damage_Done_Physical}</td>
-        <td>{i.Damage_Done_Magical}</td>
-        <td>{i.Damage_Mitigated}</td>
-        <td> {i.Final_Match_Level}</td>
-        <td> <Link to={`/gods/${i.GodId}`}>{i.Reference_Name}</Link></td>
-        <td> {i.Gold_Earned}</td>
-        <td> {i.Healing}</td>
-        <td><Link to={`/items/${i.ItemId1}`}>{i.Item_Purch_1}</Link></td>
-        <td>{i.Deaths}</td>
-        <td> {i.Kills_Player}</td>
-        <td>{i.Assists}</td>
-        <td>{i.teamName ? <p onClick={()=> this.getTeam(i.TeamId)}>{i.Team_Name}</p> : ""}</td>
+        <tr className="player">
+          <td> {i.playerName ? <p onClick={() => this.getPlayerInfo(i.playerId, i.playerPortalId)}>{i.playerName}</p> : "hidden"}</td>
+          <td> {i.Account_Level}</td>
+          <td> {i.Mastery_Level}</td>
+          <td> {i.Damage_Player}</td>
+          <td> {i.Damage_Bot}</td>
+          <td> {i.Damage_Done_In_Hand}</td>
+          <td> {i.Damage_Done_Physical}</td>
+          <td>{i.Damage_Done_Magical}</td>
+          <td>{i.Damage_Mitigated}</td>
+          <td> {i.Final_Match_Level}</td>
+          <td> <Link to={`/gods/${i.GodId}`}>{i.Reference_Name}</Link></td>
+          <td> {i.Gold_Earned}</td>
+          <td> {i.Healing}</td>
+          <td><Link to={`/items/${i.ItemId1}`}>{i.Item_Purch_1}</Link></td>
+          <td>{i.Deaths}</td>
+          <td> {i.Kills_Player}</td>
+          <td>{i.Assists}</td>
+          <td>{i.teamName ? <p onClick={()=> this.getTeam(i.TeamId)}>{i.Team_Name}</p> : ""}</td>
         </tr>
         )}
         // {/* </div> */}
@@ -97,26 +134,33 @@ import Player from './Player'
             // Object.values(this.props.match).map(t => {
               // t.Win_status == "Winner" <Winner team={t} key={t.ActivePlayerId} />));}};
     render() {
-      let win_array = [];
-      let lose_array = [];
-      Object.values(this.props.match).map(t => {
-        if (t.Win_Status === "Winner"){ 
-        win_array.push(t)} else{ lose_array.push(t)}
-      }) ;
-        return (
-            <div className="match-container">
-              <button onClick={()=> this.goBack()}> go back to account</button>
-              <p>Match Game: {win_array[0].Map_Game}</p>
-              <p>Minutes: {win_array[0].Minutes}</p>
-              <div className="match-teams-container">
-                <h3>Losing Team:</h3>
-                {this.renderTeamInfo(lose_array)}
-                <h3>Winning Team:</h3>
-                {this.renderTeamInfo(win_array)}
-              </div>
-            {/* <button onClick={this.props.history.push("/player_matches")}>Back</button> */}
-            </div>
-        )
+      if (this.props.clan.loading === 'success') {
+        return <Redirect to="/clan"/>
+      }else if (this.props.player.loading === 'success') {
+        return <Redirect to="/player"/>
+      } else {
+        return this.renderMatchInfo()
+      }
+      
+    //   let win_array = [];
+    //   let lose_array = [];
+    //   Object.values(this.props.match).map(t => {
+    //     if (t.Win_Status === "Winner"){ 
+    //     win_array.push(t)} else{ lose_array.push(t)}
+    //   }) ;
+    //     return (
+    //         <div className="match-container">
+    //           <button onClick={()=> this.goBack()}> go back to account</button>
+    //           <p>Match Game: {win_array[0].Map_Game}</p>
+    //           <p>Minutes: {win_array[0].Minutes}</p>
+    //           <div className="match-teams-container">
+    //             <h3>Losing Team:</h3>
+    //             {this.renderTeamInfo(lose_array)}
+    //             <h3>Winning Team:</h3>
+    //             {this.renderTeamInfo(win_array)}
+    //           </div>
+    //         </div>
+    //     )
     }
 }
 
@@ -134,7 +178,7 @@ const mapStateToProps = state => {
     }
   }
 
-  export default connect(mapStateToProps)(Match)
+  export default connect(mapStateToProps, {fetchPlayer})(Match)
 
 
 //x amount of players ....  each one has all this, separate by win/lose, link the player maybe? link the god, link each item.  

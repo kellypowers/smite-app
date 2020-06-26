@@ -7,6 +7,7 @@ import matchReducer from "./matchReducer";
 import redirectReducer from "./redirectReducer";
 import playerMatchesReducer from "./playerMatchesReducer";
 import playerGodRanksReducer from "./playerGodRanksReducer";
+import clanReducer from "./clanReducer";
  
 const rootReducer = combineReducers({
   gods: godsReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   builds: buildsReducer,
   match: matchReducer,
   player_matches: playerMatchesReducer,
-  god_ranks: playerGodRanksReducer
+  god_ranks: playerGodRanksReducer,
+  clan: clanReducer
   // redirect: redirectReducer
 });
  
