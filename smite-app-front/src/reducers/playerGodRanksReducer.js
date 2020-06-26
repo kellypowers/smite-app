@@ -8,7 +8,7 @@ function playerGodRanksReducer(state = initialState, action) {
 
       case 'FIND_PLAYER_GOD_RANKS':
         return {
-          ...state,
+          // ...state,
           loading: true
         }
   
@@ -21,7 +21,7 @@ function playerGodRanksReducer(state = initialState, action) {
 
       case 'ADD_PLAYER_GOD_RANKS_FAILURE':
         return {
-            ...state,
+            // ...state,
             loading: false,
             error: action.error
         }

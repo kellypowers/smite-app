@@ -28,6 +28,32 @@ export const ADD_PLAYER_FAILURE = 'ADD_PLAYER_FAILURE';
       };
     }
 
+    export function fetchPlayerById(playerId) {
+      return (dispatch) => {
+          dispatch({ type: 'START_ADDING_PLAYER_REQUEST' });
+          fetch('http://localhost:3000/get_player_with_id', {
+              headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+          },
+          method: "POST",
+          body: JSON.stringify({
+              playerId
+          })
+       })
+            .then(response => response.json())
+            .then(player => {
+              // let player1 = player[0];
+              console.log("player is " + JSON.stringify(player))
+              dispatch({ type: 'ADD_PLAYER', player });
+              // return player
+              
+              // return (window.location = `http://localhost:3001/account_info`)
+            })
+            .catch(error => console.log(error.message))
+        };
+      }
+
 
 // export function fetchPlayerGodRanks(playerid) {
 //   return (dispatch) => {

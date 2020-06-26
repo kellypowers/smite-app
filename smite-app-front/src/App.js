@@ -54,7 +54,7 @@ class App extends Component {
                 }}  />
                 <Route exact path="/build/new" render={(props) =>{
                   if (this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success')
-                  return <BuildNew items={this.props.items} gods={this.props.gods}/> }} />
+                  return <BuildNew /> }} />
                 <Route path="/builds/:build_id" render={(routerProps) => {
                   return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={this.props.builds.builds.find(b => {
                     b.god_id_smite =  Object.values(this.props.gods.gods).find(g => g.god_id == b.god_id_smite);
@@ -76,24 +76,24 @@ class App extends Component {
                 }}/>
                 <Route exact path="/players/find" component={PlayersContainer}/>
                 <Route exact path="/godranks" render={(props) =>{
-                  if (this.props.god_ranks.loading === 'success' && this.props.gods.loading === 'success' ==='success')
-                  return <GodRanks god_ranks={this.props.god_ranks} gods={this.props.gods}/> }} />
+                  if (this.props.god_ranks.loading === 'success' )
+                  return <GodRanks /> }} />
                 <Route exact path="/account_info" render= {() => {
                     if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
-                      return <Player player={this.props.player} />} 
+                      return <Player  />} 
                       // else {return <PlayersContainer/>}
                 } }/>
                 <Route exact path="/player_matches" render= {() => {
                     if (this.props.player_matches.loading === 'success') {
-                      return <PlayerMatches player_matches={this.props.player_matches} />}
+                      return <PlayerMatches />}
                 } }/>
                 <Route exact path="/match" render= {() => {
                     if (this.props.match.loading === 'success') {
-                      return <Match match={this.props.match} />}
+                      return <Match />}
                 } }/>
                 <Route exact path="/clan" render= {() => {
                     if (this.props.clan.loading === 'success') {
-                      return <Clan clan={this.props.clan} />}
+                      return <Clan  />}
                 } }/>
                 {/* <Route component={NoMatch}/> */}
               {/* </div> */}
@@ -117,6 +117,7 @@ const mapStateToProps = state => {
     player_matches: state.player_matches,
     match: state.match,
     god_ranks: state.god_ranks,
+    clan: state.clan,
     // this will be selector.gods
     loading: state.loading
   }

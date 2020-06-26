@@ -23,7 +23,23 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+/* table, th, td {
+  table-layout: fixed;
+  margin-left: 2em;
+  margin-right: 2em;
+  size: 100%;
+   align-self: stretch; 
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  align-self: stretch;
+  text-align: left;
+} */
+.god_ranks_table_div{
+  text: center;
+}
 .match-teams-container{
   display: flex;
   flex-direction: column;

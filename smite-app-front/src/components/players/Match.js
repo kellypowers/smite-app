@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import Clan from './Clan'
 import Player from './Player'
-import { fetchPlayer } from '../../actions/fetchPlayer'
+import { fetchPlayer, fetchPlayerById } from '../../actions/fetchPlayer'
+import { fetchClan } from '../../actions/fetchClan'
 // import Team from './Team'
 
  class Match extends Component {
@@ -12,15 +13,15 @@ import { fetchPlayer } from '../../actions/fetchPlayer'
     // e.preventDefault;
     // window.history.back()
     // window.location = "http://localhost:3001/player_matches"
-    return <Player player={this.props.player} />
+    this.props.fetchPlayerById(this.props.player.ActiveId)
   }
 
   getTeam = (clanId) => {
     this.props.fetchClan(clanId);
   }
 
-  getPlayerInfo = (playerId, portalId) => {
-    this.props.fetchPlayer([playerId, portalId]);
+  getPlayerInfo = (playerId) => {
+    this.props.fetchPlayerById(playerId);
     return <Redirect to="/player"/>
   }
 
@@ -48,9 +49,9 @@ import { fetchPlayer } from '../../actions/fetchPlayer'
         <p>Minutes: {win_array[0].Minutes}</p>
         <div className="match-teams-container">
           <h3>Losing Team:</h3>
-          {this.renderTeamInfo(lose_array)}
+          {this.renderPlayerInfo(lose_array)}
           <h3>Winning Team:</h3>
-          {this.renderTeamInfo(win_array)}
+          {this.renderPlayerInfo(win_array)}
         </div>
       </div>
       )
@@ -83,7 +84,7 @@ import { fetchPlayer } from '../../actions/fetchPlayer'
       {array.map(i=> {
         return (
         <tr className="player">
-          <td> {i.playerName ? <p onClick={() => this.getPlayerInfo(i.playerId, i.playerPortalId)}>{i.playerName}</p> : "hidden"}</td>
+          <td> {i.playerName ? <p onClick={() => this.getPlayerInfo(i.playerId)}>{i.playerName}</p> : "hidden"}</td>
           <td> {i.Account_Level}</td>
           <td> {i.Mastery_Level}</td>
           <td> {i.Damage_Player}</td>
@@ -100,7 +101,7 @@ import { fetchPlayer } from '../../actions/fetchPlayer'
           <td>{i.Deaths}</td>
           <td> {i.Kills_Player}</td>
           <td>{i.Assists}</td>
-          <td>{i.teamName ? <p onClick={()=> this.getTeam(i.TeamId)}>{i.Team_Name}</p> : ""}</td>
+          <td>{i.Team_Name ? <p onClick={()=> this.getTeam(i.TeamId)}>{i.Team_Name}</p> : ""}</td>
         </tr>
         )}
         // {/* </div> */}
@@ -136,8 +137,8 @@ import { fetchPlayer } from '../../actions/fetchPlayer'
     render() {
       if (this.props.clan.loading === 'success') {
         return <Redirect to="/clan"/>
-      }else if (this.props.player.loading === 'success') {
-        return <Redirect to="/player"/>
+      // }else if (this.props.player.loading === 'success') {
+      //   return <Redirect to="/player"/>
       } else {
         return this.renderMatchInfo()
       }
@@ -173,12 +174,12 @@ const mapStateToProps = state => {
       player: state.player,
       playerMatches: state.playerMatches,
       match: state.match,
-      // this will be selector.gods
+      clan: state.clan,
       loading: state.loading
     }
   }
 
-  export default connect(mapStateToProps, {fetchPlayer})(Match)
+  export default connect(mapStateToProps, {fetchPlayer, fetchPlayerById, fetchClan})(Match)
 
 
 //x amount of players ....  each one has all this, separate by win/lose, link the player maybe? link the god, link each item.  
