@@ -24,6 +24,14 @@ class PlayersController < ApplicationController
         render json: player[0].to_json(:include => {:portal_id => params["player"]["portal_id"] })    
     end
 
+    def get_player_with_id
+        # elastic search?? 
+        puts "params are #{params}"
+        player = @smite_api.get_player_with_id(params["player"]["playerId"])
+        puts "player is #{player}"
+        render json: player[0].to_json(:include => {:portal_id => params["player"]["portal_id"] })    
+    end
+
     def find_player_matches
         # elastic search?? 
         puts "params are #{params}"
@@ -52,6 +60,13 @@ class PlayersController < ApplicationController
         match_details = @smite_api.get_match_details(params['matchid'].to_i)
         puts "match dets is #{match_details}"
         render plain: match_details   
+    end
+    def get_clan_info
+        # elastic search?? 
+        puts "params are #{params}"
+        clan = @smite_api.get_team_players(params['clanId'].to_i)
+        puts "clan is #{clan}"
+        render plain: clan  
     end
     
     def update 

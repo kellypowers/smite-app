@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   post "/get_god_ranks", to: 'players#get_god_ranks'
   post "/get_player_achievements", to: 'players#get_player_achievements'
   post "/get_match_details", to: 'players#get_match_details'
+  post "/get_clan_info", to: 'players#get_clan_info'
+  post "/get_player_with_id", to: 'players#get_player_with_id'
 end

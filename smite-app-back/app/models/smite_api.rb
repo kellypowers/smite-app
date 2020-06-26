@@ -120,6 +120,9 @@ class SmiteApi
         return player_id 
     end
 
+    def get_player_with_id(playerId)
+        return self.make_request_async('getplayer', player_id)
+    end
 
     def get_player(player_name)
         request = self.make_request_async('getplayer', player_name)
@@ -131,7 +134,7 @@ class SmiteApi
     end
     def get_player_with_id(player_id)
 
-        return self.make_request_async('getplayer', player_name)
+        return self.make_request_async('getplayer', player_id)
     end
 
     def get_match_history(player_id)
@@ -154,6 +157,12 @@ class SmiteApi
 
     def search_teams(clan)
         return self.make_request('searchteams', clan)
+    end
+    def get_team_details(clan)
+        return self.make_request('getteamdetails', clan)
+    end
+    def get_team_players(clan)
+        return self.make_request('getteamplayers', clan)
     end
 
     def get_match_histories(players)
