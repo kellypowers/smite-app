@@ -6,8 +6,9 @@ import thunk from 'redux-thunk';
 import App from './App'
 import rootReducer from './reducers/index';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { createBrowserHistory } from 'history';
-export const browserHistory = createBrowserHistory();
+import './App.css';
+// import { createBrowserHistory } from 'history';
+// export const browserHistory = createBrowserHistory();
 
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

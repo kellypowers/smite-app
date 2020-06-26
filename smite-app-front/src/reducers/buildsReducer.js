@@ -16,6 +16,7 @@ function buildsReducer(state = initialState, action) {
             }
    
         case 'ADD_BUILDS':
+            // console.log("action.builds is " + JSON.stringify(action.builds))
             return {
                 builds: [...action.builds],
                 loading: 'success'

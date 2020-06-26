@@ -1,31 +1,42 @@
 import React, { Component } from 'react'
 import PlayerSearch from '../components/players/PlayerSearch'
-import Players from '../components/players/Players'
+import Player from '../components/players/Player'
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 class PlayersContainer extends Component {
   
   render() {
-      console.log(this.props)
-    return (
-      <div>
-        <PlayerSearch />
-        {/* <Players players={this.props.players} deletePlayer={this.props.deletePlayer}/> */}
-      </div>
-    )
+      console.log(this.props.player);
+      if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
+        return (
+          <div>
+          {/* <button onClick={window.history.back()}>Back</button> */}
+        <Redirect to="/account_info"></Redirect>
+        </div>
+        )
+
+      } 
+        else {return <PlayerSearch/>}
+    // return (
+    //   <div>
+    //     <PlayerSearch />
+    //   </div>
+    // )
   }
 }
 
-
-// const mapStateToProps = state => ({ player_id: state.player_id, portal_id: state.portal_id})
-
-// const mapDispatchToProps = dispatch => {
-//     // const player= (player_name, portal_id)
-//   return {
-//     addPlayer: player => dispatch({type: "ADD_PLAYER", player}),
-//     deletePlayer: id => dispatch({type: "DELETE_PLAYER", id})
-//   }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(PlayersContainer)
-export default PlayersContainer;
+const mapStateToProps = state => {
+  // console.log(state);
+  return {
+    gods: state.gods,
+    items: state.items,
+    // builds: state.builds,
+    player: state.player,
+    player_matches: state.player_matches,
+    god_ranks: state.god_ranks,
+    // this will be selector.gods
+    loading: state.loading
+  }
+};
+export default connect(mapStateToProps)(PlayersContainer);

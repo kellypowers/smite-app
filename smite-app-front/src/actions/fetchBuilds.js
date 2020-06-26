@@ -37,11 +37,13 @@ export function fetchBuilds() {
      })
           .then(response => response.json())
           .then(build => {
-            console.log("build is " + build);
+            // console.log("ownProps.history " + JSON.stringify(ownProps));
             dispatch({ type: 'POST_BUILD', build });
             // ownProps.history.push(`/builds/${build.id}`)
-            browserHistory.push(`/builds/${build.id}`)
+            // browserHistory.push(`/builds/${build.id}`)
+            return (window.location = `http://localhost:3001/builds/${build.id}`)
           })
+          // .then(return history.push(`/builds/${build.id}`))
           .catch(error => console.log(error.message))
       };
     }

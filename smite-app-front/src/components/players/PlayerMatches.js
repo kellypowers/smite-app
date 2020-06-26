@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { fetchMatchDetails } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/Matches'
 import PlayerMatch from './PlayerMatch';
+import { Link, Redirect } from 'react-router-dom';
 
 class PlayerMatches extends Component {
+
+
     
     renderPlayerMatches = () => {
 
@@ -12,9 +15,13 @@ class PlayerMatches extends Component {
         console.log(`matches is  ${JSON.stringify(Object.entries(this.props.player_matches))}`);
         return (
           
-          // console.log(`matches is  ${JSON.stringify(Object.entries(this.props.playerMatches))}`);
-           Object.values(this.props.player_matches).map(m => <PlayerMatch matches={m} key={m.Match} />));
+           Object.values(this.props.player_matches).map(m => <PlayerMatch matches={m} key={m.Match}/>)
+          //  return (<li onClick={()=> {return <PlayerMatch matches={m} key={m.Match} /> }}>{m.Map_Game},{m.Match_Time}, {m.Win}</li>)
           
+          //  <PlayerMatch matches={m} key={m.Match} />
+           );
+          //  }))
+           
           // matches.map(m => <PlayerMatch match={i.Match} key={m} />))
       } else {
         return "try Again"
@@ -30,11 +37,15 @@ class PlayerMatches extends Component {
 
 
   render() {
+    
     // console.log("in plaermatches " + JSON.stringify(this.props));
     if (this.props.player.loading === 'success') {
-      return this.renderPlayerMatches()
-    }
-    }
+      
+      return (
+        this.renderPlayerMatches()
+    
+      )
+      }}
 };
 const mapStateToProps = state => {
   // console.log(state)

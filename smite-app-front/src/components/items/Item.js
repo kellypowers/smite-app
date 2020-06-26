@@ -32,23 +32,15 @@ class Item extends Component {
     )};
   
 // class Item extends Component 
-render (){
+  render (){
     return (
-      
-      <div key={this.props.item.item_id} >
-        <ul>
-          <div onClick={event => this.showItemDetails(event)} class="item_intro">
-             <h3>{this.props.item.name}</h3>
-             <br/>
-             <Media> <img height={100} width={100} src={this.props.item.item_image} alt={this.props.item.name}/></Media>
-             <br />
-            </div>
-            <div  id="item_play">
+      <div className="eachItem" key={this.props.item.item_id} onClick={event => this.showItemDetails(event)} >
+        <h3>{this.props.item.name}</h3>
         <br/>
-        <p>Price:{this.props.item.price}</p> <br/>
+        <Media> <img height={100} width={100} src={this.props.item.item_image} alt={this.props.item.name}/></Media>
+        <br/>
+        <p>Price:{this.props.item.price}</p>
         <p>{this.props.item.item_stat} </p>
-      </div>
-        </ul>
       </div>
     );
   }

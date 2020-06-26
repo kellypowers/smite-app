@@ -15,8 +15,8 @@ const rootReducer = combineReducers({
   builds: buildsReducer,
   match: matchReducer,
   player_matches: playerMatchesReducer,
-  god_ranks: playerGodRanksReducer,
-  redirect: redirectReducer
+  god_ranks: playerGodRanksReducer
+  // redirect: redirectReducer
 });
  
 export default rootReducer

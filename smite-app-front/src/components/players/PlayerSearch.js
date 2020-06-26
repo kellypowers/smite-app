@@ -30,13 +30,13 @@ class PlayerSearch extends Component {
   handleOnSubmit = event => {
     event.preventDefault();
     this.props.fetchPlayer(this.state);
-    history.push("/players/find")
+    // history.push("/players/find")
     // console.log("result is " + JSON.stringify(result));
 
 }
 
   renderForm = () =>(
-    <div>
+    <div className="findPlayerForm">
         <form onSubmit={event => this.handleOnSubmit(event)} >
             <label for="player_name">Player Name:</label>
             <input type="text" name="player_name" value={this.state.player_name} onChange={event => {this.handleOnChange(event)}} />
@@ -55,23 +55,15 @@ class PlayerSearch extends Component {
   )
   
   renderPlayer = () => {
-    if (this.props.player.loading === 'success') {
+    if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
 
      return  <Redirect to="/account_info" />
-    // }
-      // return (
-
-        // <div>
-        // <Player key={this.props.player.Name} player={this.props.player} /> 
-        // </div>
-          // )
     } else {
       return console.log("Try Again")
     } 
   }
 
   render() {
-    // console.log("props is " + JSON.stringify(this.props));
     if (this.props.player.loading ==='success') {
       return (
         this.renderPlayer() 

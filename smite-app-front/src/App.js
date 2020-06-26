@@ -33,7 +33,8 @@ class App extends Component {
   
   render() {
     return (
-      <React.Fragment>
+      // <React.Fragment>
+      <div>
         <Navigationbar />
         <Layout >
           <BrowserRouter>
@@ -78,8 +79,9 @@ class App extends Component {
                   if (this.props.god_ranks.loading === 'success' && this.props.gods.loading === 'success' ==='success')
                   return <GodRanks god_ranks={this.props.god_ranks} gods={this.props.gods}/> }} />
                 <Route exact path="/account_info" render= {() => {
-                    if (this.props.player.loading === 'success') {
-                      return <Player player={this.props.player} />}
+                    if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
+                      return <Player player={this.props.player} />} 
+                      // else {return <PlayersContainer/>}
                 } }/>
                 <Route exact path="/player_matches" render= {() => {
                     if (this.props.player_matches.loading === 'success') {
@@ -98,8 +100,8 @@ class App extends Component {
             {/* </Switch> */}
           </BrowserRouter>
         </Layout>
-        {/* </div> */}
-      </React.Fragment>
+        </div>
+      // </React.Fragment>
     );
   }
 };

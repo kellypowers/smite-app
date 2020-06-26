@@ -2,16 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { fetchMatchDetails } from '../../actions/fetchMatches'
+import Player from '../../components/players/Player';
 import Match from './Match'
 // import Match from './PlayerMatches';
 
 class PlayerMatch extends Component {
           
+  goBack = (e) => {
+    // e.preventDefault;
+    // window.history.back()
+    window.location = "http://localhost:3001/account_info"
+    // return <Player player={this.props.player} />
+  }
+
     handleMatchHistory = event => {
       console.log("match  id?? " + JSON.stringify(this.props.matches.Match));
       this.props.fetchMatchDetails(this.props.matches.Match)
       // return <Match match={this.props.match}/>
       return <Redirect to="/match"/>
+      // return <Match match={this.props.match}/>
     } 
 
   render() {
@@ -19,10 +28,13 @@ class PlayerMatch extends Component {
     if (this.props.match.loading === 'success') {
       // return <Match match={this.props.match}/>
       return <Redirect to="/match"/>
+
     } else {
     return (
       <div>
+        <button onClick={(e) => this.goBack(e)}>Back</button>
           <br />
+          {/* <button><Link to="/account_info"> go back</Link></button> */}
           <h3>Match Info for {this.props.player.Name}:</h3>
           <p><h4>Map: </h4> {this.props.matches.Map_Game} - {this.props.matches.Win_Status}</p>
           <p><h4>God Played: </h4> <Link to={`/gods/${this.props.matches.GodId}`}>{this.props.matches.God}</Link></p> 
