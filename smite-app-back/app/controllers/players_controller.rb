@@ -34,9 +34,9 @@ class PlayersController < ApplicationController
     def get_god_ranks
         # elastic search?? _
         puts "params are #{params}"
-        player_god_ranks = @smite_api.get_god_ranks(params["playerid"]["player_id"].to_i)
+        player_god_ranks = @smite_api.get_god_ranks(params["player"]["player_id"].to_i)
         puts "player god ranks is #{player_god_ranks}"
-        render json: player_god_ranks   
+        render plain: player_god_ranks   
     end
     def get_player_achievements
         # elastic search?? 
@@ -59,18 +59,8 @@ class PlayersController < ApplicationController
         render json: @player
     end
 
-    # def destroy
-    #     puts "params are #{params}"
-    #     player = Player.find(params[:id])
-    #     player.delete
-
-    #     render json: {player_id: player.id}
-    # end
 
     private
-    # def player_params 
-    #     params.require(:player).permit()
-    # end
 
     def set_smiteapi!
         @smite_api = SmiteApi.new
