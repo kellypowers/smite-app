@@ -28,6 +28,7 @@ import { fetchClan } from '../../actions/fetchClan'
   getPlayerInfo = (e) => {
     this.props.fetchPlayerById(e.target.className);
     return <Redirect to="/player"/>
+    // "playerName":"[CSUAL]BrettG772","playerPortalId":"10"
   }
 
   renderFetchedInfo = () => {
@@ -47,10 +48,9 @@ import { fetchClan } from '../../actions/fetchClan'
       if (t.Win_Status === "Winner"){ 
         win_array.push(t)} else{ lose_array.push(t)}
       }) ;
-      console.log("winarray is " + JSON.stringify(win_array))
+      // console.log("winarray is " + JSON.stringify(win_array))
       return (
       <div className="match-container">
-        <button onClick={(e)=> this.goBack(e)}> go back to account</button>
         <p>Match Game: {win_array[0].Map_Game}</p>
         <p>Minutes: {win_array[0].Minutes}</p>
         <div className="match-teams-container">
@@ -88,9 +88,10 @@ import { fetchClan } from '../../actions/fetchClan'
         <th>Team Name:</th>
       </tr>
       {array.map(i=> {
+        console.log(this.props.routerProps.match.params.playername);
         return (
         <tr className="player">
-          <td> {i.playerName ? <p className={i.playerId} onClick={(e)=>this.getPlayerInfo(e)}>{i.playerName}</p> : "hidden"}</td>
+          <td> {i.playerName ? <Link to={`/players/find/${i.playerPortalId}/${i.playerName.split(']')[1]}`} replace>{i.playerName}</Link> : "hidden"}</td>
           <td> {i.Account_Level}</td>
           <td> {i.Mastery_Level}</td>
           <td> {i.Damage_Player}</td>
@@ -116,40 +117,17 @@ import { fetchClan } from '../../actions/fetchClan'
       </table>)
     }
 
-    // renderMatchInfo= () => {
-    //   let win_array = [];
-    //   let lose_array = [];
-    //   Object.values(this.props.match).map(t => {
-    //     if (t.Win_Status === "Winner"){ 
-    //     win_array.push(t)} else{ lose_array.push(t)}
-    //   }) ;
-    //   // return console.log("lose array is " + JSON.stringify(lose_array) + "win array is " + JSON.stringify(win_array))
-    //   return (
-    //     <div>
-    //   <p>Match Game: {win_array[0].Map_Game}</p>
-    //   <p>Minutes: {win_array[0].Minutes}</p>
-    //   <h3>Losing Team:</h3>
-    //   <ul className="losing-team">{this.renderTeamInfo(lose_array)}</ul>
-    //   <h3>Winning Team:</h3>
-    //   <ul className="winning-team">{this.renderTeamInfo(win_array)}</ul>
-    //     </div>
-        
-    //   )
-    // }
-        // if (this.props.match.loading == 'success') {
-          // return (
-            // Object.values(this.props.match).map(t => {
-              // t.Win_status == "Winner" <Winner team={t} key={t.ActivePlayerId} />));}};
-    render() {
-      // if (this.props.match.loading ==="success"){
-        
-
-        return (
-          this.renderMatchInfo()
-        )
-
-    // }
- }}
+   
+  render() {
+    if (this.props.match.loading ==="success"){
+      return (
+        this.renderMatchInfo()
+      )
+    } else {
+      return "Loading..."
+    }
+ }
+}
 
 const mapStateToProps = state => {
     // console.log(state)

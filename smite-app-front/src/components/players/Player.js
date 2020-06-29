@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPlayerMatches } from '../../actions/fetchPlayerMatches'
 import { fetchPlayerGodRanks } from '../../actions/fetchPlayerGodRank'
 import { fetchPlayer } from '../../actions/fetchPlayer'
-import PlayerMatches from './PlayerMatches';
-import GodRanks from './GodRanks';
-import history from 'history/browser';
+
 
 class Player extends Component {
 

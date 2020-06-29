@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import Player from './Player'
-import {Redirect} from 'react-router-dom'
-import { fetchPlayer } from '../../actions/fetchPlayer'
 import { connect } from 'react-redux';
-import history from 'history/browser';
+
 
 class PlayerSearch extends Component {
   constructor(props){
@@ -50,30 +47,15 @@ class PlayerSearch extends Component {
         </form>
         </div>
   )
-  
-  renderPlayer = () => {
-    if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
 
-     return  <Redirect to="/account_info" />
-    } else {
-      return console.log("Try Again")
-    } 
-  }
 
   render() {
-    // if (this.props.player.loading ==='success') {
-    //   return (
-    //     this.renderPlayer() 
-    //   )
-    // } else {
     return (
       <div>
         {this.renderForm()}
-        
       </div>
     );
-    }
-  // }
+  }
 };
 const mapStateToProps = state => {
   console.log(state)
@@ -88,4 +70,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {fetchPlayer})(PlayerSearch);
+export default connect(mapStateToProps)(PlayerSearch);

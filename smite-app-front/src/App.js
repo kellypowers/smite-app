@@ -42,24 +42,19 @@ class App extends Component {
         <Navigationbar />
         <Layout >
           <BrowserRouter>
-            {/* <Switch> */}
+            <Switch>
               {/* <div className="App"> */}
-                <Route exact path="/" component={Home} />
-                <Route exact path="/gods" component={GodsContainer} />
-                <Route path="/gods/:god_id" render={(routerProps) => {
+              <Route path="/gods/:god_id" render={(routerProps) => {
                   return this.props.gods.loading === 'success' ? <God god={this.props.gods.gods.find(g => {
                     return g.god_id == routerProps.match.params.god_id
                     })
                   }/> :  <div>Loading...</div> 
                 }}/> 
-                <Route exact path="/builds" render={() => {
-                  if (this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success')
-                  return <BuildsContainer />
-                }}  />
-                <Route exact path="/build/new" render={(props) =>{
+              <Route exact path="/gods" component={GodsContainer} /> 
+              <Route exact path="/build/new" render={(props) =>{
                   if (this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success')
                   return <BuildNew /> }} />
-                <Route path="/builds/:build_id" render={(routerProps) => {
+              <Route path="/builds/:build_id" render={(routerProps) => {
                   return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={this.props.builds.builds.find(b => {
                     // b.god_id_smite =  Object.values(this.props.gods.gods).find(g => g.god_id == b.god_id_smite);
                     // console.log("items is " + JSON.stringify(this.props.items));
@@ -69,41 +64,46 @@ class App extends Component {
                     // b.item4 = Object.values(this.props.items).find(i => i.name == b.item4);
                     // b.item5 = Object.values(this.props.items).find(i => i.name == b.item5);
                     // b.item6 = Object.values(this.props.items).find(i => i.name == b.item6);
-                    return b.id == routerProps.match.params.build_id
-                    })
-                  }/> :  <div>Loading...</div> 
-                }}/> 
-                <Route exact path="/items" component={ItemsContainer} />
-                <Route path="/items/:item_id" render={(routerProps) => {
-                  return this.props.items.loading ==='success' ? <Item item={Object.values(this.props.items).find(i => {
-                    return i.item_id == routerProps.match.params.item_id}) }/> : <div> Loading... </div>
-                }}/>
-                <Route exact path="/players/find" component={PlayersContainer}/>
-                <Route exact path="/godranks" render={(props) =>{
-                  if (this.props.god_ranks.loading === 'success' )
+                  return b.id == routerProps.match.params.build_id
+                  })
+                }/> :  <div>Loading...</div> 
+              }}/> 
+              <Route exact path="/builds" render={() => {
+                if (this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success')
+                return <BuildsContainer />
+              }}  />
+              <Route path="/items/:item_id" render={(routerProps) => {
+                return this.props.items.loading ==='success' ? <Item item={Object.values(this.props.items).find(i => {
+                  return i.item_id == routerProps.match.params.item_id}) }/> : <div> Loading... </div>
+              }}/>
+              <Route exact path="/items" component={ItemsContainer} />
+              <Route exact path="/godranks" render={(props) =>{
+                if (this.props.god_ranks.loading === 'success' )
                   return <GodRanks /> }} />
-                <Route exact path="/players/find/:portalid/:playername" render= {(routerProps) => {
-                    // if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
-                      // console.log("RouterProps id " + JSON.stringify(routerProps))
-                      // fetchPlayer(routerProps.match.params.portalid, routerProps.match.params.playername)
-                      // if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
-                      return <Player routerProps={routerProps} />
-                      // else {return <PlayersContainer/>}
-                } }/>
-                <Route exact path="/players/find/:portalid/:playername/:playerid/player_matches" render= {(routerProps) => {
+              <Route path="/players/find/:portalid/:playername/player_matches/:matchid" render= {(routerProps) => {
+                return <Match routerProps={routerProps}/>
+              } }/>
+              <Route exact path="/players/find/:portalid/:playername/:playerid/player_matches" render= {(routerProps) => {
                     // if (this.props.player_matches.loading === 'success') {
-                      return <PlayerMatches routerProps={routerProps} />
+                  return <PlayerMatches routerProps={routerProps} />
                 } }/>
-                <Route path="/players/find/:portalid/:playername/player_matches/:matchid" render= {(routerProps) => {
-                      return <Match routerProps={routerProps}/>
-                } }/>
+              <Route exact path="/players/find/:portalid/:playername" render= {(routerProps) => {
+                  // if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
+                    // console.log("RouterProps id " + JSON.stringify(routerProps))
+                    // fetchPlayer(routerProps.match.params.portalid, routerProps.match.params.playername)
+                    // if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
+                    return <Player routerProps={routerProps} />
+                    // else {return <PlayersContainer/>}
+              } }/>
+                <Route exact path="/players/find" component={PlayersContainer}/>
                 <Route exact path="/clan" render= {() => {
                     if (this.props.clan.loading === 'success') {
                       return <Clan  />} 
                 } }/>
+                <Route exact path="/" component={Home} />
                 {/* <Route component={NoMatch}/> */}
               {/* </div> */}
-            {/* </Switch> */}
+            </Switch>
           </BrowserRouter>
         </Layout>
         </div>

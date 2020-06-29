@@ -14,12 +14,7 @@ class PlayerMatches extends Component {
     console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
     this.props.fetchPlayerMatches(this.props.routerProps.match.params.playerid)
   }
-  // goBackToAccount = () => {
-  //   console.log("player amtches props " + JSON.stringify(this.props.player_matches["0"].playerId))
-  //   this.props.fetchPlayerById(this.props.player.ActivePlayerId);
-  //   // return <Players />
-  //   return <Redirect to="account_info"/>
-  // }
+
   
   renderPlayerMatches = () => {
     if (this.props.player_matches.loading === 'success') {
@@ -32,9 +27,6 @@ class PlayerMatches extends Component {
           {Object.values(this.props.player_matches).map(m => <PlayerMatch matches={m} key={m.Match}/>)}
           </div>
           );
-        //  }))
-          
-        // matches.map(m => <PlayerMatch match={i.Match} key={m} />))
     } else {
       return "try Again"
     }
