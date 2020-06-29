@@ -17,7 +17,6 @@ class PlayersController < ApplicationController
     end
 
     def create
-        # elastic search?? 
         puts "params are #{params}"
         player = @smite_api.get_player([params["player"]["player_name"], params["player"]["portal_id"].to_i])
         puts "player is #{player}"
@@ -33,21 +32,18 @@ class PlayersController < ApplicationController
     end
 
     def find_player_matches
-        # elastic search?? 
         puts "params are #{params}"
-        player_match_history = @smite_api.get_match_history(params["player"]["player_id"])
+        player_match_history = @smite_api.get_match_history(params["player"])
         puts "player match histry is #{player_match_history}"
         render plain: player_match_history
     end
     def get_god_ranks
-        # elastic search?? _
         puts "params are #{params}"
-        player_god_ranks = @smite_api.get_god_ranks(params["player"]["player_id"].to_i)
+        player_god_ranks = @smite_api.get_god_ranks(params["player"].to_i)
         puts "player god ranks is #{player_god_ranks}"
         render plain: player_god_ranks   
     end
     def get_player_achievements
-        # elastic search?? 
         puts "params are #{params}"
         player_acheivements = @smite_api.get_player_achievements(params["player"]["player_id"].to_i)
         puts "player achieves is #{player_achievements}"
@@ -55,18 +51,25 @@ class PlayersController < ApplicationController
     end
 
     def get_match_details
-        # elastic search?? 
         puts "params are #{params}"
         match_details = @smite_api.get_match_details(params['matchid'].to_i)
         puts "match dets is #{match_details}"
         render plain: match_details   
     end
+
+    # def get_clan_info
+    #     puts "params are #{params}"
+    #     clan_players = @smite_api.get_team_players(params['clanId'].to_i)
+    #     clan = @smite_api.get_clan_info(params['clanId'].to_i)
+    #     puts "clan is #{clan}"
+    #     render plain: clan + clan_players 
+    # end
     def get_clan_info
-        # elastic search?? 
         puts "params are #{params}"
         clan = @smite_api.get_team_players(params['clanId'].to_i)
+        clan_info = @smite_api.get_team_details(params['clanId'].to_i)
         puts "clan is #{clan}"
-        render plain: clan  
+        render plain: clan
     end
     
     def update 
