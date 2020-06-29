@@ -11,7 +11,7 @@ function matchReducer(state = initialState, action) {
         }
 
       case  "ADD_MATCH_DETAILS": 
-        console.log("action match " + JSON.stringify(action.match));
+        // console.log("action match " + JSON.stringify(action.match));
         // console.log("")
         return {
           ...action.match,

@@ -77,7 +77,7 @@ function playerReducer(state = initialState, action) {
         }
     
       case  "ADD_PLAYER_ACHIEVEMENTS": 
-        console.log("action player " + JSON.stringify(action.player));
+        // console.log("action player " + JSON.stringify(action.player));
         return {
           ...state,
           achievements: action.achievements,

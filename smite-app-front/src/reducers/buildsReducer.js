@@ -5,7 +5,7 @@ const initialState = {
 }
 
 function buildsReducer(state = initialState, action) {
-    let idx;
+    // let idx;
     switch (action.type) {
    
         case 'START_ADDING_BUILDS_REQUEST':
@@ -37,7 +37,7 @@ function buildsReducer(state = initialState, action) {
                 loading: true
         }
         case "POST_BUILD":
-            console.log( "action.build is " + JSON.stringify(action.build))
+            // console.log( "action.build is " + JSON.stringify(action.build))
             return {
                 ...state, 
                 builds: [...state.builds, action.build],
@@ -60,7 +60,7 @@ function buildsReducer(state = initialState, action) {
                 loading: true
         }
         case "DELETE_BUILD":
-            console.log("state is " + JSON.stringify(state))
+            // console.log("state is " + JSON.stringify(state))
             return {
                 ...state, 
                 builds: [...action.build],

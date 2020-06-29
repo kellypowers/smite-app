@@ -1,48 +1,43 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { fetchPlayerGodRanks } from '../../actions/fetchPlayerGodRank'
 import { Link } from 'react-router-dom';
-import history from 'history/browser';
+
 
 class GodRanks extends Component {
     // console.log("god ranks " + JSON.stringify(props.god_ranks));
+    componentWillMount(){
+        // console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
+        this.props.fetchPlayerGodRanks(this.props.routerProps.match.params.playerid)
+      }
     renderGodRanks = () => {
-        console.log("god ranks " + JSON.stringify(Object.values(this.props.god_ranks)));
-    return Object.values(this.props.god_ranks).map(god => {
-        // let god_name = (this.props.gods.gods.find(g => g.god_id_smite === god.god_id).name);
-        // let god_name = god_object.name;
-    return (
-        <div className="god_ranks_table_div">
+        // console.log("god ranks " + JSON.stringify(Object.values(this.props.god_ranks)));
+        return Object.values(this.props.god_ranks).map(god => {
+            if (god.god) {
+            return (
+            <div key={god.god_id}className="god_ranks_table_div">
             <br/>
-        <table>
-            <tr><th>God</th>
-            <th>Worshippers:</th>
-            <th>Rank:</th>
-            <th>K/D/A: </th>
-            <th>Minion Kills: </th>
-            <th>W/L : </th></tr>
-            <tr>
-            <td><a href={`gods/${god.god_id}`}> {god.god} </a></td>
-            <td> {god.Worshippers} </td>
-            <td> {god.Rank}</td>
-            <td>{god.Kills}/{god.Deaths}/{god.Assists}</td>
-            <td>{god.MinionKills}</td>
-            <td>{god.Wins} / {god.Losses}</td>
-            </tr>
-            {/* <td><Link to={`gods/${god.god_id}`}> {god.name} </Link></td></tr>
-            <tr><th>Worshippers:</th><td> {god.Worshippers} </td></tr>
-            <tr><th>Rank:</th><td> {god.Rank}</td></tr>
-            <tr><th>K/D/A: </th><td>{god.Kills}/{god.Deaths}/{god.Assists}</td></tr>
-            <tr><th>Minion Kills: </th><td>{god.MinionKills}</td></tr>
-            <tr><th>W/L : </th><td>{god.Wins} / {god.Losses}</td></tr> */}
-         </table>
-         <br/>
-         </div>
-    )})
+            <table>
+                <tbody>
+                    <tr><th>God</th><td><Link to={`gods/${god.god_id}`}>{god.god}</Link></td></tr>
+                    <tr><th>Worshippers:</th><td> {god.Worshippers} </td></tr>
+                    <tr><th>Rank:</th><td> {god.Rank}</td></tr>
+                    <tr><th>K/D/A: </th><td>{god.Kills}/{god.Deaths}/{god.Assists}</td></tr>
+                    <tr><th>Minion Kills: </th><td>{god.MinionKills}</td></tr>
+                    <tr><th>W/L : </th><td>{god.Wins} / {god.Losses}</td></tr>
+                    <tr><th>Total Games: </th><td>{god.Wins + god.Losses}</td></tr>
+                </tbody>
+            </table>
+            <br/>
+            </div>
+            )}
+            else{return ""}
+        })
     }
     render(){
         return (
             <div>
-                <button onClick={window.history.back}>BACK</button>
+                <h3>God ranks for {this.props.routerProps.match.params.playername}</h3>
                 {this.renderGodRanks()}
             </div>
         )
@@ -51,7 +46,6 @@ class GodRanks extends Component {
     
 }
 const mapStateToProps = state => {
-    // console.log(state)
     return {
       gods: state.gods,
       items: state.items,
@@ -63,5 +57,5 @@ const mapStateToProps = state => {
       clan: state.clan,
       loading: state.loading
     }
-  }
-export default connect(mapStateToProps)(GodRanks)
+}
+export default connect(mapStateToProps, {fetchPlayerGodRanks})(GodRanks)

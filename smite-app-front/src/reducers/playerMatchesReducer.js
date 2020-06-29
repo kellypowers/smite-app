@@ -13,7 +13,7 @@ function playerMatchesReducer(state = initialState, action) {
         }
   
       case  "ADD_PLAYER_MATCHES": 
-        console.log("action player " + JSON.stringify(action.player));
+        // console.log("action player " + JSON.stringify(action.player));
         return {
            ...state, ...action.matches,
           loading: 'success'

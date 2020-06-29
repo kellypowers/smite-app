@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Layout} from './components/home/Layout';
 import PlayersContainer from './containers/PlayersContainer';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { fetchGods } from './actions/fetchGods'
 import { fetchItems } from './actions/fetchItems'
 import { fetchPlayer } from './actions/fetchPlayer'
@@ -77,28 +77,21 @@ class App extends Component {
                   return i.item_id == routerProps.match.params.item_id}) }/> : <div> Loading... </div>
               }}/>
               <Route exact path="/items" component={ItemsContainer} />
-              <Route exact path="/godranks" render={(props) =>{
-                if (this.props.god_ranks.loading === 'success' )
-                  return <GodRanks /> }} />
               <Route path="/players/find/:portalid/:playername/player_matches/:matchid" render= {(routerProps) => {
                 return <Match routerProps={routerProps}/>
               } }/>
               <Route exact path="/players/find/:portalid/:playername/:playerid/player_matches" render= {(routerProps) => {
-                    // if (this.props.player_matches.loading === 'success') {
                   return <PlayerMatches routerProps={routerProps} />
                 } }/>
+              <Route exact path="/players/find/:portalid/:playername/:playerid/god_ranks" render= {(routerProps) => {
+                return <GodRanks routerProps={routerProps} />
+              } }/>
               <Route exact path="/players/find/:portalid/:playername" render= {(routerProps) => {
-                  // if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
-                    // console.log("RouterProps id " + JSON.stringify(routerProps))
-                    // fetchPlayer(routerProps.match.params.portalid, routerProps.match.params.playername)
-                    // if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
                     return <Player routerProps={routerProps} />
-                    // else {return <PlayersContainer/>}
               } }/>
                 <Route exact path="/players/find" component={PlayersContainer}/>
-                <Route exact path="/clan" render= {() => {
-                    if (this.props.clan.loading === 'success') {
-                      return <Clan  />} 
+                <Route exact path="/clan/:clanname/:clanid" render= {(routerProps) => {
+                      return <Clan routerProps={routerProps} />
                 } }/>
                 <Route exact path="/" component={Home} />
                 {/* <Route component={NoMatch}/> */}

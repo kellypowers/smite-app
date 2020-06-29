@@ -11,7 +11,7 @@ function clanReducer(state = initialState, action) {
         }
 
       case  "ADD_CLAN": 
-        console.log("action clan " + JSON.stringify(action.clan));
+        // console.log("action clan " + JSON.stringify(action.clan));
         // console.log("")
         return {
           ...action.clan,

@@ -13,7 +13,7 @@ function playerGodRanksReducer(state = initialState, action) {
         }
   
       case  "ADD_PLAYER_GOD_RANKS": 
-        console.log("action god_ranks " + JSON.stringify(action.god_ranks));
+        // console.log("action god_ranks " + JSON.stringify(action.god_ranks));
         return {
            ...action.god_ranks,
           loading: 'success'

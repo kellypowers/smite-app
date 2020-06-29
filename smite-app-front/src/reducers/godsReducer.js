@@ -4,7 +4,6 @@ const initialState = {
 }
 
 function godsReducer(state =initialState, action) {
-    let idx;
     switch (action.type) {
    
         case 'START_ADDING_GODS_REQUEST':

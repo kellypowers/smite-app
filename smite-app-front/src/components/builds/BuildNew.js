@@ -3,19 +3,10 @@ import React, {Component} from 'react';
 // import white_square from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/images/white_square.png'
 // import BuildItems from './BuildItems'
 // want to mimplement build items when i can click the icon to add to the build 
-import {addBuild, redirect} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js'
+import {addBuild} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js'
 import {postBuild} from '../../actions/fetchBuilds'
 import { connect } from 'react-redux';
-import { push } from 'react-redux'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation
-} from "react-router-dom";
+// import {Link} from "react-router-dom";
 
 class BuildNew extends Component {
   constructor(props) {
@@ -131,11 +122,6 @@ class BuildNew extends Component {
     //   Maybe show all items, click item and will fill out the next available slot and disappear from items below.. how do i do this
       render() 
       {
-        if (this.props.builds.loading=== 'success' && this.state.redirect === true) {
-          // console.log("builds loading is" + JSON.stringify(this.props.builds.loading));
-          // this.props.history.push("/builds");
-          return <Redirect to='/builds'/>
-        } else {
         return (
           <div>
             {console.log(JSON.stringify(this.props.builds.loading))}
@@ -194,10 +180,7 @@ class BuildNew extends Component {
           {/* <BuildItems items={this.props.items} /> */}
         </div>
   
-        )}
-      }
-    
-  
+      )}
   }
 
   

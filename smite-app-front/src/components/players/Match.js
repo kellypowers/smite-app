@@ -1,44 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { fetchMatchDetails } from '../../actions/fetchMatches'
-import Clan from './Clan'
-import Player from './Player'
-import { fetchPlayer, fetchPlayerById } from '../../actions/fetchPlayer'
-import { fetchClan } from '../../actions/fetchClan'
+// import { fetchPlayer, fetchPlayerById } from '../../actions/fetchPlayer'
+// import { fetchClan } from '../../actions/fetchClan'
 // import Team from './Team'
 
  class Match extends Component {
-     // maybe set state to clan name when clicked, so that the clan name can be passed intot he Clan comp? bc right now it is not in the fetched info.
-   constructor(props) {
-     super(props);
-     this.getTeam = this.getTeam.bind(this)
-   }
 
-   componentWillMount(){
+   componentDidMount(){
     console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
     this.props.fetchMatchDetails(this.props.routerProps.match.params.matchid)
-  }
-
-
-  getTeam = (e) => {
-    this.props.fetchClan(e.target.className);
-  }
-
-  getPlayerInfo = (e) => {
-    this.props.fetchPlayerById(e.target.className);
-    return <Redirect to="/player"/>
-    // "playerName":"[CSUAL]BrettG772","playerPortalId":"10"
-  }
-
-  renderFetchedInfo = () => {
-    if (this.props.clan.loading === 'success') {
-      return <Redirect to="/clan"/>
-    }else if (this.props.player.loading === 'success') {
-      return <Redirect to="/player"/>
-    } else {
-      return this.renderMatchInfo()
-    }
   }
 
   renderMatchInfo = () => {
@@ -67,6 +39,7 @@ import { fetchClan } from '../../actions/fetchClan'
     console.log("array is " + JSON.stringify(array));
     return (
       <table className="player">
+        <thead>
         <tr>
         <th>Player</th>
         <th>Account Level:</th>
@@ -81,16 +54,24 @@ import { fetchClan } from '../../actions/fetchClan'
         <th>God Played:</th>
         <th>Gold Earned</th>
         <th>Player Healing:</th>
-        <th>Item 1:</th>
         <th>Deaths:</th>
         <th>Kills:</th>
         <th>Assists</th>
         <th>Team Name:</th>
+        <th>Item 1:</th>
+        <th>Item 2:</th>
+        <th>Item 3:</th>
+        <th>Item 4:</th>
+        <th>Item 5:</th>
+        
       </tr>
+      </thead>
       {array.map(i=> {
         console.log(this.props.routerProps.match.params.playername);
+        console.log(i.ItemId1)
         return (
-        <tr className="player">
+          <tbody className="player">
+        <tr >
           <td> {i.playerName ? <Link to={`/players/find/${i.playerPortalId}/${i.playerName.split(']')[1]}`} replace>{i.playerName}</Link> : "hidden"}</td>
           <td> {i.Account_Level}</td>
           <td> {i.Mastery_Level}</td>
@@ -104,12 +85,17 @@ import { fetchClan } from '../../actions/fetchClan'
           <td> <Link to={`/gods/${i.GodId}`}>{i.Reference_Name}</Link></td>
           <td> {i.Gold_Earned}</td>
           <td> {i.Healing}</td>
-          <td><Link to={`/items/${i.ItemId1}`}>{i.Item_Purch_1}</Link></td>
           <td>{i.Deaths}</td>
           <td> {i.Kills_Player}</td>
           <td>{i.Assists}</td>
-          <td>{i.Team_Name ? <p className={i.TeamId} onClick={(e) => this.getTeam(e)}>{i.Team_Name}</p> : ""}</td>
+          <td>{i.Team_Name ? <Link to={`/clan/${i.Team_Name.replace(" ", "")}/${i.TeamId}`}>{i.Team_Name}</Link> : ""}</td>
+          <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId1) ? <Link to={`/items/${i.ItemId1}`}>{i.Item_Purch_1}</Link> : i.Item_Purch_1 }</td>
+          <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId2) ? <Link to={`/items/${i.ItemId2}`}>{i.Item_Purch_2}</Link> : i.Item_Purch_2 }</td>
+          <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId3) ? <Link to={`/items/${i.ItemId3}`}>{i.Item_Purch_3}</Link> : i.Item_Purch_3 }</td>
+          <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId4) ? <Link to={`/items/${i.ItemId4}`}>{i.Item_Purch_4}</Link> : i.Item_Purch_4 }</td>
+          <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId5) ? <Link to={`/items/${i.ItemId5}`}>{i.Item_Purch_5}</Link> : i.Item_Purch_5 }</td>
         </tr>
+        </tbody>
         )}
         // {/* </div> */}
         )
@@ -143,7 +129,7 @@ const mapStateToProps = state => {
     }
   }
 
-  export default connect(mapStateToProps, {fetchPlayer, fetchPlayerById, fetchClan, fetchMatchDetails})(Match)
+  export default connect(mapStateToProps, { fetchMatchDetails})(Match)
 
 
 //x amount of players ....  each one has all this, separate by win/lose, link the player maybe? link the god, link each item.  

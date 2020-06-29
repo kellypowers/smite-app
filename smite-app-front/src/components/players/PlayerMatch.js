@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 
 class PlayerMatch extends Component {
-
 
   render() {
     return (
@@ -30,10 +29,8 @@ class PlayerMatch extends Component {
       </div>
     );
   }
-  // }
 };
 
-// can get buld by Item_1, etc, can link god by GodId, link them all 
 const mapStateToProps = state => {
   // console.log(state)
   return {
