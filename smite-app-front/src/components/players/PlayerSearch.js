@@ -29,10 +29,7 @@ class PlayerSearch extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    this.props.fetchPlayer(this.state);
-    // history.push("/players/find")
-    // console.log("result is " + JSON.stringify(result));
-
+    window.location = `http://localhost:3001/players/find/${this.state.portal_id}/${this.state.player_name}`
 }
 
   renderForm = () =>(
@@ -64,11 +61,11 @@ class PlayerSearch extends Component {
   }
 
   render() {
-    if (this.props.player.loading ==='success') {
-      return (
-        this.renderPlayer() 
-      )
-    } else {
+    // if (this.props.player.loading ==='success') {
+    //   return (
+    //     this.renderPlayer() 
+    //   )
+    // } else {
     return (
       <div>
         {this.renderForm()}
@@ -76,7 +73,7 @@ class PlayerSearch extends Component {
       </div>
     );
     }
-  }
+  // }
 };
 const mapStateToProps = state => {
   console.log(state)

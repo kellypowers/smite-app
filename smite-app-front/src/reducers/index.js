@@ -4,7 +4,6 @@ import itemsReducer from './itemsReducer'
 import godsReducer from './godsReducer';
 import buildsReducer from "./buildsReducer";
 import matchReducer from "./matchReducer";
-import redirectReducer from "./redirectReducer";
 import playerMatchesReducer from "./playerMatchesReducer";
 import playerGodRanksReducer from "./playerGodRanksReducer";
 import clanReducer from "./clanReducer";

@@ -50,25 +50,25 @@ function playerReducer(state = initialState, action) {
       //       error: action.error
       //   }
 
-      case 'FIND_PLAYER_GOD_RANKS':
-        return {
-          loading: true,
-          god_ranks: action.god_ranks
-        }
+      // case 'FIND_PLAYER_GOD_RANKS':
+      //   return {
+      //     loading: true,
+      //     god_ranks: action.god_ranks
+      //   }
     
-      case  "ADD_PLAYER_GOD_RANKS": 
-        console.log("action player " + JSON.stringify(action.player));
-        return {
-          ...action.player,
-          loading: 'success'
-        }
+      // case  "ADD_PLAYER_GOD_RANKS": 
+      //   console.log("action player " + JSON.stringify(action.player));
+      //   return {
+      //     ...action.player,
+      //     loading: 'success'
+      //   }
   
-      case 'ADD_PLAYER_GOD_RANKS_FAILURE':
-        return {
-            ...state,
-            loading: false,
-            error: action.error
-        }
+      // case 'ADD_PLAYER_GOD_RANKS_FAILURE':
+      //   return {
+      //       ...state,
+      //       loading: false,
+      //       error: action.error
+      //   }
 
       case 'FIND_PLAYER_ACHIEVEMENTS':
         return {

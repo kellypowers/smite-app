@@ -12,7 +12,7 @@ class PlayersContainer extends Component {
         return (
           <div>
           {/* <button onClick={window.history.back()}>Back</button> */}
-        <Redirect to="/account_info"></Redirect>
+        {/* <Redirect to="/account_info"></Redirect> */}
         </div>
         )
 

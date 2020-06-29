@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchPlayerMatches } from '../../actions/fetchPlayerMatches'
 // import { fetchMatchDetails } from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/Matches'
 import PlayerMatch from './PlayerMatch';
 import Players from './Players';
@@ -8,12 +9,17 @@ import { Link, Redirect } from 'react-router-dom';
 
 class PlayerMatches extends Component {
 
-  goBackToAccount = () => {
-    console.log("player amtches props " + JSON.stringify(this.props.player_matches["0"].playerId))
-    this.props.fetchPlayerById(this.props.player.ActivePlayerId);
-    // return <Players />
-    return <Redirect to="account_info"/>
+
+  componentWillMount(){
+    console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
+    this.props.fetchPlayerMatches(this.props.routerProps.match.params.playerid)
   }
+  // goBackToAccount = () => {
+  //   console.log("player amtches props " + JSON.stringify(this.props.player_matches["0"].playerId))
+  //   this.props.fetchPlayerById(this.props.player.ActivePlayerId);
+  //   // return <Players />
+  //   return <Redirect to="account_info"/>
+  // }
   
   renderPlayerMatches = () => {
     if (this.props.player_matches.loading === 'success') {
@@ -50,13 +56,17 @@ class PlayerMatches extends Component {
   render() {
     
     // console.log("in plaermatches " + JSON.stringify(this.props));
-    if (this.props.player.loading === 'success') {
+    // if (this.props.player.loading === 'success') {
       
       return (
-        this.renderPlayerMatches()
+        <div>
+          <h3>Match Info for {this.props.player.Name}</h3>
+          {Object.values(this.props.player_matches).map(m => <PlayerMatch routerProps={this.props.routerProps} matches={m} key={m.Match}/>)}
+        </div>
+        // Object.values(this.props.player_matches).map(m => <PlayerMatch matches={m} key={m.Match}/>)
     
       )
-      }
+      // }
     }
 };
 const mapStateToProps = state => {
@@ -71,4 +81,4 @@ const mapStateToProps = state => {
     loading: state.loading
   }
 }
-export default connect(mapStateToProps, {fetchPlayerById})(PlayerMatches);
+export default connect(mapStateToProps, {fetchPlayerById, fetchPlayerMatches})(PlayerMatches);

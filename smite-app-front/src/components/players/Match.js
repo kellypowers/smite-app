@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import { fetchMatchDetails } from '../../actions/fetchMatches'
 import Clan from './Clan'
 import Player from './Player'
 import { fetchPlayer, fetchPlayerById } from '../../actions/fetchPlayer'
@@ -8,20 +9,24 @@ import { fetchClan } from '../../actions/fetchClan'
 // import Team from './Team'
 
  class Match extends Component {
+     // maybe set state to clan name when clicked, so that the clan name can be passed intot he Clan comp? bc right now it is not in the fetched info.
+   constructor(props) {
+     super(props);
+     this.getTeam = this.getTeam.bind(this)
+   }
 
-  goBack = () => {
-    // e.preventDefault;
-    // window.history.back()
-    // window.location = "http://localhost:3001/player_matches"
-    this.props.fetchPlayerById(this.props.player.ActiveId)
+   componentWillMount(){
+    console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
+    this.props.fetchMatchDetails(this.props.routerProps.match.params.matchid)
   }
 
-  getTeam = (clanId) => {
-    this.props.fetchClan(clanId);
+
+  getTeam = (e) => {
+    this.props.fetchClan(e.target.className);
   }
 
-  getPlayerInfo = (playerId) => {
-    this.props.fetchPlayerById(playerId);
+  getPlayerInfo = (e) => {
+    this.props.fetchPlayerById(e.target.className);
     return <Redirect to="/player"/>
   }
 
@@ -42,9 +47,10 @@ import { fetchClan } from '../../actions/fetchClan'
       if (t.Win_Status === "Winner"){ 
         win_array.push(t)} else{ lose_array.push(t)}
       }) ;
+      console.log("winarray is " + JSON.stringify(win_array))
       return (
       <div className="match-container">
-        <button onClick={()=> this.goBack()}> go back to account</button>
+        <button onClick={(e)=> this.goBack(e)}> go back to account</button>
         <p>Match Game: {win_array[0].Map_Game}</p>
         <p>Minutes: {win_array[0].Minutes}</p>
         <div className="match-teams-container">
@@ -84,7 +90,7 @@ import { fetchClan } from '../../actions/fetchClan'
       {array.map(i=> {
         return (
         <tr className="player">
-          <td> {i.playerName ? <p onClick={() => this.getPlayerInfo(i.playerId)}>{i.playerName}</p> : "hidden"}</td>
+          <td> {i.playerName ? <p className={i.playerId} onClick={(e)=>this.getPlayerInfo(e)}>{i.playerName}</p> : "hidden"}</td>
           <td> {i.Account_Level}</td>
           <td> {i.Mastery_Level}</td>
           <td> {i.Damage_Player}</td>
@@ -101,7 +107,7 @@ import { fetchClan } from '../../actions/fetchClan'
           <td>{i.Deaths}</td>
           <td> {i.Kills_Player}</td>
           <td>{i.Assists}</td>
-          <td>{i.Team_Name ? <p onClick={()=> this.getTeam(i.TeamId)}>{i.Team_Name}</p> : ""}</td>
+          <td>{i.Team_Name ? <p className={i.TeamId} onClick={(e) => this.getTeam(e)}>{i.Team_Name}</p> : ""}</td>
         </tr>
         )}
         // {/* </div> */}
@@ -135,35 +141,15 @@ import { fetchClan } from '../../actions/fetchClan'
             // Object.values(this.props.match).map(t => {
               // t.Win_status == "Winner" <Winner team={t} key={t.ActivePlayerId} />));}};
     render() {
-      if (this.props.clan.loading === 'success') {
-        return <Redirect to="/clan"/>
-      // }else if (this.props.player.loading === 'success') {
-      //   return <Redirect to="/player"/>
-      } else {
-        return this.renderMatchInfo()
-      }
-      
-    //   let win_array = [];
-    //   let lose_array = [];
-    //   Object.values(this.props.match).map(t => {
-    //     if (t.Win_Status === "Winner"){ 
-    //     win_array.push(t)} else{ lose_array.push(t)}
-    //   }) ;
-    //     return (
-    //         <div className="match-container">
-    //           <button onClick={()=> this.goBack()}> go back to account</button>
-    //           <p>Match Game: {win_array[0].Map_Game}</p>
-    //           <p>Minutes: {win_array[0].Minutes}</p>
-    //           <div className="match-teams-container">
-    //             <h3>Losing Team:</h3>
-    //             {this.renderTeamInfo(lose_array)}
-    //             <h3>Winning Team:</h3>
-    //             {this.renderTeamInfo(win_array)}
-    //           </div>
-    //         </div>
-    //     )
-    }
-}
+      // if (this.props.match.loading ==="success"){
+        
+
+        return (
+          this.renderMatchInfo()
+        )
+
+    // }
+ }}
 
 const mapStateToProps = state => {
     // console.log(state)
@@ -179,7 +165,7 @@ const mapStateToProps = state => {
     }
   }
 
-  export default connect(mapStateToProps, {fetchPlayer, fetchPlayerById, fetchClan})(Match)
+  export default connect(mapStateToProps, {fetchPlayer, fetchPlayerById, fetchClan, fetchMatchDetails})(Match)
 
 
 //x amount of players ....  each one has all this, separate by win/lose, link the player maybe? link the god, link each item.  

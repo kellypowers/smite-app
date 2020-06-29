@@ -6,17 +6,6 @@ import { connect } from 'react-redux'
 
 
 class ItemsContainer extends Component {
-    // componentDidMount() {
-    //     this.props.fetchItems()
-    //   }
-      
-    //   handleLoading = () => {
-    //     console.log(this.props.items.loading)
-    //     if (this.props.items.loading) {
-    //       return <div>Loading...</div>
-    //     } 
-    //   }
-
 
   render() {
       console.log("props in itemscont is " + JSON.stringify(this.props))
@@ -29,18 +18,12 @@ class ItemsContainer extends Component {
   }
 }
 
-
 const mapStateToProps = state => {
   return {
-    // gods: state.gods,
     items: state.items,
-    // this will be selector.gods
     loading: state.loading
   }
 }
 
-
-
-// export default ItemsContainer;
 export default connect(mapStateToProps)(ItemsContainer)
 

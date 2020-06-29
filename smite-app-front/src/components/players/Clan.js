@@ -4,26 +4,32 @@ import Player from './Player'
 
 
 class Clan extends Component {
-    goBack = () => {
-        return window.history.back()
-    }
+    // goBack = () => {
+    //     return window.history.back()
+    // }
     renderClanInfo = () => {
-        this.props.clan.map(e => {
+        return Object.values(this.props.clan).map(e => {
+            if (e.AccountLevel) {
             return (
-            <table>
-                <tr><th>Player Name:</th><td>{e.Name}</td></tr>
-                <tr><th>Account Level:</th><td>{e.AccountLevel}</td></tr>
-                <tr><th>Joined:</th><td>{e.JoinedDatetime}</td></tr>
-                <tr><th>Last Login:</th><td>{e.LastLoginDatetime}</td></tr>
-            </table>
-            )
+                <div>
+                    <table>
+                        <tr><th>Player Name:</th><td>{e.Name}</td></tr>
+                        <tr><th>Account Level:</th><td>{e.AccountLevel}</td></tr>
+                        <tr><th>Joined:</th><td>{e.JoinedDatetime}</td></tr>
+                        <tr><th>Last Login:</th><td>{e.LastLoginDatetime}</td></tr>
+                    </table>
+                    <br/>
+                </div>
+            ) }
         })
+
     }
     render() {
+        if (this.props.clan.loading === 'success')
         return (
             <div>
-                <button onClick={this.goBack()}Back></button>
-                {this.renderClanInfo}
+                {/* <button onClick={this.goBack()}Back></button> */}
+                {this.renderClanInfo()}
             </div>
         )
     }

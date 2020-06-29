@@ -1,5 +1,3 @@
-import { browserHistory } from "..";
-
 export const START_ADDING_BUILDS_REQUEST = 'START_ADDING_BUILDS_REQUEST';
 export const ADD_BUILDS = 'ADD_BUILDS';
 export const ADD_BUILDS_FAILURE = 'ADD_BUILDS_FAILURE';

@@ -7,29 +7,17 @@ import Match from './Match'
 // import Match from './PlayerMatches';
 
 class PlayerMatch extends Component {
-          
-  goBack = (e) => {
-    // e.preventDefault;
-    // window.history.back()
-    window.location = "http://localhost:3001/account_info"
-    // return <Player player={this.props.player} />
-  }
 
-    handleMatchHistory = event => {
-      console.log("match  id?? " + JSON.stringify(this.props.matches.Match));
-      this.props.fetchMatchDetails(this.props.matches.Match)
-      // return <Match match={this.props.match}/>
-      return <Redirect to="/match"/>
-      // return <Match match={this.props.match}/>
-    } 
+  
+
 
   render() {
-    console.log("in plaerm " + JSON.stringify(this.props.match));
-    if (this.props.match.loading === 'success') {
-      // return <Match match={this.props.match}/>
-      return <Redirect to="/match"/>
+    console.log("in plaerm " + JSON.stringify(this.props.routerProps));
+    // if (this.props.match.loading === 'success') {
+    //   // return <Match match={this.props.match}/>
+    //   return <Redirect to="/match"/>
 
-    } else {
+    // } else {
     return (
       <div>
           <br />
@@ -47,11 +35,12 @@ class PlayerMatch extends Component {
           <tr><th>Minutes: </th> <td>{this.props.matches.Minutes}</td></tr>
           <tr><th>Wards Placed: </th> <td>{this.props.matches.Wards_Placed}</td></tr>
           </table>
-          <button onClick={event => this.handleMatchHistory(event)}>Get Match Details </button>
+          <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}/player_matches/${this.props.matches.Match}`}>Get Match Details {this.props.player.Name} </Link>
+          {/* <button onClick={event => this.handleMatchHistory(event)}>Get Match Details </button> */}
       </div>
     );
   }
-  }
+  // }
 };
 
 // can get buld by Item_1, etc, can link god by GodId, link them all 
