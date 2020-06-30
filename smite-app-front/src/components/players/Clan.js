@@ -6,11 +6,11 @@ import { fetchClan } from '../../actions/fetchClan'
 
 class Clan extends Component {
 
-
     componentDidMount(){
         console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
         this.props.fetchClan(this.props.routerProps.match.params.clanid)
     }
+
     renderClanInfo = () => {
         return Object.values(this.props.clan).map(e => {
             if (e.AccountLevel) {
@@ -30,23 +30,25 @@ class Clan extends Component {
     }
     render() {
         if (this.props.clan.loading === 'success'){
-        return (
-            <div>
-                <h4>Clan info for {this.props.routerProps.match.params.clanname}</h4>
-                {this.renderClanInfo()}
-            </div>
-        )}else{return "Loading..."}
+            return (
+                <div>
+                    <h4>Clan info for {this.props.routerProps.match.params.clanname}</h4>
+                    {this.renderClanInfo()}
+                </div>
+            )
+        }else{
+            return "Loading..."
+        }
     }
+
 }
+
 const mapStateToProps = state => {
-    // console.log(state)
     return {
       gods: state.gods,
       items: state.items,
-      // builds: state.builds,
       player: state.player,
       player_matches: state.player_matches,
-    //   match: state.match,
       clan: state.clan,
       loading: state.loading
     }
