@@ -7,22 +7,19 @@ export function fetchPlayerMatches(playerid) {
         dispatch({ type: 'START_ADDING_PLAYER_MATCHES' });
         fetch('http://localhost:3000/find_player_matches', {
             headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        method: "POST",
-        body: JSON.stringify({
-            player: playerid
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({
+                player: playerid
+            })
         })
-      })
-          .then(response => response.json())
-          .then(matches => {
-            // let player1 = player[0];
-            console.log("matches is " + JSON.stringify(matches))
-            dispatch({ type: 'ADD_PLAYER_MATCHES', matches });
-            // return player
-          })
-          .catch(error => console.log(error.message))
+        .then(response => response.json())
+        .then(matches => {
+        dispatch({ type: 'ADD_PLAYER_MATCHES', matches });
+        })
+        .catch(error => console.log(error.message))
     }
 }
   

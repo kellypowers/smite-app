@@ -2,8 +2,6 @@ export const START_ADDING_PLAYER_REQUEST = 'START_ADDING_PLAYER_REQUEST';
 export const ADD_PLAYER = 'ADD_PLAYER';
 export const ADD_PLAYER_FAILURE = 'ADD_PLAYER_FAILURE';
 
-
-
 export function fetchPlayer(player) {
   return (dispatch) => {
       dispatch({ type: 'START_ADDING_PLAYER_REQUEST' });

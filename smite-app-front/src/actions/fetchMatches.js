@@ -7,9 +7,9 @@ export function fetchMatchDetails(matchid) {
         dispatch({ type: 'FIND_MATCH_DETAILS' });
         fetch('http://localhost:3000/get_match_details', {
             headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
             method: "POST",
             body: JSON.stringify({
                  matchid
@@ -17,10 +17,7 @@ export function fetchMatchDetails(matchid) {
         })
         .then(response => response.json())
         .then(match => {
-        // let player1 = player[0];
-        console.log("match is " + JSON.stringify(match))
         dispatch({ type: 'ADD_MATCH_DETAILS', match});
-        // return player
         })
         .catch(error => console.log(error.message))
     };
