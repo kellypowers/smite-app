@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link} from 'react-router-dom';
 import { fetchMatchDetails } from '../../actions/fetchMatches'
-// import { fetchPlayer, fetchPlayerById } from '../../actions/fetchPlayer'
-// import { fetchClan } from '../../actions/fetchClan'
-// import Team from './Team'
 
  class Match extends Component {
 
@@ -20,7 +17,6 @@ import { fetchMatchDetails } from '../../actions/fetchMatches'
       if (t.Win_Status === "Winner"){ 
         win_array.push(t)} else{ lose_array.push(t)}
       }) ;
-      // console.log("winarray is " + JSON.stringify(win_array))
       return (
       <div className="match-container">
         <p>Match Game: {win_array[0].Map_Game}</p>
@@ -36,74 +32,68 @@ import { fetchMatchDetails } from '../../actions/fetchMatches'
   }
 
   renderPlayerInfo = (array) => {
-    console.log("array is " + JSON.stringify(array));
     return (
       <table className="player">
         <thead>
-        <tr>
-        <th>Player</th>
-        <th>Account Level:</th>
-        <th>Mastery Level:</th>
-        <th>Player Damage:</th>
-        <th>Bot Damage:</th>
-        <th>Basic Attack Damage:</th>
-        <th>Physical Damage:</th>
-        <th>Magical Damage:</th>
-        <th>Damage Mitigated:</th>
-        <th>Final Level:</th>
-        <th>God Played:</th>
-        <th>Gold Earned</th>
-        <th>Player Healing:</th>
-        <th>Deaths:</th>
-        <th>Kills:</th>
-        <th>Assists</th>
-        <th>Team Name:</th>
-        <th>Item 1:</th>
-        <th>Item 2:</th>
-        <th>Item 3:</th>
-        <th>Item 4:</th>
-        <th>Item 5:</th>
-        
-      </tr>
-      </thead>
-      {array.map(i=> {
-        console.log(this.props.routerProps.match.params.playername);
-        console.log(i.ItemId1)
-        return (
+          <tr>
+            <th>Player</th>
+            <th>Account Level:</th>
+            <th>Mastery Level:</th>
+            <th>Player Damage:</th>
+            <th>Bot Damage:</th>
+            <th>Basic Attack Damage:</th>
+            <th>Physical Damage:</th>
+            <th>Magical Damage:</th>
+            <th>Damage Mitigated:</th>
+            <th>Final Level:</th>
+            <th>God Played:</th>
+            <th>Gold Earned</th>
+            <th>Player Healing:</th>
+            <th>Deaths:</th>
+            <th>Kills:</th>
+            <th>Assists</th>
+            <th>Team Name:</th>
+            <th>Item 1:</th>
+            <th>Item 2:</th>
+            <th>Item 3:</th>
+            <th>Item 4:</th>
+            <th>Item 5:</th>
+          </tr>
+        </thead>
+        {array.map(i=> {
+          return (
           <tbody className="player">
-        <tr >
-          <td> {i.playerName ? <Link to={`/players/find/${i.playerPortalId}/${i.playerName.split(']')[1]}`} replace>{i.playerName}</Link> : "hidden"}</td>
-          <td> {i.Account_Level}</td>
-          <td> {i.Mastery_Level}</td>
-          <td> {i.Damage_Player}</td>
-          <td> {i.Damage_Bot}</td>
-          <td> {i.Damage_Done_In_Hand}</td>
-          <td> {i.Damage_Done_Physical}</td>
-          <td>{i.Damage_Done_Magical}</td>
-          <td>{i.Damage_Mitigated}</td>
-          <td> {i.Final_Match_Level}</td>
-          <td> <Link to={`/gods/${i.GodId}`}>{i.Reference_Name}</Link></td>
-          <td> {i.Gold_Earned}</td>
-          <td> {i.Healing}</td>
-          <td>{i.Deaths}</td>
-          <td> {i.Kills_Player}</td>
-          <td>{i.Assists}</td>
-          <td>{i.Team_Name ? <Link to={`/clan/${i.Team_Name.replace(" ", "")}/${i.TeamId}`}>{i.Team_Name}</Link> : ""}</td>
-          <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId1) ? <Link to={`/items/${i.ItemId1}`}>{i.Item_Purch_1}</Link> : i.Item_Purch_1 }</td>
-          <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId2) ? <Link to={`/items/${i.ItemId2}`}>{i.Item_Purch_2}</Link> : i.Item_Purch_2 }</td>
-          <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId3) ? <Link to={`/items/${i.ItemId3}`}>{i.Item_Purch_3}</Link> : i.Item_Purch_3 }</td>
-          <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId4) ? <Link to={`/items/${i.ItemId4}`}>{i.Item_Purch_4}</Link> : i.Item_Purch_4 }</td>
-          <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId5) ? <Link to={`/items/${i.ItemId5}`}>{i.Item_Purch_5}</Link> : i.Item_Purch_5 }</td>
-        </tr>
-        </tbody>
-        )}
-        // {/* </div> */}
-        )
+            <tr >
+              <td> {i.playerName ? <Link to={`/players/find/${i.playerPortalId}/${i.playerName.split(']')[1]}`} replace>{i.playerName}</Link> : "hidden"}</td>
+              <td> {i.Account_Level}</td>
+              <td> {i.Mastery_Level}</td>
+              <td> {i.Damage_Player}</td>
+              <td> {i.Damage_Bot}</td>
+              <td> {i.Damage_Done_In_Hand}</td>
+              <td> {i.Damage_Done_Physical}</td>
+              <td>{i.Damage_Done_Magical}</td>
+              <td>{i.Damage_Mitigated}</td>
+              <td> {i.Final_Match_Level}</td>
+              <td> <Link to={`/gods/${i.GodId}`}>{i.Reference_Name}</Link></td>
+              <td> {i.Gold_Earned}</td>
+              <td> {i.Healing}</td>
+              <td>{i.Deaths}</td>
+              <td> {i.Kills_Player}</td>
+              <td>{i.Assists}</td>
+              <td>{i.Team_Name ? <Link to={`/clan/${i.Team_Name.replace(" ", "")}/${i.TeamId}`}>{i.Team_Name}</Link> : ""}</td>
+              <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId1) ? <Link to={`/items/${i.ItemId1}`}>{i.Item_Purch_1}</Link> : i.Item_Purch_1 }</td>
+              <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId2) ? <Link to={`/items/${i.ItemId2}`}>{i.Item_Purch_2}</Link> : i.Item_Purch_2 }</td>
+              <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId3) ? <Link to={`/items/${i.ItemId3}`}>{i.Item_Purch_3}</Link> : i.Item_Purch_3 }</td>
+              <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId4) ? <Link to={`/items/${i.ItemId4}`}>{i.Item_Purch_4}</Link> : i.Item_Purch_4 }</td>
+              <td>{Object.values(this.props.items).find(j=> j.item_id == i.ItemId5) ? <Link to={`/items/${i.ItemId5}`}>{i.Item_Purch_5}</Link> : i.Item_Purch_5 }</td>
+            </tr>
+          </tbody>
+          )
+      })
       }
       </table>)
     }
 
-   
   render() {
     if (this.props.match.loading ==="success"){
       return (
@@ -113,23 +103,22 @@ import { fetchMatchDetails } from '../../actions/fetchMatches'
       return "Loading..."
     }
  }
+
 }
 
 const mapStateToProps = state => {
-    // console.log(state)
-    return {
-      gods: state.gods,
-      items: state.items,
-      // builds: state.builds,
-      player: state.player,
-      playerMatches: state.playerMatches,
-      match: state.match,
-      clan: state.clan,
-      loading: state.loading
-    }
+  return {
+    gods: state.gods,
+    items: state.items,
+    player: state.player,
+    playerMatches: state.playerMatches,
+    match: state.match,
+    clan: state.clan,
+    loading: state.loading
   }
+}
 
-  export default connect(mapStateToProps, { fetchMatchDetails})(Match)
+export default connect(mapStateToProps, { fetchMatchDetails})(Match)
 
 
 //x amount of players ....  each one has all this, separate by win/lose, link the player maybe? link the god, link each item.  

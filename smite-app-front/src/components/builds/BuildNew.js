@@ -100,24 +100,6 @@ class BuildNew extends Component {
       return <option value={item[1].name}>{item[1].name}</option>}
   })}
         
-        componentDidMount() {
-          console.log("Component Did Mount");
-          console.log("-------")
-        }
-
-        componentDidUpdate(prevProps, prevState, snapshot) {
-          console.log("Component Did Update");
-          // console.log("prevProps is " + JSON.stringify(prevProps))
-          console.log("prevState is " + JSON.stringify(prevState))
-          console.log("snapshot is " + JSON.stringify(snapshot))
-          console.log("-------")
-        }
-
-        componentWillUnmount() {
-          console.log("Component Will Unmount");
-          console.log("-------")
-          // return window.location = 'http://localhost:3001/builds'
-        }
     
     //   Maybe show all items, click item and will fill out the next available slot and disappear from items below.. how do i do this
       render() 
