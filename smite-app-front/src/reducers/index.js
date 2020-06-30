@@ -17,7 +17,6 @@ const rootReducer = combineReducers({
   player_matches: playerMatchesReducer,
   god_ranks: playerGodRanksReducer,
   clan: clanReducer
-  // redirect: redirectReducer
 });
  
 export default rootReducer

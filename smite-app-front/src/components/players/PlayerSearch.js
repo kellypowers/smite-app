@@ -11,7 +11,6 @@ class PlayerSearch extends Component {
     }
   }
 
-
   handleOnChange = event => {
     this.setState({
       player_name: event.target.value
@@ -31,21 +30,21 @@ class PlayerSearch extends Component {
 
   renderForm = () =>(
     <div className="findPlayerForm">
-        <form onSubmit={event => this.handleOnSubmit(event)} >
-            <label for="player_name">Player Name:</label>
-            <input type="text" name="player_name" value={this.state.player_name} onChange={event => {this.handleOnChange(event)}} />
-            <label for="portal_id">Select a platform </label>
-            <select name="portal_id" onChange={event => this.handleOnSelect(event)}>
-               <option value=""> </option>
-                <option value="10">XBox</option>
-                <option value="5">Steam</option>
-                <option value="9">PS4</option>
-                <option value="22">Switch</option>
-                <option value="1">PC</option>
-            </select>
-          <input type="submit" />
-        </form>
-        </div>
+      <form onSubmit={event => this.handleOnSubmit(event)} >
+          <label for="player_name">Player Name:</label>
+          <input type="text" name="player_name" value={this.state.player_name} onChange={event => {this.handleOnChange(event)}} />
+          <label for="portal_id">Select a platform </label>
+          <select name="portal_id" onChange={event => this.handleOnSelect(event)}>
+              <option value=""> </option>
+              <option value="10">XBox</option>
+              <option value="5">Steam</option>
+              <option value="9">PS4</option>
+              <option value="22">Switch</option>
+              <option value="1">PC</option>
+          </select>
+        <input type="submit" />
+      </form>
+    </div>
   )
 
 
@@ -64,7 +63,6 @@ const mapStateToProps = state => {
     // items: state.items,
     // builds: state.builds,
     player: state.player,
-    // this will be selector.gods
     loading: state.loading
   }
 }

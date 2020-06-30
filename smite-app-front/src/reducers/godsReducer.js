@@ -11,21 +11,18 @@ function godsReducer(state =initialState, action) {
                 ...state,
                 loading: true
             }
-   
         case 'ADD_GODS':
             return {
                 // ...state,
                 gods: action.gods,
                 loading: 'success'
             }
-
         case 'ADD_GODS_FAILURE':
             return {
                 ...state,
                 loading: false,
                 error: action.error,
             }
-
       default:
         return state;
     }

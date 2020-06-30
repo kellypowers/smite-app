@@ -1,8 +1,4 @@
 import React, {Component} from 'react';
-// import {Redirect} from 'react-router-dom';
-// import white_square from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/images/white_square.png'
-// import BuildItems from './BuildItems'
-// want to mimplement build items when i can click the icon to add to the build 
 import {addBuild} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js'
 import {postBuild} from '../../actions/fetchBuilds'
 import { connect } from 'react-redux';
@@ -11,7 +7,6 @@ import { connect } from 'react-redux';
 class BuildNew extends Component {
   constructor(props) {
     super(props);
-    console.log("props in constructor" + JSON.stringify(props))
     this.state = {
         name: "",
         description: "",
@@ -22,23 +17,16 @@ class BuildNew extends Component {
     }
   }
 
-  handleRedirect = () => {
-    this.setState({
-      ...this.state,
-      redirect: true
-    });
-  }
   handleOnSubmit = event => {
-      event.preventDefault();
-      const build = this.state;
-      console.log("this.state is " + JSON.stringify(this.state));
-      this.props.postBuild(build)
+    event.preventDefault();
+    const build = this.state;
+    this.props.postBuild(build)
   } 
 
   handleOnChangeDescription = event => {
-      this.setState({
-        [event.target.name]: event.target.value
-      })
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   handleOnChange = event => {
@@ -100,68 +88,63 @@ class BuildNew extends Component {
       return <option value={item[1].name}>{item[1].name}</option>}
   })}
         
-    
     //   Maybe show all items, click item and will fill out the next available slot and disappear from items below.. how do i do this
-      render() 
-      {
-        return (
-          <div>
-            {console.log(JSON.stringify(this.props.builds.loading))}
-          <form className="buildForm" onSubmit={event => this.handleOnSubmit(event)} >
-            <label for="build_name">Name Your Build:</label>
-            <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChangeDescription(event)}} />
-            <br/>
-            <label for="build_description">Build Description:</label>
-            <input type="text" name="description" placeholder="" value={this.state.description} onChange={event => {this.handleOnChangeDescription(event)}} />
-            <br/>
-            <label for="god_name">Select God Name:</label>
-            {this.renderGodSelect()}
-              <br/>
-              <label>Build your six items by item name</label> <br/>
-                <div className="itemsBuild">
-                  <label for="item1">First Item:</label>
-                  <input list="item1" value={this.state.items[0] !== undefined ? this.state.items[0].name : this.state.items[0]} name="item1" onChange={e => this.handleOnChange(e)}/>
-                  <datalist name="item1" id="item1"  >
-                    {this.renderItemSelect()}
-                  </datalist>
-                  <label for="item2">Second Item:</label>
-                  <input list="item2"  value={this.state.items[1] !== undefined ? this.state.items[1].name : this.state.items[1]} name="item2" onChange={e => this.handleOnChange(e)}/>
-                  <datalist id="item2" name="item2"  >
-                    {this.renderItemSelect()}
-                  </datalist>
-                  <label for="item3">Third Item:</label>
-                  <input list="item3"value={this.state.items[2] !== undefined ? this.state.items[2].name : this.state.items[2] } name="item3" onChange={e => this.handleOnChange(e)}/>
-                  <datalist name="item3" id="item3" >
-                    {this.renderItemSelect()}
-                  </datalist>
-                  <br/>
-                  <label for="item4">Fourth Item:</label>
-                  <input list="item4"value={this.state.items[3] !== undefined ? this.state.items[3].name : this.state.items[3]} name="item4" onChange={e => this.handleOnChange(e)}/>
-                  <datalist id="item4" >
-                    {this.renderItemSelect()}
-                  </datalist>
-                  <label for="item5">Fifth Item:</label>
-                  <input list="item5" value={this.state.items[4] !== undefined ? this.state.items[4].name : this.state.items[4]} name="item5" onChange={e => this.handleOnChange(e)}/>
-                  <datalist id="item5"  >
-                    {this.renderItemSelect()}
-                  </datalist>
-                  <label for="item6">Sixth Item:</label>
-                  <input list="item6" value={this.state.items[5] !== undefined ? this.state.items[5].name : this.state.items[5]} name="item6" onChange={e => this.handleOnChange(e)}/>
-                  <datalist id="item6"  >
-                    {this.renderItemSelect()}
-                  </datalist> 
-                  {/* <button onClick={()=> this.clearFilters()}>Clear Items</button> */}
-                </div>
-            <input type="submit" />
-          </form>
+  render() {
+    return (
+      <div>
+        {console.log(JSON.stringify(this.props.builds.loading))}?
+        <form className="buildForm" onSubmit={event => this.handleOnSubmit(event)} >
+          <label for="build_name">Name Your Build:</label>
+          <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChangeDescription(event)}} />
           <br/>
-          <button onClick={()=> this.clearFilters()}>Clear Items</button> <br/>
-          <label>Look up item by typing in stat you are looking for </label>
-          <input type="text" name="selector"onChange={e => this.handleOnChangeDescription(e)}></input>
-            {this.renderItems()}
-          {/* <BuildItems items={this.props.items} /> */}
-        </div>
-  
+          <label for="build_description">Build Description:</label>
+          <input type="text" name="description" placeholder="" value={this.state.description} onChange={event => {this.handleOnChangeDescription(event)}} />
+          <br/>
+          <label for="god_name">Select God Name:</label>
+          {this.renderGodSelect()}
+          <br/>
+          <label>Build your six items by item name</label> <br/>
+          <div className="itemsBuild">
+            <label for="item1">First Item:</label>
+            <input list="item1" value={this.state.items[0] !== undefined ? this.state.items[0].name : this.state.items[0]} name="item1" onChange={e => this.handleOnChange(e)}/>
+            <datalist name="item1" id="item1"  >
+              {this.renderItemSelect()}
+            </datalist>
+            <label for="item2">Second Item:</label>
+            <input list="item2"  value={this.state.items[1] !== undefined ? this.state.items[1].name : this.state.items[1]} name="item2" onChange={e => this.handleOnChange(e)}/>
+            <datalist id="item2" name="item2"  >
+              {this.renderItemSelect()}
+            </datalist>
+            <label for="item3">Third Item:</label>
+            <input list="item3"value={this.state.items[2] !== undefined ? this.state.items[2].name : this.state.items[2] } name="item3" onChange={e => this.handleOnChange(e)}/>
+            <datalist name="item3" id="item3" >
+              {this.renderItemSelect()}
+            </datalist>
+            <br/>
+            <label for="item4">Fourth Item:</label>
+            <input list="item4"value={this.state.items[3] !== undefined ? this.state.items[3].name : this.state.items[3]} name="item4" onChange={e => this.handleOnChange(e)}/>
+            <datalist id="item4" >
+              {this.renderItemSelect()}
+            </datalist>
+            <label for="item5">Fifth Item:</label>
+            <input list="item5" value={this.state.items[4] !== undefined ? this.state.items[4].name : this.state.items[4]} name="item5" onChange={e => this.handleOnChange(e)}/>
+            <datalist id="item5"  >
+              {this.renderItemSelect()}
+            </datalist>
+            <label for="item6">Sixth Item:</label>
+            <input list="item6" value={this.state.items[5] !== undefined ? this.state.items[5].name : this.state.items[5]} name="item6" onChange={e => this.handleOnChange(e)}/>
+            <datalist id="item6"  >
+              {this.renderItemSelect()}
+            </datalist> 
+          </div>
+        <input type="submit" />
+      </form>
+      <br/>
+      <button onClick={()=> this.clearFilters()}>Clear Items</button> <br/>
+      <label>Look up item by typing in stat you are looking for </label>
+      <input type="text" name="selector"onChange={e => this.handleOnChangeDescription(e)}></input>
+        {this.renderItems()}
+    </div>
       )}
   }
 
@@ -175,7 +158,6 @@ class BuildNew extends Component {
       player: state.player,
       playerMatches: state.playerMatches,
       god_ranks: state.god_ranks,
-      // this will be selector.gods
       loading: state.loading
     }
   };
@@ -187,6 +169,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     }
   }
-//   export default BuildNew;
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(BuildNew);
   

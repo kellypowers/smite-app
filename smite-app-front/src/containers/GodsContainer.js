@@ -64,16 +64,13 @@ class GodsContainer extends Component {
     })
   }
 
-  // handleClick = (event) => {
-  //   let idx = this.props.gods.gods.findIndex(god => god.name.toLowerCase() === event.target.innerText.toLowerCase() );
-  //   return this.props.gods.gods[idx]
-  // }
+
 //UPDATE LIST WITH USER INPUT - SEARCH BAR OR BY DROPDOWN 
   renderGodList = () => {
-     console.log(`this.state.god cosntinaer in gods is ${JSON.stringify(this.props.gods.gods)}`);
+    //  console.log(`this.state.god cosntinaer in gods is ${JSON.stringify(this.props.gods.gods)}`);
     if (this.state.name !== "") {
       let filteredGods = this.props.gods.gods.filter(god => god.name.toLowerCase().startsWith(this.state.name.toLowerCase()));
-    return filteredGods.map(god => <li> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
+      return filteredGods.map(god => <li> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
     }
     else if (this.state.role !== "") {
       let godRoles = this.props.gods.gods.filter(god => (god.roles) === this.state.role );
@@ -83,11 +80,9 @@ class GodsContainer extends Component {
       return godsPantheon.map(god => <li> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
     }
    else if (this.props.gods.gods.length > 1) {
-      return this.props.gods.gods.map(god => 
-    <li><Link to={`gods/${god.god_id}`}>{god.name}</Link></li>)
+      return this.props.gods.gods.map(god => <li><Link to={`gods/${god.god_id}`}>{god.name}</Link></li>)
     } else {
-        return this.props.gods.gods.map(god => 
-          (<God god={god} key={god.god_id} />))
+        return this.props.gods.gods.map(god => <God god={god} key={god.god_id} />)
     }
   }; 
 
@@ -109,7 +104,6 @@ class GodsContainer extends Component {
           <ul>
             {this.renderGodList()}
           </ul>
-        
       </div>
     )
   }
@@ -126,6 +120,4 @@ const mapStateToProps = state => {
 }
 
 
-
-// export default GodsContainer;
 export default connect(mapStateToProps)(GodsContainer)

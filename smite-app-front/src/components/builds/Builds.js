@@ -11,7 +11,6 @@ class Builds extends Component {
         })
     }
     render() {
-        // console.log("builds " + JSON.stringify(this.props.builds))
         return (
             <div>
                 {this.renderBuildsList()}

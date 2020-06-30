@@ -6,7 +6,7 @@ import { fetchMatchDetails } from '../../actions/fetchMatches'
  class Match extends Component {
 
    componentDidMount(){
-    console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
+    // console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
     this.props.fetchMatchDetails(this.props.routerProps.match.params.matchid)
   }
 

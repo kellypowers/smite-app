@@ -4,19 +4,7 @@ import {Media} from 'react-bootstrap'
 
 class Item extends Component {
 
-  // showItemDetails = (event) => {
-  //   return (
-  //     <div  id="item_play">
-  //       <br/>
-  //       <p>Price:{this.props.item.price}</p> <br/>
-  //       <p>{this.props.item.item_stat} </p>
-  //     </div>
-  //   )};
-  
-// class Item extends Component 
   render (){
-    console.log("item is " + JSON.stringify(this.props.item))
-    
     return (
       <div className="eachItem" key={this.props.item.item_id}  >
         <h3>{this.props.item.name}</h3>

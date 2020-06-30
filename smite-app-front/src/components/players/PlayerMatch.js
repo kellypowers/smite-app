@@ -32,11 +32,9 @@ class PlayerMatch extends Component {
 };
 
 const mapStateToProps = state => {
-  // console.log(state)
   return {
     gods: state.gods,
     items: state.items,
-    // builds: state.builds,
     player: state.player,
     playerMatches: state.playerMatches,
     match: state.match,

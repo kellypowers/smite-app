@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { fetchGods } from './actions/fetchGods'
 import { fetchItems } from './actions/fetchItems'
-import { fetchPlayer } from './actions/fetchPlayer'
+// import { fetchPlayer } from './actions/fetchPlayer'
 import { fetchBuilds } from './actions/fetchBuilds'
 import GodsContainer from './containers/GodsContainer';
 import God from './components/gods/God';
@@ -31,19 +31,14 @@ class App extends Component {
     this.props.fetchBuilds()
   }
 
-  ifLoading = () => {
-    return <div>Loading...</div> 
-  }
   
   render() {
     return (
-      // <React.Fragment>
       <div>
         <Navigationbar />
         <Layout >
           <BrowserRouter>
             <Switch>
-              {/* <div className="App"> */}
               <Route path="/gods/:god_id" render={(routerProps) => {
                   return this.props.gods.loading === 'success' ? <God god={this.props.gods.gods.find(g => {
                     return g.god_id == routerProps.match.params.god_id
@@ -56,14 +51,6 @@ class App extends Component {
                   return <BuildNew /> }} />
               <Route path="/builds/:build_id" render={(routerProps) => {
                   return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={this.props.builds.builds.find(b => {
-                    // b.god_id_smite =  Object.values(this.props.gods.gods).find(g => g.god_id == b.god_id_smite);
-                    // console.log("items is " + JSON.stringify(this.props.items));
-                    // b.item1= Object.values(this.props.items).find(i => i.name == b.item1);
-                    // b.item2 = Object.values(this.props.items).find(i => i.name == b.item2);
-                    // b.item3 = Object.values(this.props.items).find(i => i.name == b.item3);
-                    // b.item4 = Object.values(this.props.items).find(i => i.name == b.item4);
-                    // b.item5 = Object.values(this.props.items).find(i => i.name == b.item5);
-                    // b.item6 = Object.values(this.props.items).find(i => i.name == b.item6);
                   return b.id == routerProps.match.params.build_id
                   })
                 }/> :  <div>Loading...</div> 
@@ -95,19 +82,16 @@ class App extends Component {
                 } }/>
                 <Route exact path="/" component={Home} />
                 {/* <Route component={NoMatch}/> */}
-              {/* </div> */}
             </Switch>
           </BrowserRouter>
         </Layout>
         </div>
-      // </React.Fragment>
     );
   }
 };
 
 
 const mapStateToProps = state => {
-  // console.log(state)
   return {
     gods: state.gods,
     items: state.items,
@@ -117,7 +101,6 @@ const mapStateToProps = state => {
     match: state.match,
     god_ranks: state.god_ranks,
     clan: state.clan,
-    // this will be selector.gods
     loading: state.loading
   }
 }
@@ -126,8 +109,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchGods: gods => dispatch(fetchGods()),
     fetchItems: items => dispatch(fetchItems()),
-    fetchBuilds: builds => dispatch(fetchBuilds()),
-    fetchPlayer: player=> dispatch(fetchPlayer())
+    fetchBuilds: builds => dispatch(fetchBuilds())
+    // fetchPlayer: player=> dispatch(fetchPlayer())
   }
 }
 

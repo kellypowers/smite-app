@@ -68,33 +68,33 @@ class Player extends Component {
               <td>{this.props.player.Team_Name ? <Link to={`/clan/${this.props.player.Team_Name.replace(" ", "")}/${this.props.player.TeamId}`}>{this.props.player.Team_Name}</Link> : ""}</td>
             </tr>
             <tr>
-        <th>Ranked Joust Controller for season: </th> 
-        <td> {this.props.player.RankedJoustController['Season']}</td>
-        </tr>
-        <tr>
-          <th>Wins: </th> 
-          <td>{this.props.player.RankedJoustController['Wins']}</td>
-          </tr>
-          <tr>
-          <th>Losses: </th> 
-          <td> {this.props.player.RankedJoustController.Losses}</td>
-          </tr>
-          <tr>
-          <th>Rank: </th> 
-          <td> {this.props.player.RankedJoustController.Rank}</td>
-          </tr>
-          <tr>
-          <th>Points: </th> 
-          <td> {this.props.player.RankedJoustController.Points}</td>
-          </tr>
-          <tr>
-          <th>Rank Stat: </th> 
-          <td> {this.props.player.RankedJoustController.Rank_Stat}</td>
-          </tr>
-          <tr>
-          <th>Variance: </th> 
-          <td>{this.props.player.RankedJoustController.Rank_Variance}</td>
-        </tr>
+              <th>Ranked Joust Controller for season: </th> 
+              <td> {this.props.player.RankedJoustController['Season']}</td>
+            </tr>
+            <tr>
+              <th>Wins: </th> 
+              <td>{this.props.player.RankedJoustController['Wins']}</td>
+            </tr>
+            <tr>
+              <th>Losses: </th> 
+              <td> {this.props.player.RankedJoustController.Losses}</td>
+            </tr>
+            <tr>
+              <th>Rank: </th> 
+              <td> {this.props.player.RankedJoustController.Rank}</td>
+            </tr>
+            <tr>
+              <th>Points: </th> 
+              <td> {this.props.player.RankedJoustController.Points}</td>
+            </tr>
+            <tr>
+              <th>Rank Stat: </th> 
+              <td> {this.props.player.RankedJoustController.Rank_Stat}</td>
+            </tr>
+            <tr>
+              <th>Variance: </th> 
+              <td>{this.props.player.RankedJoustController.Rank_Variance}</td>
+            </tr>
           </tbody>
         </table>
         <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}/${this.props.player.ActivePlayerId}/player_matches`}>Get Match History For {this.props.player.Name} </Link> <br/>
@@ -106,15 +106,12 @@ class Player extends Component {
 };
 
 const mapStateToProps = state => {
-  // console.log(state);
   return {
     gods: state.gods,
     items: state.items,
-    // builds: state.builds,
     player: state.player,
     player_matches: state.player_matches,
     god_ranks: state.god_ranks,
-    // this will be selector.gods
     loading: state.loading
   }
 };
