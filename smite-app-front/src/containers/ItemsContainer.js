@@ -9,7 +9,7 @@ class ItemsContainer extends Component {
   render() {
     return (
       <div>
-        <Items items={this.props.items} /> 
+        <Items /> 
       </div>
     )
   }

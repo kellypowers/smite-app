@@ -19,7 +19,6 @@ class GodsContainer extends Component {
   }
 
 
-  
   renderSearchFilter = () => {
     console.log(`radio state ${JSON.stringify(this.state)}`);
     if (this.state.selectedOption === "roles") {
@@ -91,7 +90,7 @@ class GodsContainer extends Component {
       <div>
         <br/>
         <div>
-          <label for="god_name">Search by God Name:</label>
+          <label >Search by God Name:</label>
           <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
         </div>
         <div>

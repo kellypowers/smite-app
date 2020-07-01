@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class selectors extends Component {
+export class Selectors extends Component {
 
     case "FIND_ITEM":
         console.log(` action is ${JSON.stringify(action)}`)

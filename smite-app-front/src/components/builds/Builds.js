@@ -7,7 +7,7 @@ class Builds extends Component {
 
     renderBuildsList = () => {
         return this.props.builds.builds.map(build => {
-            return <li><Link to={`builds/${build.id}`}>{build.name} -  </Link><button onClick={() =>this.props.deleteBuild(build.id) }>delete</button></li> 
+            return <li><Link to={`builds/${build.id}`}>{this.props.gods.gods.find(g=> g.god_id === build.god_id_smite).name} - {build.name}  </Link><button onClick={() =>this.props.deleteBuild(build.id) }>delete</button></li> 
         })
     }
     render() {

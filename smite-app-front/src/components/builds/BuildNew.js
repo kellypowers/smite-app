@@ -38,9 +38,9 @@ class BuildNew extends Component {
     }
   }
 
-  clearFilters= () => {
+  clearFilters = (event) => {
     this.setState({
-      ...this.state,
+      // ...this.state,
       items: []
     })
   }
@@ -58,7 +58,7 @@ class BuildNew extends Component {
 //DROPDOWN BAR OF ALL GODS
   renderGodSelect = () => {
       return <select name="god_id_smite" onChange={e => this.handleOnChangeDescription(e)} > <option value=""> </option> {this.props.gods.gods.map(god => {
-      return <option value={god.god_id}>{god.name}</option>
+      return <option key={god.god_id} value={god.god_id}>{god.name}</option>
       })}</select>
   }
 
@@ -85,53 +85,53 @@ class BuildNew extends Component {
   renderItemSelect = () => {
     return  Object.entries(this.props.items).map(item => {
         for (let key in this.state) if (this.state[key] === item.name) {return ""} else {
-      return <option value={item[1].name}>{item[1].name}</option>}
+      return <option key={item[1].item_id} value={item[1].name}>{item[1].name}</option>}
   })}
         
     //   Maybe show all items, click item and will fill out the next available slot and disappear from items below.. how do i do this
   render() {
     return (
       <div>
-        {console.log(JSON.stringify(this.props.builds.loading))}?
+        {/* {console.log(JSON.stringify(this.props.builds.loading))} */}
         <form className="buildForm" onSubmit={event => this.handleOnSubmit(event)} >
-          <label for="build_name">Name Your Build:</label>
+          <label >Name Your Build:</label>
           <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChangeDescription(event)}} />
           <br/>
-          <label for="build_description">Build Description:</label>
+          <label>Build Description:</label>
           <input type="text" name="description" placeholder="" value={this.state.description} onChange={event => {this.handleOnChangeDescription(event)}} />
           <br/>
-          <label for="god_name">Select God Name:</label>
+          <label >Select God Name:</label>
           {this.renderGodSelect()}
           <br/>
           <label>Build your six items by item name</label> <br/>
           <div className="itemsBuild">
-            <label for="item1">First Item:</label>
+            <label >First Item:</label>
             <input list="item1" value={this.state.items[0] !== undefined ? this.state.items[0].name : this.state.items[0]} name="item1" onChange={e => this.handleOnChange(e)}/>
             <datalist name="item1" id="item1"  >
               {this.renderItemSelect()}
             </datalist>
-            <label for="item2">Second Item:</label>
+            <label >Second Item:</label>
             <input list="item2"  value={this.state.items[1] !== undefined ? this.state.items[1].name : this.state.items[1]} name="item2" onChange={e => this.handleOnChange(e)}/>
             <datalist id="item2" name="item2"  >
               {this.renderItemSelect()}
             </datalist>
-            <label for="item3">Third Item:</label>
+            <label >Third Item:</label>
             <input list="item3"value={this.state.items[2] !== undefined ? this.state.items[2].name : this.state.items[2] } name="item3" onChange={e => this.handleOnChange(e)}/>
             <datalist name="item3" id="item3" >
               {this.renderItemSelect()}
             </datalist>
             <br/>
-            <label for="item4">Fourth Item:</label>
+            <label >Fourth Item:</label>
             <input list="item4"value={this.state.items[3] !== undefined ? this.state.items[3].name : this.state.items[3]} name="item4" onChange={e => this.handleOnChange(e)}/>
             <datalist id="item4" >
               {this.renderItemSelect()}
             </datalist>
-            <label for="item5">Fifth Item:</label>
+            <label >Fifth Item:</label>
             <input list="item5" value={this.state.items[4] !== undefined ? this.state.items[4].name : this.state.items[4]} name="item5" onChange={e => this.handleOnChange(e)}/>
             <datalist id="item5"  >
               {this.renderItemSelect()}
             </datalist>
-            <label for="item6">Sixth Item:</label>
+            <label >Sixth Item:</label>
             <input list="item6" value={this.state.items[5] !== undefined ? this.state.items[5].name : this.state.items[5]} name="item6" onChange={e => this.handleOnChange(e)}/>
             <datalist id="item6"  >
               {this.renderItemSelect()}
@@ -140,7 +140,7 @@ class BuildNew extends Component {
         <input type="submit" />
       </form>
       <br/>
-      <button onClick={()=> this.clearFilters()}>Clear Items</button> <br/>
+      <button onClick={(e) => this.clearFilters(e)}>Clear Items</button> <br/>
       <label>Look up item by typing in stat you are looking for </label>
       <input type="text" name="selector"onChange={e => this.handleOnChangeDescription(e)}></input>
         {this.renderItems()}

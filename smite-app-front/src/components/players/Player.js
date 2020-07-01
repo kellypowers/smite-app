@@ -7,7 +7,7 @@ import { fetchPlayer } from '../../actions/fetchPlayer'
 class Player extends Component {
 
   componentDidMount(){
-    console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
+    // console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
     this.props.fetchPlayer({player_name: this.props.routerProps.match.params.playername, portal_id: this.props.routerProps.match.params.portalid})
   }
 

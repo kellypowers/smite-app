@@ -8,8 +8,8 @@ class BuildsContainer extends Component {
         if (this.props.builds.loading==='success') {
             return (
                 <div>
-                    <button><Link to={`build/new`}>Create New Build</Link></button>}
-                    <Builds items={this.props.items} gods={this.props.gods} builds={this.props.builds} />         
+                    <button><Link to={`build/new`}>Create New Build</Link></button>
+                    <Builds />         
                 </div>
             )
         }

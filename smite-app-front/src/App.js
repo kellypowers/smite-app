@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { fetchGods } from './actions/fetchGods'
 import { fetchItems } from './actions/fetchItems'
-// import { fetchPlayer } from './actions/fetchPlayer'
 import { fetchBuilds } from './actions/fetchBuilds'
 import GodsContainer from './containers/GodsContainer';
 import God from './components/gods/God';
@@ -19,6 +18,7 @@ import ItemsContainer from './containers/ItemsContainer';
 import BuildsContainer from './containers/BuildsContainer';
 import BuildNew from './components/builds/BuildNew';
 import Home from './components/home/Home';
+import NoMatch from './components/home/NoMatch';
 import Build from './components/builds/Build';
 import Item from './components/items/Item';
 import Navigationbar from './components/navigation/NavBar';
@@ -76,16 +76,16 @@ class App extends Component {
               <Route exact path="/players/find/:portalid/:playername" render= {(routerProps) => {
                     return <Player routerProps={routerProps} />
               } }/>
-                <Route exact path="/players/find" component={PlayersContainer}/>
-                <Route exact path="/clan/:clanname/:clanid" render= {(routerProps) => {
-                      return <Clan routerProps={routerProps} />
-                } }/>
-                <Route exact path="/" component={Home} />
-                {/* <Route component={NoMatch}/> */}
+              <Route exact path="/players/find" component={PlayersContainer}/>
+              <Route exact path="/clan/:clanname/:clanid" render= {(routerProps) => {
+                    return <Clan routerProps={routerProps} />
+              } }/>
+              <Route exact path="/" component={Home} />
+              <Route component={NoMatch}/>
             </Switch>
           </BrowserRouter>
         </Layout>
-        </div>
+      </div>
     );
   }
 };

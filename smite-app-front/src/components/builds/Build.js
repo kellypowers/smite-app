@@ -10,9 +10,8 @@ const Build = props => {
         // props.build.god_id_smite = props.gods.gods.find(g=> g.god_id_smite === props.build.god_id_smite);
     return (
         <div>
-            <h1>{props.build.name} - {props.build.god_id_smite.name}</h1>
-            <h2>{props.build.description}</h2>
-            {/* <h3>{props.gods.gods.find(g=> {g.god_id_smite == props.build.god_id_smite; return g.name})} </h3> */}
+            <h1>{props.gods.gods.find(g=> g.god_id == props.build.god_id_smite).name} Build {props.build.name}</h1>
+            <h4>Description: {props.build.description}</h4>
             <img src={item1.item_image} alt={item1.name} />
             <h4>{item1.name}</h4>
             <p> {item1.short_description} </p>

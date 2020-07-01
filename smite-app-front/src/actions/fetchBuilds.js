@@ -16,11 +16,13 @@ export function fetchBuilds() {
     dispatch({ type: 'START_ADDING_BUILDS_REQUEST' });
     fetch('http://localhost:3000/god_builds')
       .then(response => response.json())
-      .then(builds => dispatch({ type: 'ADD_BUILDS', builds }));
+      .then(builds => dispatch({ type: 'ADD_BUILDS', builds }))
+      .catch(error => {dispatch({ type: 'ADD_BUILDS_FAILURE', error })
+      })
   };
 }
 
-export function postBuild(build, ownProps) {
+export function postBuild(build) {
   return (dispatch) => {
     dispatch({ type: 'START_POST_BUILD_REQUEST' });
     fetch('http://localhost:3000/god_builds', {
@@ -38,7 +40,10 @@ export function postBuild(build, ownProps) {
       dispatch({ type: 'POST_BUILD', build });
       return (window.location = `http://localhost:3001/builds/${build.id}`)
     })
-    .catch(error => console.log(error.message))
+    .catch(error => {
+      console.log(error.message);
+      dispatch({ type: 'POST_BUILD_FAILURE', error })
+    })
   };
 }
   

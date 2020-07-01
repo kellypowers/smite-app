@@ -19,7 +19,11 @@ export function fetchPlayerMatches(playerid) {
         .then(matches => {
         dispatch({ type: 'ADD_PLAYER_MATCHES', matches });
         })
-        .catch(error => console.log(error.message))
+        .catch(error => {
+            console.log(error.message);
+            dispatch({ type: 'ADD_PLAYER_MATCHES_FAILURE', error });
+            return (window.location = `http://localhost:3001/nomatch`)
+        })
     }
 }
   

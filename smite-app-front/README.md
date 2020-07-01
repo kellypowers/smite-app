@@ -1,3 +1,6 @@
+## SMITE APP!
+For the players of the video game Smite.  Look up gods, items, make builds, look up player account info, match info, and clan info!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

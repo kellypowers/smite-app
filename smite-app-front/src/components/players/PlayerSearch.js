@@ -59,9 +59,6 @@ class PlayerSearch extends Component {
 const mapStateToProps = state => {
   console.log(state)
   return {
-    // gods: state.gods,
-    // items: state.items,
-    // builds: state.builds,
     player: state.player,
     loading: state.loading
   }
