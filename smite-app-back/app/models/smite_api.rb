@@ -3,19 +3,17 @@ require 'net/http'
 require 'httparty'
 require 'json'
 require 'pry'
-# require 'datetime'
-class SmiteApi 
-    # include DateAndTimeMethods
-    attr_accessor :url, :format, :session #:dev_id, :auth_key,
 
-    def initialize() #(url, dev_id, auth_key, format='Json')
+class SmiteApi 
+
+    attr_accessor :url, :format, :session 
+
+    def initialize() 
         self.url = 'http://api.smitegame.com/smiteapi.svc'
-        # self.dev_id = ENV['SMITE_DEV_ID']
-        # self.auth_key = ENV['SMITE_AUTH_KEY']
         self.format = 'Json'
         self.session = nil
     end
-    # Digest::MD5.hexdigest 'abc'
+
 
     def create_signature(method_name)
         now = self.create_timestamp()
@@ -34,21 +32,14 @@ class SmiteApi
         if self.session
             return self.session
         end
-
         timestamp = self.create_timestamp()
         signature = self.create_signature('createsession')
         method = self.method('createsession')
-
         url = ([self.url, method, ENV['SMITE_DEV_ID'], signature, timestamp]).join('/')
-        # puts url
         response = HTTParty.get(url)
-        puts response.body
-        # response = HTTParty.get(url)
-        # response = response.to_json
-        # puts "json response is #{response}"
-        # binding.pry
+        # puts response.body
         session_id = response['session_id']
-        puts "session id id #{session_id}"
+        # puts "session id id #{session_id}"
         self.session = session_id
         return session_id
     end
@@ -58,7 +49,7 @@ class SmiteApi
         if values.is_a?(Array) 
             values = values
         else 
-            values = [values]
+            values = Array(values)
         end
 
         timestamp = self.create_timestamp()
@@ -81,27 +72,18 @@ class SmiteApi
     def make_request(method, values)
         puts 'making request'
         request = self.build_request(method, values)
-        # try:
-        # binding.pry
         response = HTTParty.get(request)
         puts 'here'
         puts "method is #{method} values is #{values}"
         puts response.body
         return response
-        # return response.json()
-        # except:
-        # puts 'here 2'
-        # puts response._content
-        # return response._content
     end
 
     def make_request_async(method, values)
         request = self.build_request(method, values)
-        # binding.pry
         response = HTTParty.get(request)
         # puts response.body
         return response
-        # return HTTParty.get(request)
     end
 
     def get_players(players)
@@ -126,7 +108,6 @@ class SmiteApi
 
     def get_player(player_name)
         request = self.make_request_async('getplayer', player_name)
-        # puts "request is #{request}"
         player_id = request[0]['ActivePlayerId']
         # puts "player id is #{player_id}"
         # binding.pry
@@ -146,6 +127,18 @@ class SmiteApi
         # player_id = self.get_player_id(player_name)
         return self.make_request_async('getplayerachievements', player_id)
     end
+
+    def get_god_recommended_items(god_id)
+        return self.make_request_async('getgodrecommendeditems', god_id)
+    end
+
+    def get_server_status()
+    end
+
+    def get_data_used()
+        return self.make_request('getdataused')
+    end
+
     def get_god_ranks(player_id)
         # player_id = self.get_player_id(player_name)
         return self.make_request_async('getgodranks', player_id)
@@ -165,8 +158,11 @@ class SmiteApi
         return self.make_request('getteamplayers', clan)
     end
 
+    def get_team_hist(clan)
+        return self.make_request('getteammatchhistory', clan)
+    end
+
     def get_match_histories(players)
-        # players = players if type(players) == list else [players]
         if players.is_a?(Array)
             players = players
         else
@@ -242,7 +238,7 @@ class SmiteApi
                 lore: god["Lore"],
                 roles: god["Roles"],
                 title: god["Title"],
-                type: god["Type"],
+                god_kind: god["Type"],
                 pros: god["Pros"],
                 god_id: god["id"],
                 god_image: god["godCard_URL"],
@@ -273,7 +269,7 @@ class SmiteApi
             }
         array.push(hash)
         end
-        return array[61..90]
+        return array[90..110]
     end
 
 end

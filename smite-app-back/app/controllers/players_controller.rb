@@ -47,7 +47,7 @@ class PlayersController < ApplicationController
         puts "params are #{params}"
         player_acheivements = @smite_api.get_player_achievements(params["player"]["player_id"].to_i)
         puts "player achieves is #{player_achievements}"
-        render json: player_achievements   
+        render plain: player_achievements   
     end
 
     def get_match_details
@@ -57,13 +57,7 @@ class PlayersController < ApplicationController
         render plain: match_details   
     end
 
-    # def get_clan_info
-    #     puts "params are #{params}"
-    #     clan_players = @smite_api.get_team_players(params['clanId'].to_i)
-    #     clan = @smite_api.get_clan_info(params['clanId'].to_i)
-    #     puts "clan is #{clan}"
-    #     render plain: clan + clan_players 
-    # end
+
     def get_clan_info
         puts "params are #{params}"
         clan = @smite_api.get_team_players(params['clanId'].to_i)
@@ -72,6 +66,8 @@ class PlayersController < ApplicationController
         render plain: clan
     end
     
+
+
     def update 
         @matches_player = @smite_api.get_match_history([params["player"]["player_name"], params["player"]["portal_id"].to_i])
         render json: @player
