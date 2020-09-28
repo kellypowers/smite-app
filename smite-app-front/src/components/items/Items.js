@@ -1,64 +1,35 @@
 import React, { Component } from 'react';
-import {findItem} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js';
 import Item from './Item'
-import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
-// import {Media} from 'react-bootstrap';
-// import Button from './Button'
-import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
+import {Media} from 'react-bootstrap';
+
 
 class Items extends Component {
-  state = {
-    name: ""
-  }
 
-  
-  // handleOnChange = event => {
-  //   this.setState({
-  //     [event.target.name]: event.target.value
-  //   })
-  // }
-  // renderItemList = () => {
-  //   let items = Object.values(this.props.items).slice(0, -1);
-  //   if (this.state.name !== "") {
-  //     let filteredItems = items.filter(item => item.name.toLowerCase().startsWith(this.state.name.toLowerCase()));
-  //     return filteredItems.map(item => {
-  //     return (<li key={item.item_id}><Link to={`items/${item.item_id}`}><Media><img width={50} height={50} className="mr-3" src={item.item_image} alt={item.name}/></Media>{item.name} </Link></li>)
-  //   })
-  //   }
-  //     else if (items.length > 1) {
-  //       return items.map(item =>
-  //       <li key={item.item_id}><Link to={`items/${item.item_id}`}><Media><img width={50} height={50} className="mr-3" src={item.item_image} alt={item.name}/></Media>{item.name} -</Link> </li>)
-  //     } else {
-  //         return Object.entries(this.props.items).map(item => <Item item={item[1]} key={item[1].item_id} />)
-  //   }
-  // }
+  renderItemList = () => {
+    const filterItemName = this.props.filterItemName;
+    let items = Object.values(this.props.items).slice(0, -1);
+    let filteredItems = items.filter(item => item.name.toLowerCase().startsWith(filterItemName.toLowerCase()));
+    if (filteredItems.length !== 1) {
+      return filteredItems.map(item => {
+        return (<li key={item.item_id}><Link to={`items/${item.item_id}`}><Media><img width={50} height={50} className="mr-3" src={item.item_image} alt={item.name}/></Media>{item.name} </Link></li>)
+      })
+    // } else if (filteredItems.length > 1) {
+    //   return items.map(item =>
+    //       <li key={item.item_id}><Link to={`items/${item.item_id}`}><Media><img width={50} height={50} className="mr-3" src={item.item_image} alt={item.name}/></Media>{item.name} </Link> </li>)
+    } else {
+      return filteredItems.map(item => <Item item={item} key={item.item_id} />)
+    }
+  }
 
   render() {
-    if (this.props.items.loading === 'success') {
-    return (
-      <div className="items">
-        <div className="searchBar">
-          {/* <label >Search by item Name:</label> */}
-          {/* <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} /> */}
-          <SearchBar name={this.state.name}/>
-        </div>
-      <ul>
+    return(
+    <div className="items">
+      <ul className="items-list">
         {this.renderItemList()}
       </ul>
-      </div>
-    );
-    }else{return "Loading..."}
-  }
+    </div>
+    )}
 };
 
-
-const mapStateToProps = state => {
-  // console.log(state)
-  return {
-    gods: state.gods,
-    items: state.items,
-    loading: state.loading
-  }
-}
-export default connect(mapStateToProps, {findItem})(Items);
+export default Items;

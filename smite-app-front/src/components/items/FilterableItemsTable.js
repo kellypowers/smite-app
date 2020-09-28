@@ -11,19 +11,23 @@ export default class FilterableItemsTable extends Component {
         };
     }
     render() {
-        return (
-            <div>
-            <SearchBar name={this.state.name}/>
-            <Items
-            </div>
-        )
+        if (this.props.items.loading === 'success') {
+            return (
+                <div>
+                <SearchBar name={this.state.name}/>
+                <Items 
+                    items={this.props.items}
+                    filterItemName={this.state.filterItemName}
+                />
+                </div>
+            )
+        } else {return "Loading..."}
     }
 }
 
 const mapStateToProps = state => {
     // console.log(state)
     return {
-      gods: state.gods,
       items: state.items,
       loading: state.loading
     }

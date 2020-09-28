@@ -3,7 +3,7 @@ import {Media} from 'react-bootstrap'
 
 
 const Item = (props) => (
-  <div className="eachItem" key={props.item.item_id}  >
+  <div className="item" key={props.item.item_id}  >
     <h3>{props.item.name}</h3>
     <br/>
     <Media> <img height={100} width={100} src={props.item.item_image} alt={props.item.name}/></Media>
