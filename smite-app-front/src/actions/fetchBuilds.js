@@ -20,9 +20,9 @@ export function fetchBuilds() {
       .catch(error => {dispatch({ type: 'ADD_BUILDS_FAILURE', error })
       })
   };
-}
+} 
 
-export function postBuild(build) {
+export function postBuild(build, history) {
   return (dispatch) => {
     dispatch({ type: 'START_POST_BUILD_REQUEST' });
     fetch('http://localhost:3000/god_builds', {
@@ -37,7 +37,8 @@ export function postBuild(build) {
     })
     .then(response => response.json())
     .then(build => {
-      dispatch({ type: 'POST_BUILD', build });
+      dispatch({ type: 'POST_BUILD', build });    
+      // history.push(`/builds/${build.id}`)
       return (window.location = `http://localhost:3001/builds/${build.id}`)
     })
     .catch(error => {

@@ -17,15 +17,15 @@ const Styles = styled.div`
 
 const Navigationbar = () => (
   <Styles>
-    <Navbar expand="lg">
+    <Navbar >
       <Navbar.Brand href='/'>SmiteApp!</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-      <Navbar Collapse id="basic-navbar-nav" />
+      {/* <Navbar.Toggle aria-controls="basic-navbar-nav"/> */}
+      {/* <Navbar  id="basic-navbar-nav" /> */}
       <Nav className="ml-auto">
-        <Nav.Item><Nav.Link href="/gods">Gods</Nav.Link></Nav.Item>
-        <Nav.Item><Nav.Link href="/items">Items</Nav.Link></Nav.Item>
-        <Nav.Item><Nav.Link href="/builds">Builds</Nav.Link></Nav.Item>
-        <Nav.Item><Nav.Link href="/players/find">Find A Player</Nav.Link></Nav.Item>
+        <Nav.Link href="/gods">Gods</Nav.Link>
+        <Nav.Link href="/items">Items</Nav.Link>
+        <Nav.Link href="/builds">Builds</Nav.Link>
+        <Nav.Link href="/players/find">Find A Player</Nav.Link>
       </Nav>
     </Navbar>
   </Styles>

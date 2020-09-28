@@ -19,6 +19,8 @@ export function fetchMatchDetails(matchid) {
         .then(match => {
         dispatch({ type: 'ADD_MATCH_DETAILS', match});
         })
-        .catch(error => console.log(error.message))
+        .catch(error => {
+            dispatch({ type: 'ADD_MATCH_DETAILS_FAILURE', error})
+            console.log(error.message)})
     };
 }

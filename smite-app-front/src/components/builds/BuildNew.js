@@ -20,7 +20,8 @@ class BuildNew extends Component {
   handleOnSubmit = event => {
     event.preventDefault();
     const build = this.state;
-    this.props.postBuild(build)
+    this.props.postBuild(build, this.props.history);
+    // this.props.history.push(`/builds/1`)
   } 
 
   handleOnChangeDescription = event => {
@@ -67,25 +68,24 @@ class BuildNew extends Component {
     if (this.state.selector !== "") {
       let itemsSearch = (Object.values(this.props.items).filter(item => {
         return (item.item_stat !== undefined && item.item_stat.toLowerCase().includes(this.state.selector.toLowerCase()))}))
-        // console.log("items search is " +  JSON.stringify(itemsSearch));
         return Object.values(itemsSearch).map(item => {
           console.log(item);
           return (<div onClick={event => this.handleOnClick(event, item)}><img src={item.item_image} alt={item.name}/> {item.name}{item.item_stat} </div>)
         })
     }
     else {
-          // console.log("items search is " +  itemsSearch);
-      return Object.values(this.props.items).map(item => {
-      return (<div onClick={event => this.handleOnClick(event, item)}><img src={item.item_image} alt={item.name}/> {item.name}{item.item_stat} </div>)
+      return Object.values(this.props.items).slice(0, -1).map(item => {
+      return (<div key={item.item_id} onClick={event => this.handleOnClick(event, item)}><img src={item.item_image} alt={item.name}/> {item.name} {item.item_stat} </div>)
       })
     } 
   }
 
    
   renderItemSelect = () => {
-    return  Object.entries(this.props.items).map(item => {
+    let items = Object.values(this.props.items).slice(0, -1);
+    return  items.map(item => {
         for (let key in this.state) if (this.state[key] === item.name) {return ""} else {
-      return <option key={item[1].item_id} value={item[1].name}>{item[1].name}</option>}
+      return <option key={item.item_id} value={item.name}>{item.name}</option>}
   })}
         
     //   Maybe show all items, click item and will fill out the next available slot and disappear from items below.. how do i do this
@@ -105,37 +105,49 @@ class BuildNew extends Component {
           <br/>
           <label>Build your six items by item name</label> <br/>
           <div className="itemsBuild">
+            <div>
             <label >First Item:</label>
             <input list="item1" value={this.state.items[0] !== undefined ? this.state.items[0].name : this.state.items[0]} name="item1" onChange={e => this.handleOnChange(e)}/>
             <datalist name="item1" id="item1"  >
               {this.renderItemSelect()}
             </datalist>
+            </div>
+            <div>
             <label >Second Item:</label>
             <input list="item2"  value={this.state.items[1] !== undefined ? this.state.items[1].name : this.state.items[1]} name="item2" onChange={e => this.handleOnChange(e)}/>
             <datalist id="item2" name="item2"  >
               {this.renderItemSelect()}
             </datalist>
+            </div>
+            <div>
             <label >Third Item:</label>
             <input list="item3"value={this.state.items[2] !== undefined ? this.state.items[2].name : this.state.items[2] } name="item3" onChange={e => this.handleOnChange(e)}/>
             <datalist name="item3" id="item3" >
               {this.renderItemSelect()}
             </datalist>
+            </div>
             <br/>
+            <div>
             <label >Fourth Item:</label>
             <input list="item4"value={this.state.items[3] !== undefined ? this.state.items[3].name : this.state.items[3]} name="item4" onChange={e => this.handleOnChange(e)}/>
             <datalist id="item4" >
               {this.renderItemSelect()}
             </datalist>
+            </div>
+            <div>
             <label >Fifth Item:</label>
             <input list="item5" value={this.state.items[4] !== undefined ? this.state.items[4].name : this.state.items[4]} name="item5" onChange={e => this.handleOnChange(e)}/>
             <datalist id="item5"  >
               {this.renderItemSelect()}
             </datalist>
+            </div>
+            <div>
             <label >Sixth Item:</label>
             <input list="item6" value={this.state.items[5] !== undefined ? this.state.items[5].name : this.state.items[5]} name="item6" onChange={e => this.handleOnChange(e)}/>
             <datalist id="item6"  >
               {this.renderItemSelect()}
             </datalist> 
+            </div>
           </div>
         <input type="submit" />
       </form>
@@ -156,8 +168,6 @@ class BuildNew extends Component {
       items: state.items,
       builds: state.builds,
       player: state.player,
-      playerMatches: state.playerMatches,
-      god_ranks: state.god_ranks,
       loading: state.loading
     }
   };

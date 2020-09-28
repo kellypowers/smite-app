@@ -48,6 +48,13 @@ th, td {
   align-content: stretch;
 }
 
+.itemsBuild{
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  grid-template-rows: 1fr 1fr 1fr;
+  
+}
+
 .losing-team{
   order: 0;
   flex: 0 1 auto;

@@ -18,9 +18,7 @@ class GodsContainer extends Component {
     })
   }
 
-
   renderSearchFilter = () => {
-    console.log(`radio state ${JSON.stringify(this.state)}`);
     if (this.state.selectedOption === "roles") {
       return (
         <select onChange={event => this.handleOnChange(event)} name="role" >
@@ -66,20 +64,20 @@ class GodsContainer extends Component {
 
 //UPDATE LIST WITH USER INPUT - SEARCH BAR OR BY DROPDOWN 
   renderGodList = () => {
-    //  console.log(`this.state.god cosntinaer in gods is ${JSON.stringify(this.props.gods.gods)}`);
+    console.log(this.props.gods)
     if (this.state.name !== "") {
       let filteredGods = this.props.gods.gods.filter(god => god.name.toLowerCase().startsWith(this.state.name.toLowerCase()));
-      return filteredGods.map(god => <li> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
+      return filteredGods.map(god => <li key={god.god_id}> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
     }
     else if (this.state.role !== "") {
       let godRoles = this.props.gods.gods.filter(god => (god.roles) === this.state.role );
-      return godRoles.map(god => <li> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
+      return godRoles.map(god => <li key={god.god_id}> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
     } else if (this.state.pantheon !== "") {
       let godsPantheon = this.props.gods.gods.filter(god => god.pantheon === this.state.pantheon );
-      return godsPantheon.map(god => <li> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
+      return godsPantheon.map(god => <li key={god.god_id}> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
     }
    else if (this.props.gods.gods.length > 1) {
-      return this.props.gods.gods.map(god => <li><Link to={`gods/${god.god_id}`}>{god.name}</Link></li>)
+      return this.props.gods.gods.map(god => <li key={god.god_id}><Link to={`gods/${god.god_id}`}>{god.name}</Link></li>)
     } else {
         return this.props.gods.gods.map(god => <God god={god} key={god.god_id} />)
     }
@@ -113,7 +111,6 @@ const mapStateToProps = state => {
   return {
     gods: state.gods,
     items: state.items,
-    // this will be selector.gods
     loading: state.loading
   }
 }

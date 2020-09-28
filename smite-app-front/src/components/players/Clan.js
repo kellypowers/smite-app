@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchClan } from '../../actions/fetchClan'
-// import Player from './Player'
 
 
 class Clan extends Component {

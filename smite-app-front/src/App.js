@@ -48,7 +48,7 @@ class App extends Component {
               <Route exact path="/gods" component={GodsContainer} /> 
               <Route exact path="/build/new" render={(props) =>{
                   if (this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success')
-                  return <BuildNew /> }} />
+                  return <BuildNew {...props} /> }} />
               <Route path="/builds/:build_id" render={(routerProps) => {
                   return this.props.builds.loading === 'success' && this.props.gods.loading === 'success' && this.props.items.loading ==='success' ? <Build items={this.props.items} gods={this.props.gods} build={this.props.builds.builds.find(b => {
                   return b.id == routerProps.match.params.build_id

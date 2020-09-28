@@ -19,7 +19,9 @@ export function fetchPlayer(player) {
         .then(player => {
           dispatch({ type: 'ADD_PLAYER', player });
         })
-        .catch(error => console.log(error.message))
+        .catch(error => {
+          dispatch({type: "ADD_PLAYER_FAILURE", error})
+          console.log(error.message)})
     };
   }
 
@@ -41,7 +43,9 @@ export function fetchPlayerById(playerId) {
           console.log("player is " + JSON.stringify(player))
           dispatch({ type: 'ADD_PLAYER', player });
         })
-        .catch(error => console.log(error.message))
+        .catch(error => {
+          dispatch({type: "ADD_PLAYER_FAILURE", error})
+          console.log(error.message)})
     };
   }
 
@@ -64,7 +68,9 @@ export function fetchPlayerAchievements(playerid) {
         console.log("achievements is " + JSON.stringify(achievements))
         dispatch({ type: 'ADD_PLAYER_ACHIEVEMENTS', achievements });
       })
-      .catch(error => console.log(error.message))
+      .catch(error => {
+        dispatch({ type: 'ADD_PLAYER_ACHIEVEMENTS_ERROR', error });
+        console.log(error.message)})
   };
 }
 
