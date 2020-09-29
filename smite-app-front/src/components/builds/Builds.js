@@ -7,13 +7,16 @@ class Builds extends Component {
 
     renderBuildsList = () => {
         return this.props.builds.builds.map(build => {
-            return <li key={build.id}><Link to={`builds/${build.id}`}>{this.props.gods.gods.find(g=> g.god_id === build.god_id_smite).name} - {build.name}  </Link><button onClick={() =>this.props.deleteBuild(build.id) }>delete</button></li> 
+            return <li className="build-list-item" key={build.id}><Link to={`builds/${build.id}`}> <strong>{this.props.gods.gods.find(g=> g.god_id === build.god_id_smite).name} </strong> - {build.name}  </Link><button className="deleteButton" onClick={() =>this.props.deleteBuild(build.id) }>Delete</button><br/></li> 
         })
     }
     render() {
         return (
-            <div>
-                {this.renderBuildsList()}
+            <div className="buildsHomePage">
+                <ul className="builds-list">
+                    {this.renderBuildsList()}
+                </ul>
+                <button className="new-build-btn"><Link to={`build/new`}>Create New Build</Link></button>
             </div>
         )
     }

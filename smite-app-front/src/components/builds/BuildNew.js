@@ -2,21 +2,23 @@ import React, {Component} from 'react';
 import {addBuild} from '/Users/kellypowers/coding/react/smite-app/smite-app-front/src/actions/index.js'
 import {postBuild} from '../../actions/fetchBuilds'
 import { connect } from 'react-redux';
+import BuildGodSelect from './BuildGodSelect';
 // import {Link} from "react-router-dom";
 
 class BuildNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        name: "",
+        // name: "",
         description: "",
+        name: "",
         god_id_smite: 0,
         selector: "",
-        items: [],
-        redirect: false
+        items: []
     }
   }
 
+  // SUBMISSION OF FORM EVENT
   handleOnSubmit = event => {
     event.preventDefault();
     const build = this.state;
@@ -24,12 +26,14 @@ class BuildNew extends Component {
     // this.props.history.push(`/builds/1`)
   } 
 
+  // SET STATE BASED ON EVENT TARGET NAME
   handleOnChangeDescription = event => {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
+  // SETS STATE OF ITEM ARRAY TO ADD ITEM SELECTED
   handleOnChange = event => {
     if (Object.values(this.props.items).find(i => i.name === event.target.value)) {
       let item = Object.values(this.props.items).find(i => i.name === event.target.value)
@@ -70,12 +74,12 @@ class BuildNew extends Component {
         return (item.item_stat !== undefined && item.item_stat.toLowerCase().includes(this.state.selector.toLowerCase()))}))
         return Object.values(itemsSearch).map(item => {
           console.log(item);
-          return (<div onClick={event => this.handleOnClick(event, item)}><img src={item.item_image} alt={item.name}/> {item.name}{item.item_stat} </div>)
+          return (<div onClick={event => this.handleOnClick(event, item)}><img className="item-image" src={item.item_image} alt={item.name}/> <strong>{item.name}</strong> {item.item_stat} </div>)
         })
     }
     else {
       return Object.values(this.props.items).slice(0, -1).map(item => {
-      return (<div key={item.item_id} onClick={event => this.handleOnClick(event, item)}><img src={item.item_image} alt={item.name}/> {item.name} {item.item_stat} </div>)
+      return (<div key={item.item_id} onClick={event => this.handleOnClick(event, item)}><img className="item-image" src={item.item_image} alt={item.name}/> <strong> {item.name} </strong>{item.item_stat} </div>)
       })
     } 
   }
@@ -92,16 +96,20 @@ class BuildNew extends Component {
   render() {
     return (
       <div>
-        {/* {console.log(JSON.stringify(this.props.builds.loading))} */}
         <form className="buildForm" onSubmit={event => this.handleOnSubmit(event)} >
-          <label >Name Your Build:</label>
+          {/* <label >Name Your Build:</label>
           <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChangeDescription(event)}} />
-          <br/>
+          <br/> */}
           <label>Build Description:</label>
           <input type="text" name="description" placeholder="" value={this.state.description} onChange={event => {this.handleOnChangeDescription(event)}} />
           <br/>
-          <label >Select God Name:</label>
-          {this.renderGodSelect()}
+          {/* <label >Select God Name:</label> */}
+          {/* {this.renderGodSelect()} */}
+          <BuildGodSelect 
+            gods={this.props.gods.gods} 
+            handleOnChangeDescription={this.handleOnChangeDescription}
+
+          />
           <br/>
           <label>Build your six items by item name</label> <br/>
           <div className="itemsBuild">

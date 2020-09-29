@@ -70,6 +70,36 @@ th, td {
   grid-template: repeat(4, 1fr) / repeat(3, 1fr);
 } */
 
+.build-god-image{
+  align-items: left;
+  border-left: 0px;
+  padding-left: 0px;
+}
+
+.build-content{
+  padding-top: 60px;
+  display: flex;
+}
+
+.build-god-link {
+  text-align: center;
+}
+.build-subtitle {
+  text-align: center;
+}
+.build-table th{
+  background-color: grey;
+  color: white;
+}
+
+.build-table, th, td{
+  border: 1px solid black;
+}
+
+.build-table, th{
+  align-items: center;
+  text-align: center;
+}
 .losing-team{
   order: 0;
   flex: 0 1 auto;
@@ -82,24 +112,12 @@ th, td {
 }
 
 
-.buildForm {
-  align-items: center;
-}
-
 .findPlayerForm{
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.itemsBuild{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-content: space-between;
-  align-items: flex-start;
-}
 
 .App-link {
   color: #61dafb;
@@ -112,4 +130,26 @@ th, td {
   to {
     transform: rotate(360deg);
   }
+}
+
+
+
+/* BUILD NEW FORM */
+
+.buildForm {
+  align-items: center;
+}
+
+.itemsBuild{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: space-between;
+  align-items: flex-start;
+}
+
+.item-image{
+  height: 50px;
+  width: 50px;
 }
