@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Layout} from './components/home/Layout';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import { Layout} from './components/home/Layout';
 import PlayersContainer from './containers/PlayersContainer';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -14,6 +14,7 @@ import PlayerMatches from './components/players/PlayerMatches';
 import Match from './components/players/Match';
 import Clan from './components/players/Clan';
 import GodRanks from './components/players/GodRanks';
+// import ItemsContainer from './containers/ItemsContainer';
 import ItemsContainer from './containers/ItemsContainer';
 import BuildsContainer from './containers/BuildsContainer';
 import BuildNew from './components/builds/BuildNew';
@@ -21,7 +22,7 @@ import Home from './components/home/Home';
 import NoMatch from './components/home/NoMatch';
 import Build from './components/builds/Build';
 import Item from './components/items/Item';
-import Navigationbar from './components/navigation/NavBar';
+// import Navigationbar from './components/navigation/NavBar';
 
 class App extends Component {
 
@@ -35,8 +36,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navigationbar />
-        <Layout >
+        {/* <Home /> */}
+        {/* <Layout > */}
           <BrowserRouter>
             <Switch>
               <Route path="/gods/:god_id" render={(routerProps) => {
@@ -84,7 +85,7 @@ class App extends Component {
               <Route component={NoMatch}/>
             </Switch>
           </BrowserRouter>
-        </Layout>
+        {/* </Layout> */}
       </div>
     );
   }

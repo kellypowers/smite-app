@@ -4,10 +4,11 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
   .navbar {
-    background-color: #222;
+    background-color: black;
   }
   .navbar-brand, .navbar-nav .nav-link {
-    color: #bbb;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
 
     &:hover {
       color: white;

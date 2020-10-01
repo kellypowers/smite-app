@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import God from '../components/gods/God'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
+import NavBar from '../components/navigation/NavBar'
 
 
 class GodsContainer extends Component {
@@ -77,7 +78,7 @@ class GodsContainer extends Component {
       return godsPantheon.map(god => <li key={god.god_id}> <Link to={`gods/${god.god_id}`}>{god.name}</Link> </li>)
     }
    else if (this.props.gods.gods.length > 1) {
-      return this.props.gods.gods.map(god => <li key={god.god_id}><Link to={`gods/${god.god_id}`}>{god.name}</Link></li>)
+   return this.props.gods.gods.map(god => <li key={god.god_id}><Link to={`gods/${god.god_id}`}><img className="god-list-image" src={god.god_image} alt={god.name}/>{god.name}</Link></li>)
     } else {
         return this.props.gods.gods.map(god => <God god={god} key={god.god_id} />)
     }
@@ -85,20 +86,21 @@ class GodsContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="gods-container">
+        <NavBar/>
         <br/>
         <div>
           <label >Search by God Name:</label>
           <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChange(event)}} />
         </div>
-        <div>
+        <div className="gods-search">
             Sort By: 
             Role <input type="radio" value="roles" name="selectedOption" checked={this.state.selectedOption === "roles"} onChange={event => this.handleOnChange(event)}/>
             Pantheon <input type="radio" value="pantheon" name="selectedOption" checked={this.state.selectedOption === "pantheon"} onChange={event => this.handleOnChange(event)}/>
             {this.renderSearchFilter()}
         </div>
         <button onClick={()=> this.clearFilters()}>Clear Filters</button>
-          <ul>
+          <ul className="gods-list">
             {this.renderGodList()}
           </ul>
       </div>
