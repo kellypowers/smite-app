@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PlayerSearch from '../components/players/PlayerSearch'
 import Player from '../components/players/Player'
 import { connect } from 'react-redux'
+import NavBar from '../components/navigation/NavBar'
 
 class PlayersContainer extends Component {
   
@@ -9,10 +10,21 @@ class PlayersContainer extends Component {
     if (this.props.player.loading === 'success' || this.props.player.ActivePlayerId !== undefined) {
       return (
         <div>
+          <NavBar />
+        <div class="players-container">
           <Player/>
         </div>
+        </div>
       )
-    } else {return <PlayerSearch/>}
+    } else {return (
+      <div>
+          <NavBar />
+          <div class="players-container">
+    <PlayerSearch/>
+    </div>
+        </div>)
+
+  }
   }
 }
 

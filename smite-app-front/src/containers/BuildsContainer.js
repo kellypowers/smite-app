@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import NavBar from '../components/navigation/NavBar'
 import Builds from '../components/builds/Builds'
 import { connect } from 'react-redux'
 
@@ -75,7 +75,8 @@ class BuildsContainer extends Component {
     render() {
         if (this.props.builds.loading==='success') {
             return (
-                <div>
+                <div className="builds-container">
+                    <NavBar/>
                     <Builds />         
                 </div>
             )

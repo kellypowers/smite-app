@@ -28,6 +28,7 @@ class GodsFilter extends Component {
                 <option value="Celtic">Celtic</option>
                 <option value="Roman">Roman</option>
                 <option value="Voodoo">Voodoo</option>
+                <option value="Chinese">Chinese</option>
                 <option value="Norse">Norse</option>
                 <option value="Arthurian">Arthurian</option>
                 <option value="Polynesian">Polynesian</option>

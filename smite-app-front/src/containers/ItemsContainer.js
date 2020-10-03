@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Items from '../components/items/Items'
-// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import SearchBar from '../components/items/SearchBar';
+import NavBar from '../components/navigation/NavBar'
 
 
 class ItemsContainer extends Component {
@@ -17,7 +17,8 @@ class ItemsContainer extends Component {
   render() {
     if (this.props.items.loading === 'success') {
       return (
-        <div>
+        <div className="items-container">
+          <NavBar />
           <SearchBar 
             filterItemName={this.state.filterItemName}
             handleStateChange={this.handleStateChange}

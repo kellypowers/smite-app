@@ -16,7 +16,9 @@ class Builds extends Component {
                 <ul className="builds-list">
                     {this.renderBuildsList()}
                 </ul>
-                <button className="new-build-btn"><Link to={`build/new`}>Create New Build</Link></button>
+                <button className="new-build-btn">
+                    <Link to={`build/new`}>Create New Build</Link>
+                </button>
             </div>
         )
     }

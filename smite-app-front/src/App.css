@@ -145,6 +145,17 @@ th, td {
   align-content: stretch;
 }
 
+/* ITEMS PAGE */
+
+.items-container {
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+  
+}
+.searchBar{
+  text-align: center;
+  font-weight: 400;
+}
 .itemsBuild{
   display: grid;
   grid-template-columns: 1fr 1fr ;
@@ -154,10 +165,13 @@ th, td {
 
 .items-list{
   list-style: none;
+  font-family: 'Courier New', Courier, monospace;
   height: 100vh;
   width: 100vw;
   display: grid;
   grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+  padding: auto;
+  /* align-items: center; */
 }
 
 /* .items{
@@ -166,6 +180,31 @@ th, td {
   display: grid;
   grid-template: repeat(4, 1fr) / repeat(3, 1fr);
 } */
+
+/* BUILDS PAGE */
+
+.builds-list {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  list-style: none;
+}
+
+/* .buildsHomePage button .new-build-btn {
+  display: flex; 
+  justify-content: center; 
+   padding: 50px; 
+} */
+
+.buildsHomePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+
+
+/* BUILDS SHOW */
 
 .build-god-image{
   align-items: left;
@@ -197,6 +236,25 @@ th, td {
   align-items: center;
   text-align: center;
 }
+
+/* BUILD NEW */
+.build-new-container{
+  padding-left: 50px;
+}
+
+
+/* PLAYERSEARCH */
+.players-container{
+  padding-top: 50px;
+  text-align: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-image: url("./images/SmiteBackground.png");
+  background-size: cover;
+  font-family: 'Courier New', Courier, monospace;
+}
+
 .losing-team{
   order: 0;
   flex: 0 1 auto;

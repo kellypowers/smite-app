@@ -3,6 +3,8 @@ import {addBuild} from '/Users/kellypowers/coding/react/smite-app/smite-app-fron
 import {postBuild} from '../../actions/fetchBuilds'
 import { connect } from 'react-redux';
 import BuildGodSelect from './BuildGodSelect';
+import BuildItemStatSearch from './BuildItemStatSearch';
+import NavBar from '../navigation/NavBar'
 // import {Link} from "react-router-dom";
 
 class BuildNew extends Component {
@@ -45,7 +47,7 @@ class BuildNew extends Component {
 
   clearFilters = (event) => {
     this.setState({
-      // ...this.state,
+      ...this.state,
       items: []
     })
   }
@@ -58,30 +60,6 @@ class BuildNew extends Component {
         items: [...this.state.items,  item]
       })
     }
-  }
-    
-//DROPDOWN BAR OF ALL GODS
-  renderGodSelect = () => {
-      return <select name="god_id_smite" onChange={e => this.handleOnChangeDescription(e)} > <option value=""> </option> {this.props.gods.gods.map(god => {
-      return <option key={god.god_id} value={god.god_id}>{god.name}</option>
-      })}</select>
-  }
-
-//SEARCH ITEMS WITH AUTOCOMPLETE SEARCH BAR 
-  renderItems = () => {
-    if (this.state.selector !== "") {
-      let itemsSearch = (Object.values(this.props.items).filter(item => {
-        return (item.item_stat !== undefined && item.item_stat.toLowerCase().includes(this.state.selector.toLowerCase()))}))
-        return Object.values(itemsSearch).map(item => {
-          console.log(item);
-          return (<div onClick={event => this.handleOnClick(event, item)}><img className="item-image" src={item.item_image} alt={item.name}/> <strong>{item.name}</strong> {item.item_stat} </div>)
-        })
-    }
-    else {
-      return Object.values(this.props.items).slice(0, -1).map(item => {
-      return (<div key={item.item_id} onClick={event => this.handleOnClick(event, item)}><img className="item-image" src={item.item_image} alt={item.name}/> <strong> {item.name} </strong>{item.item_stat} </div>)
-      })
-    } 
   }
 
    
@@ -96,6 +74,8 @@ class BuildNew extends Component {
   render() {
     return (
       <div>
+        <NavBar/>
+        <div className="build-new-container">
         <form className="buildForm" onSubmit={event => this.handleOnSubmit(event)} >
           {/* <label >Name Your Build:</label>
           <input type="text" name="name" placeholder="" value={this.state.name} onChange={event => {this.handleOnChangeDescription(event)}} />
@@ -103,12 +83,9 @@ class BuildNew extends Component {
           <label>Build Description:</label>
           <input type="text" name="description" placeholder="" value={this.state.description} onChange={event => {this.handleOnChangeDescription(event)}} />
           <br/>
-          {/* <label >Select God Name:</label> */}
-          {/* {this.renderGodSelect()} */}
           <BuildGodSelect 
             gods={this.props.gods.gods} 
             handleOnChangeDescription={this.handleOnChangeDescription}
-
           />
           <br/>
           <label>Build your six items by item name</label> <br/>
@@ -161,9 +138,8 @@ class BuildNew extends Component {
       </form>
       <br/>
       <button onClick={(e) => this.clearFilters(e)}>Clear Items</button> <br/>
-      <label>Look up item by typing in stat you are looking for </label>
-      <input type="text" name="selector"onChange={e => this.handleOnChangeDescription(e)}></input>
-        {this.renderItems()}
+        <BuildItemStatSearch items={this.props.items} handleOnChangeDescription={this.handleOnChangeDescription} handleOnClick={this.handleOnClick} selector={this.state.selector}/>
+    </div>
     </div>
       )}
   }
