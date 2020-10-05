@@ -22,7 +22,7 @@ import Home from './components/home/Home';
 import NoMatch from './components/home/NoMatch';
 import Build from './components/builds/Build';
 import Item from './components/items/Item';
-// import Navigationbar from './components/navigation/NavBar';
+import NavBarPlayerScreen from './components/navigation/NavBarPlayerScreen';
 
 class App extends Component {
 
@@ -62,12 +62,14 @@ class App extends Component {
               }}  />
               <Route path="/items/:item_id" render={(routerProps) => {
                 return this.props.items.loading ==='success' ? <Item item={Object.values(this.props.items).find(i => {
-                  return i.item_id == routerProps.match.params.item_id}) }/> : <div> Loading... </div>
+                  return i.item_id === routerProps.match.params.item_id}) }/> : <div> Loading... </div>
               }}/>
               <Route exact path="/items" component={ItemsContainer} />
               <Route path="/players/find/:portalid/:playername/player_matches/:matchid" render= {(routerProps) => {
                 return <Match routerProps={routerProps}/>
               } }/>
+              {/* <Route path="/players/find/:portalid/:playername" render= {(routerProps) => {
+                  return <NavBarPlayerScreen routerProps={routerProps} /> */}
               <Route exact path="/players/find/:portalid/:playername/:playerid/player_matches" render= {(routerProps) => {
                   return <PlayerMatches routerProps={routerProps} />
                 } }/>

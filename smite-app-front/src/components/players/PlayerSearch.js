@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NavBar from '../navigation/NavBar'
+
 
 
 class PlayerSearch extends Component {
@@ -52,7 +52,7 @@ class PlayerSearch extends Component {
   render() {
     return (
       <div>
-        {/* <NavBar /> */}
+
         <div className="player-search">
           {this.renderForm()}
         </div>

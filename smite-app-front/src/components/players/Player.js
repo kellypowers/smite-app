@@ -2,9 +2,29 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPlayer } from '../../actions/fetchPlayer'
+// import NavBarPlayerScreen from  '../navigation/NavBarPlayerScreen'
+import AccountHeader from './account/AccountHeader'
+import AccountNavBar from './account/AccountNavBar'
+import AccountMatchesInfo from './account/AccountMatchesInfo'
+import AccountMasteries from './account/AccountMasteries'
 
 
 class Player extends Component {
+
+  renderNavBar = () => {
+    return (
+      <div className="player-navbar">
+        <div className="player-navbar-left">
+          <Link to={`/`}>Home</Link>
+        </div>
+        <div className="player-navbar-right">
+          <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}`}>Account Info for {this.props.player.Name} </Link> 
+          <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}/${this.props.player.ActivePlayerId}/player_matches`}>Get Match History For {this.props.player.Name} </Link> 
+          <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}/${this.props.player.ActivePlayerId}/god_ranks`}>Get God Ranks For {this.props.player.Name} </Link>
+        </div>
+      </div>
+      ) 
+   }
 
   componentDidMount(){
     // console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
@@ -14,9 +34,28 @@ class Player extends Component {
   render() {
     if (this.props.player.loading ==="success") {
     return (
-      <div>
+      <div class="player-page">
+        
+        <AccountNavBar 
+          player={this.props.player} 
+          portalid={this.props.routerProps.match.params.portalid} 
+          playername={this.props.routerProps.match.params.playername}
+        />
         <br />
         <h3>Account Info:</h3>
+        <AccountHeader  
+          portalid={this.props.routerProps.match.params.portalid} 
+          player={this.props.player} 
+          />
+          <div class="player-page-details">
+        <AccountMatchesInfo 
+          player={this.props.player} 
+          portalid={this.props.routerProps.match.params.portalid}
+        />
+        <AccountMasteries
+          player={this.props.player} 
+          portalid={this.props.routerProps.match.params.portalid}
+        />
         <table>
           <tbody>
             <tr>
@@ -100,6 +139,7 @@ class Player extends Component {
         <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}/${this.props.player.ActivePlayerId}/player_matches`}>Get Match History For {this.props.player.Name} </Link> <br/>
         <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}/${this.props.player.ActivePlayerId}/god_ranks`}>Get God Ranks For {this.props.player.Name} </Link>
         {console.log(" " + JSON.stringify(this.props.player.RankedJoustController))}
+      </div>
       </div>
     )} else{return "Loading..."}
   };
