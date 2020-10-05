@@ -7,7 +7,7 @@ import AccountHeader from './account/AccountHeader'
 import AccountNavBar from './account/AccountNavBar'
 import AccountMatchesInfo from './account/AccountMatchesInfo'
 import AccountMasteries from './account/AccountMasteries'
-
+import AccountInfo from './account/AccountInfo'
 
 class Player extends Component {
 
@@ -42,7 +42,6 @@ class Player extends Component {
           playername={this.props.routerProps.match.params.playername}
         />
         <br />
-        <h3>Account Info:</h3>
         <AccountHeader  
           portalid={this.props.routerProps.match.params.portalid} 
           player={this.props.player} 
@@ -53,6 +52,10 @@ class Player extends Component {
           portalid={this.props.routerProps.match.params.portalid}
         />
         <AccountMasteries
+          player={this.props.player} 
+          portalid={this.props.routerProps.match.params.portalid}
+        />
+        <AccountInfo
           player={this.props.player} 
           portalid={this.props.routerProps.match.params.portalid}
         />
