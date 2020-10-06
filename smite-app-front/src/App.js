@@ -8,6 +8,7 @@ import { fetchGods } from './actions/fetchGods'
 import { fetchItems } from './actions/fetchItems'
 import { fetchBuilds } from './actions/fetchBuilds'
 import GodsContainer from './containers/GodsContainer';
+import GodRankContainer from './containers/GodRankContainer';
 import God from './components/gods/God';
 import Player from './components/players/Player';
 import PlayerMatches from './components/players/PlayerMatches';
@@ -19,10 +20,10 @@ import ItemsContainer from './containers/ItemsContainer';
 import BuildsContainer from './containers/BuildsContainer';
 import BuildNew from './components/builds/BuildNew';
 import Home from './components/home/Home';
-import NoMatch from './components/home/NoMatch';
+// import NoMatch from './components/home/NoMatch';
 import Build from './components/builds/Build';
 import Item from './components/items/Item';
-import NavBarPlayerScreen from './components/navigation/NavBarPlayerScreen';
+// import NavBarPlayerScreen from './components/navigation/NavBarPlayerScreen';
 
 class App extends Component {
 
@@ -72,7 +73,7 @@ class App extends Component {
                   return <PlayerMatches routerProps={routerProps} />
                 } }/>
               <Route exact path="/players/find/:portalid/:playername/:playerid/god_ranks" render= {(routerProps) => {
-                return <GodRanks routerProps={routerProps} />
+                return <GodRankContainer routerProps={routerProps} />
               } }/>
               <Route exact path="/players/find/:portalid/:playername" render= {(routerProps) => {
                     return <Player routerProps={routerProps} />

@@ -1,31 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class GodRankSort extends Component {
- 
-    renderSearchFilter = () => {
-        return (
-            <select onChange={event => this.props.handleOnChange(event)} name="sort" >
-                <option value="Worshippers">Worshipers </option>
-                <option value="Rank">Rank</option>
-                <option value="Wins">Wins</option>
-                <option value="TotalGames">Total Games</option>
-                <option value="Kills">Kills</option>
-                <option value="Deaths">Deaths</option>
-                <option value="WinRate">WinRate</option>
-                {/* <option value="">Kills</option> */}
-                {/* <option value="Deaths">Deaths</option> */}
-            </select>
-        )
-    }
-    render() {
+
+
+const GodRankSort = (props) => {
         return (
             <div>
                 <label>Sort By: </label>
-                <input type="text" name="selector"onChange={e => this.props.handleOnChangeDescription(e)}></input>
-                {this.renderSearchFilter()}
+                <select onChange={event => props.handleOnChange(event)} name="sort" >
+                    <option value="Worshippers">Worshipers </option>
+                    <option value="Rank">Rank</option>
+                    <option value="Wins">Wins</option>
+                    <option value="TotalGames">Total Games</option>
+                    <option value="Kills">Kills</option>
+                    <option value="Deaths">Deaths</option>
+                    <option value="WinRate">WinRate</option>
+                </select>
             </div>
         )
-    }
+    // }
 }
 
 export default GodRankSort

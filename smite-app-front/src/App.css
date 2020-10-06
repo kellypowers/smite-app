@@ -340,9 +340,11 @@ img.match-god-image{
   flex-direction: row;
   justify-content: left;
   align-items: center;
-  padding: 15px;
-  flex-wrap: nowrap;
+  padding-left: 15px;
+  flex-wrap: wrap;
   width: 100%;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
 }
 
 .god-ranks-godcard{
@@ -350,19 +352,31 @@ img.match-god-image{
   flex-direction: column;
   justify-content: left;
   align-items: left;
-  padding: 15px;
+  padding-left: 15px;
+  width: 120px;
+  padding-right: 15px;
+}
+.god-ranks-godcard img{
+  width: 120px;
+  height: auto;
+  padding: 10px;
 }
 .god-ranks-data {
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: left;
-  /* padding: 15px; */
+  padding-left: 20px;
+  flex-wrap: wrap;
 }
 
 .god-ranks-data div{
-  width: 115px;
-  border-top: 1px solid black;
+  /* width: 118px; */
+  width: auto;
+  padding: 10px;
+  /* padding-left: 20px; */
+  /* border-top: 1px solid black; */
+  /* padding-bottom: 10px; */
 }
 
 .god-ranks-data div:hover{
