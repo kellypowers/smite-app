@@ -348,15 +348,15 @@ img.match-god-image{
 .god-ranks-godcard{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   padding: 15px;
 }
 .god-ranks-data {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   /* padding: 15px; */
 }
 

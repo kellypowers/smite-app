@@ -22,6 +22,7 @@ class PlayerMatches extends Component {
             player={this.props.player} 
             portalid={this.props.routerProps.match.params.portalid} 
             playername={this.props.routerProps.match.params.playername}
+            playerid={this.props.routerProps.match.params.playerid}
           />
           <div className="player-matches-container">
             <h3>Match Info for {this.props.routerProps.match.params.playername}</h3>

@@ -41,6 +41,7 @@ class Player extends Component {
           player={this.props.player} 
           portalid={this.props.routerProps.match.params.portalid} 
           playername={this.props.routerProps.match.params.playername}
+          playerid={this.props.player.ActivePlayerId}
         />
         <br />
         <AccountHeader  

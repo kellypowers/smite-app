@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link} from 'react-router-dom';
 import { fetchMatchDetails } from '../../actions/fetchMatches'
+import AccountNavBar from './account/AccountNavBar'
 
  class Match extends Component {
 
@@ -97,7 +98,17 @@ import { fetchMatchDetails } from '../../actions/fetchMatches'
   render() {
     if (this.props.match.loading ==="success"){
       return (
-        this.renderMatchInfo()
+        <div>
+          <div>
+            <AccountNavBar 
+              player={this.props.player} 
+              portalid={this.props.routerProps.match.params.portalid} 
+              playername={this.props.routerProps.match.params.playername}
+              playerid={this.props.routerProps.match.params.playerid}
+            />
+        </div>
+        {this.renderMatchInfo()}
+        </div>
       )
     } else {
       return "Loading..."

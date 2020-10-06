@@ -28,9 +28,9 @@ const AccountNavBar= props => {
         {/* </div> */}
         {/* <div className="player-navbar-right"> */}
           <Nav className="ml-auto">
-          <Nav.Link href={`/players/find/${props.portalid}/${props.playername}`}>{props.playername}'s Account </Nav.Link> 
-          <Nav.Link href={`/players/find/${props.portalid}/${props.playername}/${props.player.ActivePlayerId}/player_matches`}> Match History </Nav.Link> 
-          <Nav.Link href={`/players/find/${props.portalid}/${props.playername}/${props.player.ActivePlayerId}/god_ranks`}> God Ranks {props.player.Name} </Nav.Link>
+          <Nav.Link href={`/players/find/${props.portalid}/${props.playername}`}>Account {props.playername} </Nav.Link> 
+          <Nav.Link href={`/players/find/${props.portalid}/${props.playername}/${props.playerid}/player_matches`}> Match History </Nav.Link> 
+          <Nav.Link href={`/players/find/${props.portalid}/${props.playername}/${props.playerid}/god_ranks`}> God Ranks </Nav.Link>
           </Nav>
         {/* </div> */}
       {/* </div> */}

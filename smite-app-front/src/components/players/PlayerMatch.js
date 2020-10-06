@@ -11,7 +11,7 @@ class PlayerMatch extends Component {
     return (
       <div className="player-match">
           <br />
-          <h4> <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}/player_matches/${this.props.matches.Match}`}>{this.props.matches.Win_Status} -- {this.props.matches.Map_Game} -- {this.props.matches.Match_Time} -- {this.props.matches.Minutes} minutes </Link></h4>
+          <h4> <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}/${this.props.routerProps.match.params.playerid}/player_matches/${this.props.matches.Match}`}>{this.props.matches.Win_Status} -- {this.props.matches.Map_Game} -- {this.props.matches.Match_Time} -- {this.props.matches.Minutes} minutes </Link></h4>
           <div className="player-match-deets">
             <div className="player-match-god">
             <h3><Link to={`/gods/${this.props.matches.GodId}`}>{this.props.matches.God}</Link></h3>
@@ -49,7 +49,7 @@ class PlayerMatch extends Component {
               <tr><th>Wards Placed: </th> <td>{this.props.matches.Wards_Placed}</td></tr>
             </tbody>
           </table> */}
-          <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}/player_matches/${this.props.matches.Match}`}>Get Match Details {this.props.player.Name} </Link>
+          <Link to={`/players/find/${this.props.routerProps.match.params.portalid}/${this.props.routerProps.match.params.playername}/${this.props.routerProps.match.params.playerid}/player_matches/${this.props.matches.Match}`}>Get Match Details {this.props.player.Name} </Link>
       </div>
     );
   }

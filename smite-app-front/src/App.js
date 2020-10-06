@@ -65,7 +65,7 @@ class App extends Component {
                   return i.item_id == routerProps.match.params.item_id}) }/> : <div> Loading... </div>
               }}/>
               <Route exact path="/items" component={ItemsContainer} />
-              <Route path="/players/find/:portalid/:playername/player_matches/:matchid" render= {(routerProps) => {
+              <Route path="/players/find/:portalid/:playername/:playerid/player_matches/:matchid" render= {(routerProps) => {
                 return <Match routerProps={routerProps}/>
               } }/>
               <Route exact path="/players/find/:portalid/:playername/:playerid/player_matches" render= {(routerProps) => {
