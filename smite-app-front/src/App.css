@@ -334,6 +334,43 @@ img.match-god-image{
   border: none;
 }
 
+/* GOD RANKS */
+.god-ranks-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  padding: 15px;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.god-ranks-godcard{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+.god-ranks-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* padding: 15px; */
+}
+
+.god-ranks-data div{
+  width: 115px;
+  border-top: 1px solid black;
+}
+
+.god-ranks-data div:hover{
+  background-color: aquamarine;
+}
+
+
+
 /*  */
 
 .losing-team{
