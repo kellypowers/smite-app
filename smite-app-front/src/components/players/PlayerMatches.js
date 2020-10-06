@@ -2,21 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlayerMatches } from '../../actions/fetchPlayerMatches'
 import PlayerMatch from './PlayerMatch';
+import AccountNavBar from './account/AccountNavBar'
 
 
 class PlayerMatches extends Component {
 
   componentWillMount(){
-    console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
+    // console.log("router prosp in comp is " + JSON.stringify(this.props.routerProps))
     this.props.fetchPlayerMatches(this.props.routerProps.match.params.playerid)
   }
 
   render() {
+    const player_matches = Object.values(this.props.player_matches).slice(0, 49);
+    console.log(`playermayches is ${JSON.stringify(Object.values(this.props.player_matches))}`)
     if (this.props.player_matches.loading === 'success') {
       return (
         <div>
-          <h3>Match Info for {this.props.routerProps.match.params.playername}</h3>
-          {Object.values(this.props.player_matches).map(m => <PlayerMatch routerProps={this.props.routerProps} matches={m} key={m.Match}/>)}
+          <AccountNavBar 
+            player={this.props.player} 
+            portalid={this.props.routerProps.match.params.portalid} 
+            playername={this.props.routerProps.match.params.playername}
+          />
+          <div className="player-matches-container">
+            <h3>Match Info for {this.props.routerProps.match.params.playername}</h3>
+            {player_matches.map(m => <PlayerMatch routerProps={this.props.routerProps} matches={m}  key={m.Match}/>)}
+          </div>
         </div>
       )
     } else{return "Loading..."}

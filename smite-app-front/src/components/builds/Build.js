@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from '../navigation/NavBar'
 
 const Build = props => {
     let item1 = Object.values(props.items).find(i => i.name === props.build.item1);
@@ -13,6 +14,7 @@ const Build = props => {
 
     return (
         <div className="build">
+            <NavBar/>
             <h1 className="build-god-link"><Link to={`gods/${god.god_id_smite}`}>{god.name}</Link></h1>
             <h4 className="build-subtitle">{props.build.name} {props.build.description} Build</h4>
             <div className="build-content">

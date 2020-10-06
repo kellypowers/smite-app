@@ -8,16 +8,14 @@ const AccountMatchesInfo= props => {
             <table className="account-matches-info-table">
                 <tbody>
                     <tr>
-                        <th colspan="5">Matches</th>
+                        <th colspan="3" ><u>Matches</u></th>
+                        {/* <th colspan="1"><u>Win Percent</u></th> */}
+                        {/* <th  rowspan="4"> <button><Link to={`/players/find/${props.portalid}/${props.playername}/${props.player.ActivePlayerId}/player_matches`}>View Recent </Link> </button></th> */}
                     </tr>
                     <tr>
                         <th>Wins: </th> 
                         <td> {props.player.Wins}</td>
-                        <th rowspan="3">Win Percent: </th> 
-                        <td rowspan="3"> {(parseInt(props.player.Wins) / parseInt(props.player.Losses) * 100).toFixed(2)}%</td>
-                        <th rowspan="3">
-                        <button><Link to={`/players/find/${props.portalid}/${props.playername}/${props.player.ActivePlayerId}/player_matches`}>View Recent </Link> </button>
-                        </th>
+                        {/* <td rowspan="3"> {(parseInt(props.player.Wins) / parseInt(props.player.Losses) * 100).toFixed(2)}%</td> */}
                     </tr>
                     <tr>
                         <th>Losses: </th> 
@@ -27,9 +25,12 @@ const AccountMatchesInfo= props => {
                         <th>Total Matches: </th> 
                         <td>{parseInt(props.player.Wins) + parseInt(props.player.Losses)}</td>
                     </tr>
+                    <tr>
+                        <th>Win Percent </th> 
+                        <td>{(parseInt(props.player.Wins) / parseInt(props.player.Losses) * 100).toFixed(2)}%</td>
+                    </tr>
                 </tbody>
             </table>
-            {/* <button><Link to={`/players/find/${props.portalid}/${props.playername}/${props.player.ActivePlayerId}/player_matches`}>View Recent </Link> </button> */}
         </div>
     )
 }

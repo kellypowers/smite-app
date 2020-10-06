@@ -18,7 +18,7 @@ class Items extends Component {
     //   return items.map(item =>
     //       <li key={item.item_id}><Link to={`items/${item.item_id}`}><Media><img width={50} height={50} className="mr-3" src={item.item_image} alt={item.name}/></Media>{item.name} </Link> </li>)
     } else {
-      return filteredItems.map(item => <Item item={item} key={item.item_id} />)
+      return Object.entries(this.props.items).map(item => <Item item={item[1]} key={item[1].item_id} />)
     }
   }
 

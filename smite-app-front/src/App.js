@@ -62,14 +62,12 @@ class App extends Component {
               }}  />
               <Route path="/items/:item_id" render={(routerProps) => {
                 return this.props.items.loading ==='success' ? <Item item={Object.values(this.props.items).find(i => {
-                  return i.item_id === routerProps.match.params.item_id}) }/> : <div> Loading... </div>
+                  return i.item_id == routerProps.match.params.item_id}) }/> : <div> Loading... </div>
               }}/>
               <Route exact path="/items" component={ItemsContainer} />
               <Route path="/players/find/:portalid/:playername/player_matches/:matchid" render= {(routerProps) => {
                 return <Match routerProps={routerProps}/>
               } }/>
-              {/* <Route path="/players/find/:portalid/:playername" render= {(routerProps) => {
-                  return <NavBarPlayerScreen routerProps={routerProps} /> */}
               <Route exact path="/players/find/:portalid/:playername/:playerid/player_matches" render= {(routerProps) => {
                   return <PlayerMatches routerProps={routerProps} />
                 } }/>
@@ -84,7 +82,7 @@ class App extends Component {
                     return <Clan routerProps={routerProps} />
               } }/>
               <Route exact path="/" component={Home} />
-              <Route component={NoMatch}/>
+              {/* <Route component={NoMatch}/> */}
             </Switch>
           </BrowserRouter>
         {/* </Layout> */}

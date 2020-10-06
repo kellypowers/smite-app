@@ -40,7 +40,7 @@ class GodsFilter extends Component {
     render() {
         return(
             <div className="gods-filter">
-                <h3>Sort By:</h3>
+                <h5>Sort By:</h5>
                 <label>Role</label> 
                 <input type="radio" value="roles" name="selectedOption" checked={this.props.selectedOption === "roles"} onChange={event => this.props.handleOnChange(event)}/>
 

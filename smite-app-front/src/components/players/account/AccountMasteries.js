@@ -8,14 +8,12 @@ const AccountMasteries= props => {
             <table className="account-masteries-info-table">
                 <tbody>
                     <tr>
-                        <th colspan="5">Masteries</th>
+                        <th colspan="2"><u>Masteries</u></th>
+                        {/* <th rowspan="4"><button><Link to={`/players/find/${props.portalid}/${props.playername}/${props.player.ActivePlayerId}/god_ranks`}>View Details </Link> </button></th> */}
                     </tr>
                     <tr>
                         <th>Total: </th> 
                         <td> {props.player.MasteryLevel}</td>
-                        <td rowspan="3">
-                        <button><Link to={`/players/find/${props.portalid}/${props.playername}/${props.player.ActivePlayerId}/god_ranks`}>View Details </Link> </button>
-                        </td>
                     </tr>
                     <tr>
                         <th>Total Worshipers: </th> 
@@ -25,14 +23,8 @@ const AccountMasteries= props => {
                         <th>Achievements: </th> 
                         <td>{props.player.Total_Achievements}</td>
                     </tr>
-                    {/* <tr>
-                        <td rowspan="3">
-                        <button><Link to={`/players/find/${props.portalid}/${props.playername}/${props.player.ActivePlayerId}/god_ranks`}>View Details </Link> </button>
-                        </td>
-                    </tr> */}
                 </tbody>
             </table>
-            {/* <button><Link to={`/players/find/${props.portalid}/${props.playername}/${props.player.ActivePlayerId}/god_ranks`}>View Details </Link> </button> */}
         </div>
     )
 }
