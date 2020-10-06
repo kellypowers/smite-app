@@ -27,7 +27,7 @@ const AccountMatchesInfo= props => {
                     </tr>
                     <tr>
                         <th>Win Percent </th> 
-                        <td>{(parseInt(props.player.Wins) / parseInt(props.player.Losses) * 100).toFixed(2)}%</td>
+                        <td>{(parseInt(props.player.Wins) / (parseInt(props.player.Wins) + parseInt(props.player.Losses)) * 100).toFixed(2)}%</td>
                     </tr>
                 </tbody>
             </table>

@@ -27,6 +27,7 @@ class GodRankContainer extends Component {
                     player={this.props.player} 
                     portalid={this.props.routerProps.match.params.portalid} 
                     playername={this.props.routerProps.match.params.playername}
+                    playerid={this.props.routerProps.match.params.playerid}
                 />
                 <div>
                     <h3>God ranks for {this.props.routerProps.match.params.playername}</h3>

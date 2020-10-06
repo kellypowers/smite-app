@@ -39,7 +39,7 @@ const RankedInfo= props => {
                     </tr>
                     <tr>
                         <th>W/L Percent: </th> 
-                        <td>{(parseInt(props.player.RankedJoustController['Wins']) / parseInt(props.player.RankedJoustController.Losses) * 100).toFixed(2)}%</td>
+                        <td>{(parseInt(props.player.RankedJoustController['Wins']) / (parseInt(props.player.RankedJoustController['Wins']) + parseInt(props.player.RankedJoustController.Losses)) * 100).toFixed(2)}%</td>
                     </tr>
                 </tbody>
             </table>

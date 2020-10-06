@@ -13,8 +13,9 @@ class PlayerSearch extends Component {
   }
 
   handleOnChange = event => {
+    
     this.setState({
-      player_name: event.target.value
+      player_name: event.target.value.replace(" ", "%2520")
     })
   }
 
