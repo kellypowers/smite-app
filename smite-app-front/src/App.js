@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import { Layout} from './components/home/Layout';
 import PlayersContainer from './containers/PlayersContainer';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -14,16 +12,12 @@ import Player from './components/players/Player';
 import PlayerMatches from './components/players/PlayerMatches';
 import Match from './components/players/Match';
 import Clan from './components/players/Clan';
-import GodRanks from './components/players/GodRanks';
-// import ItemsContainer from './containers/ItemsContainer';
 import ItemsContainer from './containers/ItemsContainer';
 import BuildsContainer from './containers/BuildsContainer';
 import BuildNew from './components/builds/BuildNew';
 import Home from './components/home/Home';
-// import NoMatch from './components/home/NoMatch';
 import Build from './components/builds/Build';
 import Item from './components/items/Item';
-// import NavBarPlayerScreen from './components/navigation/NavBarPlayerScreen';
 
 class App extends Component {
 
@@ -33,12 +27,9 @@ class App extends Component {
     this.props.fetchBuilds()
   }
 
-  
   render() {
     return (
       <div>
-        {/* <Home /> */}
-        {/* <Layout > */}
           <BrowserRouter>
             <Switch>
               <Route path="/gods/:god_id" render={(routerProps) => {
@@ -86,7 +77,6 @@ class App extends Component {
               {/* <Route component={NoMatch}/> */}
             </Switch>
           </BrowserRouter>
-        {/* </Layout> */}
       </div>
     );
   }
@@ -112,7 +102,6 @@ const mapDispatchToProps = dispatch => {
     fetchGods: gods => dispatch(fetchGods()),
     fetchItems: items => dispatch(fetchItems()),
     fetchBuilds: builds => dispatch(fetchBuilds())
-    // fetchPlayer: player=> dispatch(fetchPlayer())
   }
 }
 
