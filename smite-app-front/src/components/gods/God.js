@@ -1,23 +1,29 @@
 import React from 'react';
+import NavBar from '../navigation/NavBar'
+
 
 const God = props => {
     return (
-      <div key={props.god.god_id} >
-        <ul>
-          <div id="god_intro">
+      <div>
+        {console.log(`${JSON.stringify(props.god)}`)}
+        <NavBar
+        />
+      <div className="god_container" key={props.god.god_id} >
+        <div className="god-img">
+          <img src={props.god.god_image} alt={props.god.name}/>
+        </div>
+          <div className="god_header">
             <h3>{props.god.name}</h3>
-            <p>{props.god.god_kind}</p>
+            <h4>{props.god.title} </h4> <br/>
+            <h4>{props.god.pantheon}</h4>
             <br/>
             <p> {props.god.pros} </p>
-            <h4>{props.god.title} {props.god.pantheon}</h4> <br/>
-            <img src={props.god.god_image} alt={props.god.name}/>
+            <p>{props.god.god_kind}</p>
+            {/* <h4>{props.god.title} {props.god.pantheon}</h4> <br/> */}
+            {/* <img src={props.god.god_image} alt={props.god.name}/> */}
             <br />
-          </div>
-          <div id="god_lore">
-            <br/>
-            <h4>Lore: </h4>
-            <p>{props.god.lore}</p>
-          </div>
+          </div> 
+
           <div id="god_play">
              <br/>
              Abilities: <br/>
@@ -28,7 +34,13 @@ const God = props => {
                  <li><img src={props.god.ability4_image} alt={props.god.ability4} />{props.god.ability4} - <br/>{props.god.ability4_description}</li>
              </ul>
             </div>
-        </ul>
+            <div id="god_lore">
+              <br/>
+              <h4>Lore: </h4>
+              <p>{props.god.lore}</p>
+            </div>
+        {/* </ul> */}
+      </div>
       </div>
     );
   }

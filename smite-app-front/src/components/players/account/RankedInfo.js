@@ -14,6 +14,10 @@ const RankedInfo= props => {
                         <td> {props.player.RankedJoustController.Rank}</td>
                     </tr>
                     <tr>
+                        <th>Tier: </th> 
+                        <td> {props.player.RankedJoustController.Tier}</td>
+                    </tr>
+                    <tr>
                         <th>Points: </th> 
                         <td> {props.player.RankedJoustController.Points}</td>
                     </tr>

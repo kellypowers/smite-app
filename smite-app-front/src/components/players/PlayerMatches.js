@@ -26,7 +26,7 @@ class PlayerMatches extends Component {
           />
           <div className="player-matches-container">
             <h3>Match Info for {this.props.routerProps.match.params.playername}</h3>
-            {player_matches.map(m => <PlayerMatch routerProps={this.props.routerProps} matches={m}  key={m.Match}/>)}
+            {player_matches.map(m => <PlayerMatch routerProps={this.props.routerProps} gods={this.props.gods.gods} matches={m}  key={m.Match}/>)}
           </div>
         </div>
       )
