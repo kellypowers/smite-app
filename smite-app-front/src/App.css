@@ -251,7 +251,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .accordion-header{
@@ -268,20 +268,28 @@ html {
   /* float: right; */
   position: absolute;
   font-size: 30px;
-  right: 30px;
-  top: 20px;
+  left: 30px;
+  bottom: 10px;
 }
 
 img.match-god-image{
-  height: 250px;
-  width: 125px;
-  
+  /* height: 250px;
+  width: 125px; */
+  width: 100px;
+  height: auto;
 }
 
 .player-match {
   width: 100%;
   border-top: 1px solid black;
   text-align: center;
+}
+
+.wrap-table {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
 }
 
 .player-match-deets {
@@ -291,6 +299,20 @@ img.match-god-image{
   align-items: center;
   padding: 15px;
 }
+
+.player-match-deets-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 300px;
+  flex-wrap: wrap;
+}
+
+.player-match-link {
+  /* padding-top: 15px; */
+  bottom: 20px;
+  text-align: left;
+}
 .player-match-god {
   /* display: flex;
   flex-direction: column;
@@ -299,7 +321,7 @@ img.match-god-image{
   padding-right: 50px;
 }
 
-.player-match table{
+.player-match-table th, td{
   text-align: left;
   border: none;
 }
