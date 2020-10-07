@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :items
   resources :god_builds
   post "/players", to: 'players#create'
+  post "/players/find", to: 'players#create'
   post "/find_player_matches", to: 'players#find_player_matches'
   post "/get_god_ranks", to: 'players#get_god_ranks'
   post "/get_player_achievements", to: 'players#get_player_achievements'
