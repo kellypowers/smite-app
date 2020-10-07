@@ -385,9 +385,21 @@ img.match-god-image{
   flex-wrap: wrap;
   flex-direction: row;
 }
+
+.god-abilities-table th, td {
+  border: none;
+}
+.god-play {
+  padding: 15px;
+  align-self: center;
+  background-color: antiquewhite;
+}
 .god_header {
   display: flex;
   flex-direction: column;
+  align-self: center;
+  background-color: peru;
+  color: black;
 }
 .god_header h3, h4, p {
   padding: 10px;
