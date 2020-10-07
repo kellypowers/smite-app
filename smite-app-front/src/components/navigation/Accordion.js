@@ -1,35 +1,32 @@
-import React, { useState, useRef } from 'react'
-import "./Accordion.css"
-import Chevron from "./Chevron"
+import React, { useState } from 'react';
+// import { connect } from 'react-redux';
 
 
-function Accordion(props) {
 
-    const [setActive, setActiveState] = useState("");
-    const [setHeight, setHeightState] = useState("0px");
-    const [setRotate, setRotateState] = useState("accordion-icon");
-    const content = useRef(null);
-
-    function toggleAccordion() {
-        setActiveState(setActive ===" ? "active : "");
-        setHeightState(setActive === "active" ? "0px" : `${content.current.scrollHeight}px` );
-        setRotateState( setActive === "active" ? "accordion-icon" : "accordion-icon-rotate")
-    }
-
+function Accordion(image, title, body) {
+    const [isOpen, setIsOpen] = useState(false);
+  // render() {
+    
     return (
-        <div className="accordian-section">
-            <button className={`accordion ${setActive}`} onClick={toggleAccordion}>
-                <p className="accordion-title">{props.title}</p>
-                <Chevron className={`${setRotate}`} width={10} fill={"#777"} />
-                <div ref={content} style={{maxHeight: `${setHeight}`}} className="accordion-content">
-                    <div className="accordion-text">
-                        setInnerHtml={{ _html: props.content}}
-                    </div>
-                </div>
-            </button>
-        </div>
+      <div  className="accordion">
+          <br />
+          <div  onClick={() => setIsOpen(!isOpen)}className="accordion-header">
+            <h4> {title}</h4>
+            <div className="accordion-indicator">
+              {isOpen ? '-' : '+'}
+            </div>
+          </div>
+          {isOpen && (
+          <div className="accordion-body">
+              {body}
+              <img className="accordion-image" src={image} alt={""}/>
+          </div>
+          )};
+      </div>
+    );
+  // }
+};
 
-    )
-}
 
-export default Accordion
+
+export default Accordion;
