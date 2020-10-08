@@ -4,11 +4,12 @@ class SearchBar extends Component {
 
     handleChange = (event) => {
         this.props.handleStateChange(event.target.value)
+        // this.props.handleStateChange(event.target.value)
     }
     render() {
         return (
             <form class="searchBar">
-                <h3>Search by item Name:<input type="text" name="name" placeholder="" value={this.props.filterItemName} onChange={this.handleChange} /> </h3>
+                <h3>{this.props.title}:<input type="text" name="name" placeholder="" value={this.props.filterItem} onChange={this.handleChange} /> </h3>
             </form>
         )
     }
