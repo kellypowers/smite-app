@@ -5,17 +5,17 @@ const logo = (portalid) => {
     console.log(portalid);
     switch (portalid) {
         case "10":
-            return <img src={require("/Users/kellypowers/coding/react/smite-app/smite-app-front/src/components/players/account/xbox_logo.png")} alt="xbox_logo"/> 
+            return <img src={require("/Users/kellypowers/coding/react/smite-app/smite-app-front/src/images/xbox_logo.png")} alt="xbox_logo"/> 
         case "5":
-            return (<img src="./steam_logo.png" alt="steam_logo" />)
+            return (<img src="/Users/kellypowers/coding/react/smite-app/smite-app-front/src/images/steam_logo.png" alt="steam_logo" />)
         case "9": 
-            return (<img src="./playstation_logo.png" alt="playstation_logo" />)
+            return (<img src="/Users/kellypowers/coding/react/smite-app/smite-app-front/src/images/playstation_logo.png" alt="playstation_logo" />)
         case "22": 
-            return (<img src="./switch_logo.png" alt="switch_logo" />)
+            return (<img src="/Users/kellypowers/coding/react/smite-app/smite-app-front/src/images/switch_logo.png" alt="switch_logo" />)
         case "1":
-            return (<img src="./pc_logo.png" alt="pc_logo" />)
+            return (<img src="/Users/kellypowers/coding/react/smite-app/smite-app-front/src/images/pc_logo.png" alt="pc_logo" />)
         default:
-            return <img src="./xbox_logo.png" alt="xbox_logo"/> 
+            return <img src="/Users/kellypowers/coding/react/smite-app/smite-app-front/src/images/xbox_logo.png" alt="xbox_logo"/> 
         }
 }
 

@@ -26,12 +26,12 @@ const God = props => {
                  <th colspan="4"><strong>Abilities</strong></th>
                  </tr>
                  <tr>
-                 <th><img src={props.god.ability1_image} alt={props.god.ability1} />{props.god.ability1}</th>
-                 <th><img src={props.god.ability2_image} alt={props.god.ability2} />{props.god.ability2}</th>
-                 <th><img src={props.god.ability3_image} alt={props.god.ability3} />{props.god.ability3}</th>
-                 <th><img src={props.god.ability4_image} alt={props.god.ability4} />{props.god.ability4}</th>
+                 <th><img src={props.god.ability1_image} alt={props.god.ability1} /><br/>{props.god.ability1}</th>
+                 <th><img src={props.god.ability2_image} alt={props.god.ability2} /><br/>{props.god.ability2}</th>
+                 <th><img src={props.god.ability3_image} alt={props.god.ability3} /><br/>{props.god.ability3}</th>
+                 <th><img src={props.god.ability4_image} alt={props.god.ability4} /><br/>{props.god.ability4}</th>
                </tr>
-               <tr>
+               <tr className="align-top">
                  <td>{props.god.ability1_description}</td>
                  <td>{props.god.ability2_description}</td>
                  <td>{props.god.ability3_description}</td>

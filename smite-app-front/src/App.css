@@ -79,6 +79,7 @@ html {
   width: 100vw;
   display: grid;
   grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+  padding-top: 15px;
 }
 
 .gods-list, ul, li {
@@ -125,6 +126,10 @@ html {
   display: grid;
   grid-template: repeat(4, 1fr) / repeat(3, 1fr);
   padding: auto;
+}
+
+.items-list ul li {
+  align-items: center;
 }
 
 
@@ -377,17 +382,26 @@ img.match-god-image{
 .god-img img {
   width: 250px;
   height: auto;
-  padding: 10px;
 }
 
+.god-img {
+  align-self: center;
+  padding: 5px;
+}
 .god_container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  padding: 10px;
+  background-color: antiquewhite;
 }
 
 .god-abilities-table th, td {
   border: none;
+}
+.god-abilities-table  td {
+  text-align: start;
+  padding: 10px;
 }
 .god-play {
   padding: 15px;
@@ -400,6 +414,7 @@ img.match-god-image{
   align-self: center;
   background-color: peru;
   color: black;
+  padding: 5px;
 }
 .god_header h3, h4, p {
   padding: 10px;
