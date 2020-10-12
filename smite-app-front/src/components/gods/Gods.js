@@ -9,10 +9,15 @@ class Gods extends Component {
           let filteredGods = this.props.gods.filter(god => god.name.toLowerCase().startsWith(this.props.name.toLowerCase()));
           return filteredGods.map(god => <li key={god.god_id}> <Link to={`gods/${god.god_id}`}><img className="god-list-image" src={god.god_image} alt={god.name}/><br/>{god.name}</Link> </li>)
         }
-        else if (this.props.role !== "") {
+        else if ((this.props.role !=="All") && (this.props.pantheon !== "All")){
+          let godRoles = this.props.gods.filter(god => (god.roles) === this.props.role );
+          let godsPantheonToo = godRoles.filter(god => god.pantheon === this.props.pantheon );
+          return godsPantheonToo.map(god => <li key={god.god_id}> <Link to={`gods/${god.god_id}`}><img className="god-list-image" src={god.god_image} alt={god.name}/><br/>{god.name}</Link> </li>)
+        }
+        else if (this.props.role !== "All") {
           let godRoles = this.props.gods.filter(god => (god.roles) === this.props.role );
           return godRoles.map(god => <li key={god.god_id}> <Link to={`gods/${god.god_id}`}><img className="god-list-image" src={god.god_image} alt={god.name}/><br/>{god.name}</Link> </li>)
-        } else if (this.props.pantheon !== "") {
+        } else if (this.props.pantheon !== "All") {
           let godsPantheon = this.props.gods.filter(god => god.pantheon === this.props.pantheon );
           return godsPantheon.map(god => <li key={god.god_id}> <Link to={`gods/${god.god_id}`}><img className="god-list-image" src={god.god_image} alt={god.name}/><br/>{god.name}</Link> </li>)
         }

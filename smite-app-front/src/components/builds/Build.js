@@ -15,7 +15,7 @@ const Build = props => {
     return (
         <div className="build">
             <NavBar/>
-            <h1 className="build-god-link"><Link to={`gods/${god.god_id_smite}`}>{god.name}</Link></h1>
+            <h1 className="build-god-link"><Link to={`/gods/${god.god_id}`}>{god.name}</Link></h1>
             <h4 className="build-subtitle">{props.build.name} {props.build.description} Build</h4>
             <div className="build-content">
                 

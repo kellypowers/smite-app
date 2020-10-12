@@ -72,7 +72,16 @@ html {
   font-family: 'Courier New', Courier, monospace;
   font-weight: 200;
 }
-
+.gods-search-components {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: ;
+}
+.gods-filter {
+  display: flex;
+  flex-direction: row;
+}
 .gods-list{
   list-style: none;
   height: 100vh;
@@ -155,6 +164,8 @@ html {
 /* BUILDS SHOW */
 .build-god-image{
   padding: auto;
+  width: 100px;
+  height: auto;
 }
 
 .build-content{

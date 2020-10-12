@@ -15,7 +15,7 @@ class Items extends Component {
     console.log(`filter item is ${JSON.stringify(this.props.filterItemStat)}`);
     console.log(`length is ${filterItemName.length}`)
     // console.log(`filtereditemstat array  is ${JSON.stringify(filteredItemsStat)}`);
-    if (filterItemName.length > 1) {
+    if (filterItemName.length >= 1) {
       console.log("in if")
       return filteredItemsName.map(item => {
         return (<li key={item.item_id}><Link to={`items/${item.item_id}`}><Media><img width={50} height={50} className="mr-3" src={item.item_image} alt={item.name}/></Media>{item.name} </Link></li>)

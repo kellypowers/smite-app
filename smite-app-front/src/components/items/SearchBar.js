@@ -9,7 +9,7 @@ class SearchBar extends Component {
     render() {
         return (
             <form class="searchBar">
-                <h3>{this.props.title}:<input type="text" name="name" placeholder="" value={this.props.filterItem} onChange={this.handleChange} /> </h3>
+                <h3>{this.props.title}:<input type="text"  placeholder="" value={this.props.filterItem} onChange={this.handleChange} /> </h3>
             </form>
         )
     }
