@@ -11,6 +11,18 @@ import AccountNavBar from './account/AccountNavBar'
     this.props.fetchMatchDetails(this.props.routerProps.match.params.matchid)
   }
 
+  renderPlayerName = (name) => {
+    if (name) {
+    if (name.includes(" ") && name.includes(']')) {
+    return name.split(']')[1].replace(" ", "%2520");
+    } else if (name.includes(']')){
+      return name.split(']')[1]
+    } else {
+      return name
+    }
+  } else {return "hidden"}
+  }
+
   renderMatchInfo = () => {
     let win_array = [];
     let lose_array = [];
@@ -62,10 +74,12 @@ import AccountNavBar from './account/AccountNavBar'
           </tr>
         </thead>
         {array.map(i=> {
+          const playername = this.renderPlayerName(i.playerName);
+          console.log(`playername is ${playername}`)
           return (
           <tbody className="player">
             <tr >
-              <td> {i.playerName ? <Link to={`/players/find/${i.playerPortalId}/${i.playerName.split(']')[1]}`} replace>{i.playerName}</Link> : "hidden"}</td>
+              <td> {i.playerName ? <Link to={`/players/find/${i.playerPortalId}/${playername}`}>{i.playerName}</Link> : "hidden"}</td>
               <td> {i.Account_Level}</td>
               <td> {i.Mastery_Level}</td>
               <td> {i.Damage_Player}</td>

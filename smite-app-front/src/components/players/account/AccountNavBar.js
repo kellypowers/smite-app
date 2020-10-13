@@ -27,10 +27,11 @@ const AccountNavBar= props => {
         <Navbar.Brand href='/'>Home</Navbar.Brand>
         {/* </div> */}
         {/* <div className="player-navbar-right"> */}
+        {console.log(`playername is ${props.playername}`)}
           <Nav className="ml-auto">
-          <Nav.Link href={`/players/find/${props.portalid}/${props.playername}`}>Account {props.playername} </Nav.Link> 
-          <Nav.Link href={`/players/find/${props.portalid}/${props.playername}/${props.playerid}/player_matches`}> Match History </Nav.Link> 
-          <Nav.Link href={`/players/find/${props.portalid}/${props.playername}/${props.playerid}/god_ranks`}> God Ranks </Nav.Link>
+          <Nav.Link href={`/players/find/${props.portalid}/${props.playername.replace("%20", "%2520")}`}>Account {props.playername.replace("%20", " ")} </Nav.Link> 
+          <Nav.Link href={`/players/find/${props.portalid}/${props.playername.replace("%20", "%2520")}/${props.playerid}/player_matches`}> Match History </Nav.Link> 
+          <Nav.Link href={`/players/find/${props.portalid}/${props.playername.replace("%20", "%2520")}/${props.playerid}/god_ranks`}> God Ranks </Nav.Link>
           </Nav>
         {/* </div> */}
       {/* </div> */}

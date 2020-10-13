@@ -15,7 +15,7 @@ class PlayerSearch extends Component {
   handleOnChange = event => {
     
     this.setState({
-      player_name: event.target.value.replace(" ", "%2520")
+      player_name: event.target.value
     })
   }
 
@@ -27,7 +27,7 @@ class PlayerSearch extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    window.location = `http://localhost:3001/players/find/${this.state.portal_id}/${this.state.player_name}`
+    window.location = `http://localhost:3001/players/find/${this.state.portal_id}/${this.state.player_name.replace(" ", "%2520")}`
 }
 
   renderForm = () =>(

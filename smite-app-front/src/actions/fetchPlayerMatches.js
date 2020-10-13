@@ -22,7 +22,7 @@ export function fetchPlayerMatches(playerid) {
         .catch(error => {
             console.log(error.message);
             dispatch({ type: 'ADD_PLAYER_MATCHES_FAILURE', error });
-            return (window.location = `http://localhost:3001/nomatch`)
+            // return (window.location = `http://localhost:3001/nomatch`)
         })
     }
 }

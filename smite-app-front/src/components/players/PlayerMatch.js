@@ -4,13 +4,15 @@ import { Link} from 'react-router-dom';
 function PlayerMatch(props)  {
     const [isOpen, setIsOpen] = useState(false);
     let god = props.gods.find(g=> g.god_id == props.matches.GodId);
+    console.log(`props is ${JSON.stringify(props)}`)
+    // if (god) {
     return (
       <div  className="player-match">
           <div  onClick={() => setIsOpen(!isOpen)}className="accordion-header">
           <div className="accordion-indicator">
               {isOpen ? '-' : '+'}
             </div>
-            <h5> {props.matches.Win_Status} -- {god.name} -- {props.matches.Map_Game} -- {props.matches.Match_Time} -- {props.matches.Minutes} minutes </h5>
+            <h5> {props.matches.Win_Status} -- {props.matches.God} -- {props.matches.Map_Game} -- {props.matches.Match_Time} -- {props.matches.Minutes} minutes </h5>
           </div>
           {isOpen && (
           <div className="player-match-deets">
@@ -53,6 +55,7 @@ function PlayerMatch(props)  {
           )}
       </div>
     );
+          // }
 };
 
 export default PlayerMatch;

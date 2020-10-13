@@ -13,8 +13,8 @@ class PlayerMatches extends Component {
   }
 
   render() {
-    const player_matches = Object.values(this.props.player_matches).slice(0, 49);
-    console.log(`playermayches is ${JSON.stringify(Object.values(this.props.player_matches))}`)
+    const player_matches = Object.values(this.props.player_matches).slice(0, 45);
+    console.log(`playermayches is ${JSON.stringify(player_matches)}`)
     if (this.props.player_matches.loading === 'success') {
       return (
         <div>
@@ -26,7 +26,7 @@ class PlayerMatches extends Component {
           />
           <div className="player-matches-container">
             <h3>Match Info for {this.props.routerProps.match.params.playername}</h3>
-            {player_matches.map(m => <PlayerMatch player={this.props.player} portalid={this.props.routerProps.match.params.portalid} playername={this.props.routerProps.match.params.playername} playerid={this.props.routerProps.match.params.playerid} gods={this.props.gods.gods} matches={m}  key={m.Match}/>)}
+            {player_matches.map(m => <PlayerMatch player={this.props.player} portalid={this.props.routerProps.match.params.portalid} playername={this.props.routerProps.match.params.playername.replace("%20", "%2520")} playerid={this.props.routerProps.match.params.playerid} gods={this.props.gods.gods} matches={m}  key={m.Match}/>)}
           </div>
         </div>
       )
